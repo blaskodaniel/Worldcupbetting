@@ -9,13 +9,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-
+  private username:string;
   constructor(private dataservice:DataService, 
     public authservice:AuthService,
     private router: Router) { }
+  
+  get Username(){
+    this.username = `Üdv ${this.authservice.getUsername()}`;
+    return this.username;
+  }
 
   ngOnInit() {
-    
+
   }
 
   logout(){

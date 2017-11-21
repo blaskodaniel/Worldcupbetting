@@ -1,0 +1,90 @@
+<div class="row">
+  <h2 class="page-title">Dashboard
+          <small></small>
+  </h2> 
+</div>
+
+<!-- TEAMS -->
+<div class="row">
+      <div class="col-xs-12">
+          <section class="widget">
+              <header>
+                  <h4>
+                      Teams <span class="fw-semi-bold"></span>
+                  </h4>
+                  <div class="widget-controls">
+                      <div class="form-group">
+                          <input type="text" class="form-control input-style" 
+                          name="search" 
+                          placeholder="Search.." 
+                          [(ngModel)]="teamsearch">
+                        </div>
+                  </div>
+              </header>
+              <div class="body">
+                  <table class="table table-striped">
+                      <thead>
+                      <tr>
+                          <th class="hidden-xs">#</th>
+                          <th class="hidden-xs">ID</th>
+                          <th class="hidden-xs">Csoport</th>
+                          <th class="hidden-xs">Name</th>
+                          <th>Flag</th>
+                          <th class="hidden-xs">Aktiv</th>
+                          <th>Score</th>
+                          <th></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let i = index;let item of teams | orderBy: teamOrderKey : teamOrderReverse | filter:teamsearch">
+                          <td class="hidden-xs">{{i+1}}</td>
+                          <td class="hidden-xs">{{item.id}}</td>
+                          <td class="hidden-xs" contenteditable="true" [(myContent)]="item.groupid">
+                              {{item.groupid}}
+                          </td>
+                          <td class="hidden-xs" contenteditable="true" [(myContent)]="item.name">
+                              {{item.name}}
+                          </td>
+                          <td>
+                              <img class="img-rounded" src="./assets/icons/flags/{{item.flag}}" alt="" height="50">
+                          </td>
+                          <td class="hidden-xs text-muted" contenteditable="true" [(myContent)]="item.aktiv">
+                              {{item.aktiv}}
+                          </td>
+                          <td class="text-muted" contenteditable="true" [(myContent)]="item.score">
+                              {{item.score}}
+                          </td>
+                          <td>
+                              <button class="btn btn-save" (click)="EditTeam(item)">Save</button>
+                              <button class="btn btn-remove" (click)="DeleteTeam(item)">Remove</button>
+                          </td>
+                      </tr>
+                      
+                      </tbody>
+    
+                  </table>
+                  <div class="clearfix">
+                      <div class="pull-right">
+                          <button class="btn btn-default btn-sm">
+                              Send to ...
+                          </button>
+                          <div class="btn-group">
+                              <button class="btn btn-sm btn-inverse dropdown-toggle" data-toggle="dropdown">
+                                  &nbsp; Clear &nbsp;
+                                  <i class="fa fa-caret-down"></i>
+                              </button>
+                              <ul class="dropdown-menu dropdown-menu-right">
+                                  <li><a href="#">Clear</a></li>
+                                  <li><a href="#">Move ...</a></li>
+                                  <li><a href="#">Something else here</a></li>
+                                  <li class="divider"></li>
+                                  <li><a href="#">Separated link</a></li>
+                              </ul>
+                          </div>
+                      </div>
+                      <p>Basic table with styled content</p>
+                  </div>
+              </div>
+          </section>
+      </div>
+</div>

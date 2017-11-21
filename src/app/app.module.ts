@@ -2,6 +2,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthService } from './_services/auth.service';
 import { DataService } from './_services/data.service';
 import { GuardService } from './_services/guard.service';
+import { EditorGuardService } from './_services/editorguard.service';
+import { AdminGuardService } from './_services/adminguard.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './_services/interceptor.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -26,6 +28,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { contenteditableDirective } from './_directives/contenteditable.directive';
 import { CouponComponent } from './coupon/coupon.component';
 import { MatchComponent } from './match/match.component';
+import { UsersComponent } from './dashboard/users/users.component';
+import { TeamsgroupsComponent } from './dashboard/teamsgroups/teamsgroups.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +44,10 @@ import { MatchComponent } from './match/match.component';
     DashboardComponent,
     contenteditableDirective,
     CouponComponent,
-    MatchComponent
+    MatchComponent,
+    UsersComponent,
+    TeamsgroupsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +65,8 @@ import { MatchComponent } from './match/match.component';
     DataService,
     AuthService,
     GuardService,
+    AdminGuardService,
+    EditorGuardService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

@@ -1,3 +1,14 @@
 a{
     cursor: pointer;
 }
+.dropdown-menu li a {
+    color: #fff !important;
+    font-size: 12px;
+}
+.dropdown-menu{
+    background-color: #2b3036;
+}
+
+.navbar{
+    opacity: 1;
+}

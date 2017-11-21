@@ -54,9 +54,13 @@ export class DataService{
         return this.http.post(`${this.BaseURL}/register`, user);
     } 
 
+    getUserById(id){
+        // Get user by ID
+    }
+
     getUsers() {
         // Get All user
-        return this.httpclient.get(`${this.BaseURL}/api/user`);
+        return this.httpclient.get(`${this.BaseURL}/api/alluser`);
     }
 
     getTeams() {
