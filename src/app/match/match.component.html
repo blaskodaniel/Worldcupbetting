@@ -1,13 +1,13 @@
-<li class="match">
-    <span class="leftTeam hidden-xs hidden-sm">Svédország</span>
+<li class="match" *ngFor="let i = index;let item of matches">
     <span class="pull-left"><img src="./assets/icons/flags/if_Flag_of_Sweden_96316.png" alt=""></span>
+    <span class="leftTeam hidden-xs hidden-sm">{{item.teamA}}</span>
     <span class="pull-right"><img src="./assets/icons/flags/if_Flag_of_Germany_96145.png" alt=""></span>
-    <span class="rightTeam hidden-xs hidden-sm">Németország</span>
+    <span class="rightTeam hidden-xs hidden-sm">{{item.teamB}}</span>
     <div class="detail">
-      <span class="result-vs">3-5</span>
+      <span class="result-vs">{{item.goalA}}-{{item.goalB}}</span>
       <div class="location-marker">
         <ul>
-          <li><i class="fa fa-clock-o"></i>22:25 min</li>
+          <li><i class="fa fa-clock-o"></i>{{item.date}}</li>
           <li><i class="fa fa-map-marker"></i>3358 Evergreen England</li>
         </ul>
       </div>

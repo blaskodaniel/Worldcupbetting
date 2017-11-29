@@ -42,40 +42,40 @@
                           <td class="hidden-xs">
                               <img class="img-rounded" src="./assets/img/player.png" alt="" height="50">
                           </td>
-                          <td class="hidden-xs" contenteditable="true" [(myContent)]="item.username">
-                                  {{item.username}}
+                          <td class="hidden-xs">
+                                <input class="transparentinput" type="text" [(ngModel)]="item.username" name="username" >
                           </td>
                           <td>
                               <p class="no-margin hidden-sm hidden-md hidden-lg">
                                   <small>
                                       <span class="fw-semi-bold">Username:</span>
-                                      <span class="text-muted" contenteditable="true" [(myContent)]="item.username">{{item.username}}</span>
+                                      <input class="transparentinput" type="text" [(ngModel)]="item.username" name="username" >
                                   </small>
                               </p>
                               <p class="no-margin">
                                   <small>
                                       <span class="fw-semi-bold">Email:</span>
-                                      <span class="text-muted" contenteditable="true" [(myContent)]="item.email">{{item.email}}</span>
+                                      <input class="transparentinput" type="text" [(ngModel)]="item.email" name="email" >
                                   </small>
                               </p>
                               <p>
                                   <small>
                                       <span class="fw-semi-bold">Password:</span>
-                                      <span class="text-muted" contenteditable="true" [(myContent)]="item.password">{{item.password}}</span>
+                                      <input class="transparentinput" type="text" [(ngModel)]="item.password" name="password" >
                                   </small>
                               </p>
                               <p>
                                   <small>
                                       <span class="fw-semi-bold">Role:</span>
-                                      <span class="text-muted" contenteditable="true" [(myContent)]="item.role">{{item.role}}</span>
+                                      <input class="transparentinput" type="text" [(ngModel)]="item.role" name="role" >
                                   </small>
                               </p>
                           </td>
                           <td class="hidden-xs text-muted">
                                   {{item.regdate}}
                           </td>
-                          <td class="hidden-xs text-muted" contenteditable="true" [(myContent)]="item.aktiv">
-                              {{item.aktiv}}
+                          <td class="hidden-xs text-muted">
+                                <input class="transparentinput" type="text" [(ngModel)]="item.aktiv" name="aktiv" >
                           </td>
                           <td>
                               <button class="btn btn-save" (click)="EditUser(item)">Save</button>

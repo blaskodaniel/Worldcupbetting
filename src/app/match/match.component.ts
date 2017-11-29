@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Match } from '../_interfaces/match';
 
 @Component({
   selector: 'app-match',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./match.component.css']
 })
 export class MatchComponent implements OnInit {
-
+  @Input() matches:Match[];
   constructor() { }
 
   ngOnInit() {

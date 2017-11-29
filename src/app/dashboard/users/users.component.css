@@ -135,6 +135,11 @@ th {
     color: #d2d2d2;
 }
 
+.transparentinput{
+    background-color: transparent;
+    border: 0;
+}
+
 @media only screen and (max-width: 450px){
     .btn{
         float: right;

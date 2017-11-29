@@ -39,20 +39,20 @@
                       <tr *ngFor="let i = index;let item of teams | orderBy: teamOrderKey : teamOrderReverse | filter:teamsearch">
                           <td class="hidden-xs">{{i+1}}</td>
                           <td class="hidden-xs">{{item.id}}</td>
-                          <td class="hidden-xs" contenteditable="true" [(myContent)]="item.groupid">
-                              {{item.groupid}}
+                          <td class="hidden-xs">
+                              <input class="transparentinput" type="text" [(ngModel)]="item.groupid" name="groupid" >
                           </td>
-                          <td class="hidden-xs" contenteditable="true" [(myContent)]="item.name">
-                              {{item.name}}
+                          <td class="hidden-xs">
+                              <input class="transparentinput" type="text" [(ngModel)]="item.name" name="name" >
                           </td>
                           <td>
                               <img class="img-rounded" src="./assets/icons/flags/{{item.flag}}" alt="" height="50">
                           </td>
-                          <td class="hidden-xs text-muted" contenteditable="true" [(myContent)]="item.aktiv">
-                              {{item.aktiv}}
+                          <td class="hidden-xs text-muted">
+                              <input class="transparentinput" type="text" [(ngModel)]="item.aktiv" name="aktiv" >
                           </td>
-                          <td class="text-muted" contenteditable="true" [(myContent)]="item.score">
-                              {{item.score}}
+                          <td class="text-muted">
+                              <input class="transparentinput" type="text" [(ngModel)]="item.score" name="score" >
                           </td>
                           <td>
                               <button class="btn btn-save" (click)="EditTeam(item)">Save</button>

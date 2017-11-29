@@ -1,7 +1,6 @@
 import {Injectable, OnInit} from'@angular/core';
 import {Http,Headers,Response, RequestOptionsArgs, RequestOptions} from '@angular/http';
 import { HttpClient } from '@angular/common/http';
-import {Post} from '../_interfaces/post';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
@@ -49,7 +48,7 @@ export class DataService{
           );
     }
 
-    register(user:any) {
+    register(user) {
         console.log("Regisztráció:",user);
         return this.http.post(`${this.BaseURL}/register`, user);
     } 
@@ -86,6 +85,11 @@ export class DataService{
     deleteTeam(team){
         // Delete team by ID
         return this.httpclient.delete(`${this.BaseURL}/api/team/${team._id}`,team);
+    }
+
+    getMatches() {
+        // Get All user
+        return this.http.get(`${this.BaseURL}/getmatches`);
     }
 
 }

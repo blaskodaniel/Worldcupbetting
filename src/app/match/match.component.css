@@ -37,6 +37,7 @@ img {
 
 .detail{
     text-align: center;
+    display: inline-block;
 }
 
 .result-vs {
@@ -72,6 +73,7 @@ img {
 
 li.match{
     display: table-cell;
+    text-align: center;
     margin-top: 5px;
     width: 100%;
     float: left;
@@ -83,6 +85,7 @@ li.match{
 .leftTeam{
     position: relative;
     top: 32px;
+    float: left;
     left: 80px;
     color: aliceblue;
     font-size: 22px;
