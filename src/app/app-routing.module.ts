@@ -12,12 +12,14 @@ import {TeamComponent} from './team/team.component';
 import {TeamItemComponent} from './team/team-item/team-item.component';
 import { AdminGuardService } from './_services/adminguard.service';
 import { EditorGuardService } from './_services/editorguard.service';
+import { MatchesComponent } from './dashboard/matches/matches.component';
 
 const appRoutes:Routes = [
     {path:'', redirectTo:'/home', pathMatch:'full'},
     {path:'home', component:HomeComponent},
     {path:'users', component:UsersComponent, canActivate:[GuardService,AdminGuardService]},
     {path:'teamsgroups', component:TeamsgroupsComponent, canActivate:[GuardService,EditorGuardService]},
+    {path:'matches', component:MatchesComponent,canActivate:[GuardService,EditorGuardService]},
     {path:'registration', component:RegistrationComponent},
     {path:'login', component:LoginComponent}
 ]

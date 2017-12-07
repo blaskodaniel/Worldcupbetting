@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 body { 
     background-color: #154265 20%;
     background-image: radial-gradient(farthest-side ellipse at 10% 0, #154265 20%, #7392c2);
@@ -35,4 +35,29 @@ body {
 
 .page-title small {
     color: rgba(255,255,255,0.7);
+}
+
+/* MODAL */
+.modal .modal-content{
+    background-color: #242f3c;
+}
+
+.modal .modal-title{
+    font-size: 20px;
+}
+
+.modal .modal-header{
+    padding: 25px 25px;
+}
+
+.modal input{
+    background-color: rgba(8, 0, 0, 0.4);
+}
+
+.nomarginLeft{
+    margin-left: 0;
+}
+
+.nomarginRight{
+    margin-right: 0;
 }

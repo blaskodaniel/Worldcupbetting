@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/home']);
     }
     this.loginForm = new FormGroup({
-      'email':new FormControl(null, Validators.required),
+      'email':new FormControl(null, Validators.email),
       'password': new FormControl(null, Validators.required)
     })
   }

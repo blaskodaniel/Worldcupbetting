@@ -31,6 +31,9 @@ import { MatchComponent } from './match/match.component';
 import { UsersComponent } from './dashboard/users/users.component';
 import { TeamsgroupsComponent } from './dashboard/teamsgroups/teamsgroups.component';
 import { ProfileComponent } from './profile/profile.component';
+import { TimestampToDate } from './_pipes/timestampToDate';
+import { MatchesComponent } from './dashboard/matches/matches.component';
+import { FinishmatchComponent } from './match/finishmatch/finishmatch.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,10 @@ import { ProfileComponent } from './profile/profile.component';
     MatchComponent,
     UsersComponent,
     TeamsgroupsComponent,
-    ProfileComponent
+    ProfileComponent,
+    TimestampToDate,
+    MatchesComponent,
+    FinishmatchComponent
   ],
   imports: [
     BrowserModule,

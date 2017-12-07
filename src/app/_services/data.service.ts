@@ -53,6 +53,14 @@ export class DataService{
         return this.http.post(`${this.BaseURL}/register`, user);
     } 
 
+    addGroup(group){
+        return this.httpclient.post(`${this.BaseURL}/api/group/add`,group);
+    }
+
+    addTeam(team){
+        return this.httpclient.post(`${this.BaseURL}/api/team/add`,team);
+    }
+
     getUserById(id){
         // Get user by ID
     }
@@ -67,9 +75,24 @@ export class DataService{
         return this.http.get(`${this.BaseURL}/getteams`,this.noauthoptions);
     }
 
+    addUser(user){
+        // Create user
+        return this.httpclient.post(`${this.BaseURL}/api/adduser`,user);
+    }
+
+    addMatch(match){
+        // Create match
+        return this.httpclient.post(`${this.BaseURL}/api/addmatch`,match);
+    }
+
     updateUser(user){
         // Update user by ID
         return this.httpclient.patch(`${this.BaseURL}/api/user/${user._id}`,user);
+    }
+
+    updateMatch(item){
+        // Update match by ID
+        return this.httpclient.patch(`${this.BaseURL}/api/match/${item._id}`,item);
     }
 
     deleteUser(user){

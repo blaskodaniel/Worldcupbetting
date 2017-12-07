@@ -1,3 +1,4 @@
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { contenteditableDirective } from '../../_directives/contenteditable.directive';
 import { DataService } from '../../_services/data.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
@@ -13,6 +14,7 @@ export class UsersComponent implements OnInit {
   userSearch:string;
   userOrderKey: string = 'regdate';
   userOrderReverse: boolean = true;
+  addNewUserForm:FormGroup;
 
   constructor(private dataservice:DataService,public toastr: ToastsManager, vcr: ViewContainerRef) { 
     this.toastr.setRootViewContainerRef(vcr);
@@ -20,6 +22,24 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this.getusers();
+    this.addNewUserForm = new FormGroup({
+      'name': new FormControl(null),
+      'username': new FormControl(null, Validators.required),
+      'email':new FormControl(null,Validators.required),
+      'password':new FormControl(null,Validators.required),
+      'teamid': new FormControl(null),
+      'role': new FormControl(null),
+      'avatar': new FormControl(null),
+    });
+  }
+
+  addNewUser(){
+    this.dataservice.addUser(this.addNewUserForm.value).subscribe(
+      response => {
+        console.log("Create user successfuly!");
+        this.getusers();
+      }
+    )
   }
 
   getusers(){

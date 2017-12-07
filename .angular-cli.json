@@ -19,6 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/font-awesome/css/font-awesome.min.css",
         "../bower_components/bootstrap/dist/css/bootstrap.min.css",
         "./app/_styles/ng2-toastr.min.css",
         "./app/_styles/_skins/blackwhite.css",

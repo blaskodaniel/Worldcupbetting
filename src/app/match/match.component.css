@@ -1,107 +1,56 @@
-
-.matches-dates-shedule>ul {
-    border-top: 1px solid;
-    margin: 0 0 60px;
+div.colorwhite{
+    color:white;
 }
 
-ul {
-    padding: 0;
-    list-style: none;
+.displaytable{
+    display: table;
+    height: 100%;
 }
 
-.matches-dates-shedule>ul>li:nth-child(odd) {
-    background: rgba(51,51,51,0.4);
+.matchRow{
+    min-height: 80px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.matches-dates-shedule>ul>li {
+.displaytablecell{
+    display: table-cell;
+    vertical-align: middle;
     text-align: center;
-    padding: 30px;
-    border-top: 0;
+}
+
+.nationalname{
+    font-size: 24px;
+}
+
+.locationtime{
+    font-size: 12px;
+}
+
+.noMargin{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.noPadding{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.goals{
+    font-size: 28px;
 }
 
 img {
-    max-width: 100px;
+    max-width: 70px;
     vertical-align: middle;
     border: 0;
 }
 
-
-.matches-dates-shedule>ul>li .detail {
-    display: inline-block;
-}
-
-.matches-dates-shedule>ul>li .detail span {
-    display: block;
-    margin: 0 0 10px;
-}
-
-.detail{
-    text-align: center;
-    display: inline-block;
-}
-
-.result-vs {
-    font-size: 30px;
-    color: white;
-}
-
-.location-marker {
-    font-size: 12px;
-}
-
-.matches-dates-shedule.style-2 ul {
-    border-top: 0;
-}
-
-.location-marker ul {
-    display: inline-block;
-}
-
-.matches-dates-shedule.style-2 .location-marker ul li {
-    color: #555;
-}
-
-.location-marker ul li:first-child {
-    margin: 0;
-}
-
-.location-marker ul li {
-    float: left;
-    margin: 0 0 0 10px;
-    color: #fff;
-}
-
-li.match{
-    display: table-cell;
-    text-align: center;
-    margin-top: 5px;
-    width: 100%;
-    float: left;
-    background: rgba(51,51,51,0.4);
-    padding-left: 40px;
-    padding-right: 40px;
-}
-
-.leftTeam{
-    position: relative;
-    top: 32px;
-    float: left;
-    left: 80px;
-    color: aliceblue;
-    font-size: 22px;
-    padding-bottom: 0;
-    margin-bottom: 0;
-}
-
-.rightTeam{
-    position: relative;
-    top: 32px;
-    right: 80px;
-    color: aliceblue;
-    font-size: 22px;
-    padding-bottom: 0;
-    float: right;
-    margin-bottom: 0;
+@media only screen and (max-width: 1200px){
+    .nationalname{
+        font-size: 20px;
+    }
 }
 
 @media only screen and (max-width: 450px){

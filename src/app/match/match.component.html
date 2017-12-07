@@ -1,15 +1,16 @@
-<li class="match" *ngFor="let i = index;let item of matches">
-    <span class="pull-left"><img src="./assets/icons/flags/if_Flag_of_Sweden_96316.png" alt=""></span>
-    <span class="leftTeam hidden-xs hidden-sm">{{item.teamA}}</span>
-    <span class="pull-right"><img src="./assets/icons/flags/if_Flag_of_Germany_96145.png" alt=""></span>
-    <span class="rightTeam hidden-xs hidden-sm">{{item.teamB}}</span>
-    <div class="detail">
-      <span class="result-vs">{{item.goalA}}-{{item.goalB}}</span>
-      <div class="location-marker">
-        <ul>
-          <li><i class="fa fa-clock-o"></i>{{item.date}}</li>
-          <li><i class="fa fa-map-marker"></i>3358 Evergreen England</li>
-        </ul>
-      </div>
+<div class="row text-center matchRow" *ngFor="let i = index;let item of matches">
+  <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2"><img src="./assets/icons/flags/{{item.teamA.flag}}" alt=""></div>
+  <div class="hidden-xs hidden-sm col-md-2 col-lg-2 colorwhite displaytable">
+    <div class="displaytablecell nationalname">{{item.teamA.name}}</div>
+  </div>
+  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+    <div class="row">
+      <div class="col-xs-12 colorwhite"><span class="goals">{{item.goalA}}-{{item.goalB}}</span></div>
+      <div class="col-xs-12 colorwhite"><span class="locationtime">{{item.date | timestampToDate}} | {{item.location}}</span></div>
     </div>
-</li>
+  </div>
+  <div class="hidden-xs hidden-sm col-md-2 col-lg-2 colorwhite displaytable">
+    <div class="displaytablecell nationalname">{{item.teamB.name}}</div>
+  </div>
+  <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2"><img src="./assets/icons/flags/{{item.teamB.flag}}" alt=""></div>
+</div>

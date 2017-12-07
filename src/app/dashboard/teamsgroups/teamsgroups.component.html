@@ -27,9 +27,9 @@
                       <tr>
                           <th class="hidden-xs">#</th>
                           <th class="hidden-xs">ID</th>
-                          <th class="hidden-xs">Csoport</th>
-                          <th class="hidden-xs">Name</th>
-                          <th>Flag</th>
+                          <th>Csoport</th>
+                          <th>Name</th>
+                          <th class="hidden-xs">Flag</th>
                           <th class="hidden-xs">Aktiv</th>
                           <th>Score</th>
                           <th></th>
@@ -38,25 +38,28 @@
                       <tbody>
                       <tr *ngFor="let i = index;let item of teams | orderBy: teamOrderKey : teamOrderReverse | filter:teamsearch">
                           <td class="hidden-xs">{{i+1}}</td>
-                          <td class="hidden-xs">{{item.id}}</td>
-                          <td class="hidden-xs">
-                              <input class="transparentinput" type="text" [(ngModel)]="item.groupid" name="groupid" >
-                          </td>
-                          <td class="hidden-xs">
-                              <input class="transparentinput" type="text" [(ngModel)]="item.name" name="name" >
+                          <td class="hidden-xs">{{item._id}}</td>
+                          <td>
+                              <input class="transparentinput" style="width:60px;" type="text" [(ngModel)]="item.groupid.name" name="groupid" >
                           </td>
                           <td>
+                              <input class="transparentinput" type="text" [(ngModel)]="item.name" name="name" >
+                          </td>
+                          <td class="hidden-xs text-muted">
+                                <input class="transparentinput" type="text" [(ngModel)]="item.flag" name="flag" >
                               <img class="img-rounded" src="./assets/icons/flags/{{item.flag}}" alt="" height="50">
                           </td>
                           <td class="hidden-xs text-muted">
-                              <input class="transparentinput" type="text" [(ngModel)]="item.aktiv" name="aktiv" >
-                          </td>
-                          <td class="text-muted">
-                              <input class="transparentinput" type="text" [(ngModel)]="item.score" name="score" >
+                              <input class="transparentinput numberInput" type="text" [(ngModel)]="item.aktiv" name="aktiv" >
                           </td>
                           <td>
-                              <button class="btn btn-save" (click)="EditTeam(item)">Save</button>
-                              <button class="btn btn-remove" (click)="DeleteTeam(item)">Remove</button>
+                              <input class="transparentinput numberInput" type="text" [(ngModel)]="item.score" name="score" >
+                          </td>
+                          <td>
+                            <i class="fa fa-floppy-o hidden-lg hidden-sm hidden-md" aria-hidden="true" (click)="EditTeam(item)"></i>&nbsp;&nbsp;
+                            <i class="fa fa-trash hidden-lg hidden-sm hidden-md" aria-hidden="true" (click)="DeleteTeam(item)"></i>
+                            <button class="btn btn-save hidden-xs" (click)="EditTeam(item)">Save</button>
+                            <button class="btn btn-remove hidden-xs" (click)="DeleteTeam(item)">Remove</button>
                           </td>
                       </tr>
                       
@@ -66,20 +69,17 @@
                   <div class="clearfix">
                       <div class="pull-right">
                           <button class="btn btn-default btn-sm">
-                              Send to ...
+                              All delete
                           </button>
                           <div class="btn-group">
-                              <button class="btn btn-sm btn-inverse dropdown-toggle" data-toggle="dropdown">
-                                  &nbsp; Clear &nbsp;
-                                  <i class="fa fa-caret-down"></i>
-                              </button>
                               <ul class="dropdown-menu dropdown-menu-right">
-                                  <li><a href="#">Clear</a></li>
-                                  <li><a href="#">Move ...</a></li>
-                                  <li><a href="#">Something else here</a></li>
-                                  <li class="divider"></li>
-                                  <li><a href="#">Separated link</a></li>
+                                  <li><a href="#" data-toggle="modal" data-target="#newGroup">Group</a></li>
+                                  <li><a href="#" data-toggle="modal" data-target="#newTeam">Team</a></li>
                               </ul>
+                              <button class="btn btn-sm btn-inverse dropdown-toggle" data-toggle="dropdown">
+                                &nbsp; Add new &nbsp;
+                                <i class="fa fa-caret-down"></i>
+                            </button>
                           </div>
                       </div>
                       <p>Basic table with styled content</p>
@@ -88,3 +88,73 @@
           </section>
       </div>
 </div>
+
+
+<!-- Modal Group-->
+<div class="modal fade" id="newGroup" role="dialog">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Új csoport létrehozása</h4>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="addNewGroupForm" (ngSubmit)="addNewGroup()">
+                <div class="form-group">
+                  <input type="text" class="form-control input-style" 
+                  id="name" 
+                  placeholder="Group name" 
+                  formControlName="name" 
+                  required>
+                </div>
+                <button type="submit" class="btn btn-default float-right" [disabled]="!addNewGroupForm.valid">Létrehoz</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Mégsem</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal Team-->
+<div class="modal fade" id="newTeam" role="dialog">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Új csapat létrehozása</h4>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="addNewTeamForm" (ngSubmit)="addNewTeam()">
+                <div class="form-group">
+                  <input type="text" class="form-control input-style" 
+                  id="name" 
+                  placeholder="Csapat neve" 
+                  formControlName="name" 
+                  required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control input-style" 
+                    id="flag" 
+                    placeholder="Zászló fájlneve" 
+                    formControlName="flag" 
+                    required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control input-style" 
+                    id="groupid" 
+                    placeholder="Csoport ID" 
+                    formControlName="groupid" 
+                    required>
+                </div>
+                <button type="submit" class="btn btn-default float-right" [disabled]="!addNewTeamForm.valid">Létrehoz</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Mégsem</button>
+        </div>
+      </div>
+    </div>
+  </div>
