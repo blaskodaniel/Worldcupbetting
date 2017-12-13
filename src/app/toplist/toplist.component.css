@@ -1,0 +1,63 @@
+.toplist{
+    background: rgba(51, 51, 51, 0.425);
+    margin-top: 0;
+    padding: 12px 17px;
+    border-radius: 0 0 3px 3px;
+}
+
+.tab-header{
+    color: white;
+}
+
+.news-list{
+    padding-left: 13px;
+}
+
+.news-list li, .users-list li {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    border-top: 1px solid rgba(51, 51, 51, 0.3);
+    padding: 12px;
+    margin: 0 -17px;
+    cursor: pointer;
+    height: 50px;
+    -webkit-transition: background-color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-out;
+    transition: background-color 0.2s ease-out;
+}
+
+.news-list img, .news-list .icon, .users-list img, .users-list .icon {
+    float: left;
+    height: 50px;
+    width: 50px;
+}
+
+.news-list .news-item-info, .users-list .news-item-info {
+    margin-left: 62px;
+    color: black;
+}
+
+.news-list .name, .users-list .name {
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.news-list .name, .news-list .time, .news-list .position, .users-list .name, .users-list .time, .users-list .position {
+    line-height: 16px;
+}
+
+.news-list .name a, .users-list .name a {
+    text-decoration: none;
+}
+
+.news-list .comment, .users-list .comment {
+    font-size: 12px;
+    color: #f8f8f8;
+    line-height: 1.3em;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+}

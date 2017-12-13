@@ -34,6 +34,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { TimestampToDate } from './_pipes/timestampToDate';
 import { MatchesComponent } from './dashboard/matches/matches.component';
 import { FinishmatchComponent } from './match/finishmatch/finishmatch.component';
+import { ToplistComponent } from './toplist/toplist.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { FinishmatchComponent } from './match/finishmatch/finishmatch.component'
     ProfileComponent,
     TimestampToDate,
     MatchesComponent,
-    FinishmatchComponent
+    FinishmatchComponent,
+    ToplistComponent
   ],
   imports: [
     BrowserModule,

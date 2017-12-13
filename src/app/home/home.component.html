@@ -1,12 +1,20 @@
 <div class="row">
-  <div class="col-xs-12">
-      <div class="result-top-bar">
-          <span class="pull-left">Legközelebbi mérkőzések</span>
-          <span class="pull-right">Ma 2018-07-10</span>
-      </div>
-  </div>
+    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="result-top-bar">
+                    <span class="pull-left">Legközelebbi mérkőzések</span>
+                    <span class="pull-right">Ma 2018-07-10</span>
+                </div>
+            </div>
+          </div>
+          <div class="row nomarginLeft nomarginRight templatebg">
+              <app-match [matches]="ActiveMatches"></app-match>
+          </div>
+    </div>
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <app-toplist></app-toplist>
+    </div>
 </div>
-<div class="row nomarginLeft nomarginRight templatebg">
-    <app-match [matches]="ActiveMatches"></app-match>
-</div>
+
 

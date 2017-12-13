@@ -20,7 +20,7 @@ div.colorwhite{
 }
 
 .nationalname{
-    font-size: 24px;
+    font-size: 17px;
 }
 
 .locationtime{
@@ -42,7 +42,7 @@ div.colorwhite{
 }
 
 img {
-    max-width: 70px;
+    max-width: 50px;
     vertical-align: middle;
     border: 0;
 }
