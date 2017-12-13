@@ -58,16 +58,22 @@ export class DataService{
     }
 
     addTeam(team){
-        return this.httpclient.post(`${this.BaseURL}/api/team/add`,team);
+        return this.httpclient.post(`${this.BaseURL}/api/addteam`,team);
     }
 
     getUserById(id){
         // Get user by ID
+        return this.httpclient.get(`${this.BaseURL}/api/getuserbyid/${id}`);
     }
 
     getUsers() {
         // Get All user
         return this.httpclient.get(`${this.BaseURL}/api/alluser`);
+    }
+
+    getGroups() {
+        // Get All groups
+        return this.http.get(`${this.BaseURL}/getgroups`);
     }
 
     getTeams() {
@@ -110,9 +116,9 @@ export class DataService{
         return this.httpclient.delete(`${this.BaseURL}/api/team/${team._id}`,team);
     }
 
-    getMatches() {
+    getMatches(query) {
         // Get All user
-        return this.http.get(`${this.BaseURL}/getmatches`);
+        return this.http.get(`${this.BaseURL}/getmatches${query}`);
     }
 
 }

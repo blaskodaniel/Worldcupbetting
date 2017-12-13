@@ -39,6 +39,14 @@ export class AuthService {
     }
   }
 
+  public getUserId():string{
+    var token = this.getToken();
+    if(token != null){
+      let payload = this.JwtHelper.decodeToken(token);
+          return payload.sub
+    }
+  }
+
   //this.jwtHelper.getTokenExpirationDate(token),
   //this.jwtHelper.isTokenExpired(token)
 }

@@ -120,18 +120,16 @@
         <div class="modal-body">
             <form [formGroup]="addNewForm" (ngSubmit)="addNew()">
                 <div class="form-group">
-                  <input type="text" class="form-control input-style" 
-                  id="teamA" 
-                  placeholder="Hazai csapat" 
-                  formControlName="teamA" 
-                  required>
+                    <select class="form-control input-style select-style" formControlName="teamA" required>
+                        <option [ngValue]="null">Hazai csapat</option>
+                        <option *ngFor="let team of teams" [ngValue]="team._id">{{team.name}}</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control input-style" 
-                    id="teamB" 
-                    placeholder="Idegen csapat" 
-                    formControlName="teamB" 
-                    required>
+                    <select class="form-control input-style select-style" formControlName="teamB" required>
+                        <option [ngValue]="null">Idegen csapat</option>
+                        <option *ngFor="let team of teams" [ngValue]="team._id">{{team.name}}</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control input-style" 

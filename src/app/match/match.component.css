@@ -47,6 +47,19 @@ img {
     border: 0;
 }
 
+.oddsContainer{
+    background-color: #0000002e;
+    border: 1px solid #4fda7154;
+    cursor: pointer;
+}
+
+span.oddspos{
+    width: 25px;
+    background: #ff0a0aa8;
+    position: relative;
+    float: left;
+}
+
 @media only screen and (max-width: 1200px){
     .nationalname{
         font-size: 20px;

@@ -36,23 +36,13 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     this.serverService.login(this.email,this.password).subscribe(
       (data)=>{
-        console.log("Login válasz:",data);
-        if(data["success"]){
-          console.log("Login successfuly");
-          this.router.navigate(['/home']);
-        }else{
-          if(data["code"] == 1){
-            this.toastr.error('Login failed! Not valid email or password', 'Error!');
-            console.log("Login failed! Not valid email or password");
-          }
-          if(data["code"] == 2){
-            this.toastr.error('Login failed!', 'Error!');
-            console.log("Login failed!");
-          }
-          
-        }
-        
-      });
+        console.log("Szerver válasz:",data);
+        this.router.navigate(['/home']);
+      },
+      (error)=>{
+        this.toastr.error('Not valid email or password', 'Login failed!');
+      }
+    );
   }
 
 }

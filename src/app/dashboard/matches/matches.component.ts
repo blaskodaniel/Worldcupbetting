@@ -12,6 +12,7 @@ import { FormGroup} from '@angular/forms';
 })
 export class MatchesComponent implements OnInit {
   matches:any;
+  teams:any;
   search:string;
   OrderKey:string = 'name';
   OrderReverse:boolean = false;
@@ -24,6 +25,8 @@ export class MatchesComponent implements OnInit {
 
   ngOnInit() {
     this.GetMatches();
+    this.GetTeams();
+
     this.addNewForm = new FormGroup({
       'teamA': new FormControl(null,Validators.required),
       'teamB': new FormControl(null, Validators.required),
@@ -32,10 +35,20 @@ export class MatchesComponent implements OnInit {
   }
 
   GetMatches(){
-    this.dataservice.getMatches().subscribe(
+    this.dataservice.getMatches("").subscribe(
       (response)=>{
         console.log(response);
         this.matches = JSON.parse(response["_body"]);
+      },
+      (error)=>console.log(error)
+    )
+  }
+
+  GetTeams(){
+    this.dataservice.getTeams().subscribe(
+      (response)=>{
+        console.log(response);
+        this.teams = JSON.parse(response["_body"]);
       },
       (error)=>console.log(error)
     )

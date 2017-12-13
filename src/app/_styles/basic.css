@@ -26,6 +26,10 @@ body {
     background-color: rgba(51,51,51,0.4);
 }
 
+.select-style{
+    background-color: rgb(25, 28, 36);
+}
+
 .page-title{
     color: #fff;
     font-weight: 300;
@@ -60,4 +64,12 @@ body {
 
 .nomarginRight{
     margin-right: 0;
+}
+
+.nopaddingLeft{
+    padding-left: 0;
+}
+
+.nopaddingRight{
+    padding-right: 0;
 }

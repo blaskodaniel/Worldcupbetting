@@ -5,8 +5,15 @@
   </div>
   <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
     <div class="row">
-      <div class="col-xs-12 colorwhite"><span class="goals">{{item.goalA}}-{{item.goalB}}</span></div>
-      <div class="col-xs-12 colorwhite"><span class="locationtime">{{item.date | timestampToDate}} | {{item.location}}</span></div>
+      <div class="col-xs-12 colorwhite">
+        <div class="row">
+          <div class="col-xs-4 oddsContainer nopaddingLeft"><span class="oddspos">1</span>{{item.oddsAwin}}</div>
+          <div class="col-xs-4 oddsContainer nopaddingLeft"><span class="oddspos">X</span>{{item.oddsDraw}}</div>
+          <div class="col-xs-4 oddsContainer nopaddingLeft"><span class="oddspos">2</span>{{item.oddsBwin}}</div>
+        </div>
+      </div>
+      <div class="col-xs-12 colorwhite"><span class="datetime">{{item.date | timestampToDate}}</span></div>
+      <div class="col-xs-12 colorwhite"><span class="location">{{item.location}}</span></div>
     </div>
   </div>
   <div class="hidden-xs hidden-sm col-md-2 col-lg-2 colorwhite displaytable">

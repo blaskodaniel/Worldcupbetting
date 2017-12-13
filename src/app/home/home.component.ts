@@ -13,15 +13,15 @@ import { Match } from '../_interfaces/match';
 })
 export class HomeComponent implements OnInit {
   isActive = false;
-  matches:Match[] = [];
+  ActiveMatches:Match[] = [];
 
   constructor(private dataservice:DataService) { }
 
   ngOnInit() {
-    this.dataservice.getMatches().subscribe(
+    this.dataservice.getMatches("?active=1").subscribe(
       (response)=>{
         console.log(response);
-        this.matches = JSON.parse(response["_body"]);
+        this.ActiveMatches = response.json();
       },
       (error)=>console.log(error)
     )

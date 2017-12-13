@@ -11,6 +11,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li routerLinkActive="active"><a routerLink="/home">Home</a></li>
+        <li routerLinkActive="active" *ngIf="authservice.isAuthenticated()"><a routerLink="/profile">Profil</a></li>
         <li class="dropdown" *ngIf="authservice.isAdminOrEditor()">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dashboard <span class="caret"></span></a>
           <ul class="dropdown-menu">

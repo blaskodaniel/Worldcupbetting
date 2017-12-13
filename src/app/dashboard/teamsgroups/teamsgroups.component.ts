@@ -12,6 +12,7 @@ import { FormGroup} from '@angular/forms';
 })
 export class TeamsgroupsComponent implements OnInit {
   teams:any;
+  groups:any;
   teamsearch:string;
   teamOrderKey:string = 'name';
   teamOrderReverse:boolean = false;
@@ -25,6 +26,7 @@ export class TeamsgroupsComponent implements OnInit {
 
   ngOnInit() {
     this.getteams();
+    this.getgroups();
     this.addNewGroupForm = new FormGroup({
       'name': new FormControl(null, Validators.required)
     });
@@ -57,6 +59,16 @@ export class TeamsgroupsComponent implements OnInit {
       (response)=>{
         console.log(response);
         this.teams = JSON.parse(response["_body"]);
+      },
+      (error)=>console.log(error)
+    )
+  }
+
+  getgroups(){
+    this.dataservice.getGroups().subscribe(
+      (response)=>{
+        console.log(response);
+        this.groups = response.json();
       },
       (error)=>console.log(error)
     )
