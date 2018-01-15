@@ -80,6 +80,7 @@
                           </td>
                           <td>
                               <input class="transparentinput numberInput" type="text" [(ngModel)]="item.date" name="date">
+                              <div>{{item.date | timestampToDate}}</div>
                           </td>
                           <td>
                             <input class="transparentinput numberInput" type="text" [(ngModel)]="item.type" name="type">

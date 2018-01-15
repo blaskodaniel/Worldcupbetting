@@ -31,6 +31,18 @@ export class AuthService {
     }
   }
 
+  public isAdmin():Boolean{
+    var token = this.getToken();
+    if(token == null){
+      return false;
+    }else{
+      let payload = this.JwtHelper.decodeToken(token);
+      if(payload.role === "admin"){
+        return true;
+      }
+    }
+  }
+
   public getUsername():string{
     var token = this.getToken();
     if(token != null){

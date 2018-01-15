@@ -15,10 +15,11 @@
         <li class="dropdown" *ngIf="authservice.isAdminOrEditor()">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dashboard <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li routerLinkActive="active"><a routerLink="/users">Users</a></li>
+            <li routerLinkActive="active" *ngIf="authservice.isAdmin()"><a routerLink="/users">Users</a></li>
             <li routerLinkActive="active"><a routerLink="/teamsgroups">Teams and groups</a></li>
             <li routerLinkActive="active"><a routerLink="/matches">Matches</a></li>
-            <!-- <li role="separator" class="divider"></li> -->
+            <li role="separator" class="divider"></li>
+            <li routerLinkActive="active" *ngIf="authservice.isAdmin()"><a routerLink="/logs">Logs</a></li>
           </ul>
         </li>
       </ul>

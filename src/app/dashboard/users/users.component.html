@@ -32,6 +32,7 @@
                           <th>Info</th>
                           <th class="hidden-xs">Regdate</th>
                           <th class="hidden-xs">Aktiv</th>
+                          <th>Score</th>
                           <th></th>
                       </tr>
                       </thead>
@@ -97,6 +98,9 @@
                           <td class="hidden-xs text-muted">
                                 <input class="transparentinput max100px" type="text" [(ngModel)]="item.aktiv" name="aktiv" >
                           </td>
+                          <td class="text-muted">
+                                <input class="transparentinput max100px" type="text" [(ngModel)]="item.score" name="score" >
+                          </td>
                           <td>
                               <button class="btn btn-save" (click)="EditUser(item)">Save</button>
                               <button class="btn btn-remove" (click)="DeleteUser(item)">Remove</button>
@@ -157,10 +161,10 @@
                         required>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control input-style" 
-                        id="teamid" 
-                        placeholder="Kedvenc csapat ID" 
-                        formControlName="teamid">
+                        <select class="form-control input-style select-style" formControlName="teamid" id="teamid" required>
+                            <option [ngValue]="null">Kedvenc csapat</option>
+                            <option *ngFor="let team of teams" [ngValue]="team._id">{{team.name}}</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control input-style" 

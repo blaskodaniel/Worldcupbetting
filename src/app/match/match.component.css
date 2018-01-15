@@ -54,10 +54,14 @@ img {
 }
 
 span.oddspos{
-    width: 25px;
+    width: 100%;
     background: #ff0a0aa8;
     position: relative;
     float: left;
+}
+
+.activeOdds{
+    background-color: #9acd3273;
 }
 
 @media only screen and (max-width: 1200px){

@@ -32,6 +32,7 @@
     "font-awesome": "^4.7.0",
     "fs": "0.0.1-security",
     "moment": "^2.19.3",
+    "ng2-datepicker": "^2.1.6",
     "ng2-order-pipe": "^0.1.5",
     "ng2-search-filter": "^0.3.1",
     "ng2-toastr": "^4.1.2",

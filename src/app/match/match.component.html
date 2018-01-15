@@ -7,9 +7,27 @@
     <div class="row">
       <div class="col-xs-12 colorwhite">
         <div class="row">
-          <div class="col-xs-4 oddsContainer nopaddingLeft"><span class="oddspos">1</span>{{item.oddsAwin}}</div>
-          <div class="col-xs-4 oddsContainer nopaddingLeft"><span class="oddspos">X</span>{{item.oddsDraw}}</div>
-          <div class="col-xs-4 oddsContainer nopaddingLeft"><span class="oddspos">2</span>{{item.oddsBwin}}</div>
+          <div class="col-xs-4 oddsContainer nopaddingLeft nopaddingRight" 
+          id="{{tools.decodeId(item._id,'1',item.oddsAwin)}}"
+          [ngClass]="isSelected(tools.decodeId(item._id,'1',item.oddsAwin))" 
+          (click)="oddsClick(item,item.oddsAwin,$event)" #awin>
+            <span class="oddspos">1</span>
+            <span class="oddsvalue">{{item.oddsAwin}}</span>
+          </div>
+          <div class="col-xs-4 oddsContainer nopaddingLeft nopaddingRight" 
+          id="{{tools.decodeId(item._id,'X',item.oddsDraw)}}"
+          [ngClass]="isSelected(tools.decodeId(item._id,'X',item.oddsDraw))" 
+          (click)="oddsClick(item,item.oddsDraw,$event)" #draw>
+            <span class="oddspos">X</span>
+            <span class="oddsvalue">{{item.oddsDraw}}</span>
+          </div>
+          <div class="col-xs-4 oddsContainer nopaddingLeft nopaddingRight" 
+          id="{{tools.decodeId(item._id,'2',item.oddsBwin)}}"
+          [ngClass]="isSelected(tools.decodeId(item._id,'2',item.oddsBwin))" 
+          (click)="oddsClick(item,item.oddsBwin,$event)" #bwin>
+            <span class="oddspos">2</span>
+            <span class="oddsvalue">{{item.oddsBwin}}</span>
+          </div>
         </div>
       </div>
       <div class="col-xs-12 colorwhite"><span class="datetime">{{item.date | timestampToDate}}</span></div>

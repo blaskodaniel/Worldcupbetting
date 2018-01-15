@@ -20,7 +20,7 @@ export class NavigationComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    console.log("Navigation bar OnInit");
   }
 
   logout(){

@@ -11,6 +11,7 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 })
 export class UsersComponent implements OnInit {
   users:any;
+  teams:any;
   userSearch:string;
   userOrderKey: string = 'regdate';
   userOrderReverse: boolean = true;
@@ -22,6 +23,7 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this.getusers();
+    this.getTeams();
     this.addNewUserForm = new FormGroup({
       'name': new FormControl(null),
       'username': new FormControl(null, Validators.required),
@@ -47,6 +49,16 @@ export class UsersComponent implements OnInit {
       (response)=>{
         console.log(response);
         this.users = response;
+      },
+      (error)=>console.log(error)
+    )
+  }
+
+  getTeams(){
+    this.dataservice.getTeams().subscribe(
+      (response)=>{
+        console.log(response);
+        this.teams = JSON.parse(response["_body"]);
       },
       (error)=>console.log(error)
     )

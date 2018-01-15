@@ -71,6 +71,16 @@ export class DataService{
         return this.httpclient.get(`${this.BaseURL}/api/alluser`);
     }
 
+    getLogs(page) {
+        // Get logs
+        return this.httpclient.post(`${this.BaseURL}/api/logs`,{page:page});
+    }
+
+    deleteLog(log){
+        // Delete log by ID
+        return this.httpclient.delete(`${this.BaseURL}/api/logs/${log._id}`,log);
+    }
+
     getGroups() {
         // Get All groups
         return this.http.get(`${this.BaseURL}/getgroups`);

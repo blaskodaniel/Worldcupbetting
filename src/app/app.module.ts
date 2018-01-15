@@ -1,9 +1,11 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthService } from './_services/auth.service';
 import { DataService } from './_services/data.service';
+import { ToolsService } from './_services/tools.service';
 import { GuardService } from './_services/guard.service';
 import { EditorGuardService } from './_services/editorguard.service';
 import { AdminGuardService } from './_services/adminguard.service';
+import { BetcartService } from './_services/betcart.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './_services/interceptor.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -35,6 +37,9 @@ import { TimestampToDate } from './_pipes/timestampToDate';
 import { MatchesComponent } from './dashboard/matches/matches.component';
 import { FinishmatchComponent } from './match/finishmatch/finishmatch.component';
 import { ToplistComponent } from './toplist/toplist.component';
+import { ToTeamName } from './_pipes/teamIDtoName';
+import { BetcartComponent } from './betcart/betcart.component';
+import { LogsComponent } from './dashboard/logs/logs.component';
 
 @NgModule({
   declarations: [
@@ -53,9 +58,12 @@ import { ToplistComponent } from './toplist/toplist.component';
     TeamsgroupsComponent,
     ProfileComponent,
     TimestampToDate,
+    ToTeamName,
     MatchesComponent,
     FinishmatchComponent,
-    ToplistComponent
+    ToplistComponent,
+    BetcartComponent,
+    LogsComponent
   ],
   imports: [
     BrowserModule,
@@ -71,8 +79,10 @@ import { ToplistComponent } from './toplist/toplist.component';
   ],
   providers: [
     DataService,
+    ToolsService,
     AuthService,
     GuardService,
+    BetcartService,
     AdminGuardService,
     EditorGuardService,
     {
