@@ -61,3 +61,7 @@ a {
     color: #ffffff;
     text-decoration: none;
 }
+
+.selected{
+    background-color: chartreuse;
+}

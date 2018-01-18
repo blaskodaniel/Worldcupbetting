@@ -14,13 +14,11 @@ import { Match } from '../_interfaces/match';
 export class HomeComponent implements OnInit {
   isActive = false;
   ActiveMatches:Match[] = [];
-
   constructor(private dataservice:DataService) { }
 
   ngOnInit() {
     this.dataservice.getMatches("?active=1").subscribe(
       (response)=>{
-        console.log(response);
         this.ActiveMatches = response.json();
       },
       (error)=>console.log(error)

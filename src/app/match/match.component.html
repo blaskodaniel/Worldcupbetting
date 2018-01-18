@@ -1,41 +1,27 @@
-<div class="row text-center matchRow" *ngFor="let i = index;let item of matches">
-  <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2"><img src="./assets/icons/flags/{{item.teamA.flag}}" alt=""></div>
+<div class="row text-center matchRow">
+  <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2"><img src="./assets/icons/flags/{{match.teamA.flag}}" alt=""></div>
   <div class="hidden-xs hidden-sm col-md-2 col-lg-2 colorwhite displaytable">
-    <div class="displaytablecell nationalname">{{item.teamA.name}}</div>
+    <div class="displaytablecell nationalname">{{match.teamA.name}}</div>
   </div>
   <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
     <div class="row">
       <div class="col-xs-12 colorwhite">
         <div class="row">
-          <div class="col-xs-4 oddsContainer nopaddingLeft nopaddingRight" 
-          id="{{tools.decodeId(item._id,'1',item.oddsAwin)}}"
-          [ngClass]="isSelected(tools.decodeId(item._id,'1',item.oddsAwin))" 
-          (click)="oddsClick(item,item.oddsAwin,$event)" #awin>
-            <span class="oddspos">1</span>
-            <span class="oddsvalue">{{item.oddsAwin}}</span>
-          </div>
-          <div class="col-xs-4 oddsContainer nopaddingLeft nopaddingRight" 
-          id="{{tools.decodeId(item._id,'X',item.oddsDraw)}}"
-          [ngClass]="isSelected(tools.decodeId(item._id,'X',item.oddsDraw))" 
-          (click)="oddsClick(item,item.oddsDraw,$event)" #draw>
-            <span class="oddspos">X</span>
-            <span class="oddsvalue">{{item.oddsDraw}}</span>
-          </div>
-          <div class="col-xs-4 oddsContainer nopaddingLeft nopaddingRight" 
-          id="{{tools.decodeId(item._id,'2',item.oddsBwin)}}"
-          [ngClass]="isSelected(tools.decodeId(item._id,'2',item.oddsBwin))" 
-          (click)="oddsClick(item,item.oddsBwin,$event)" #bwin>
-            <span class="oddspos">2</span>
-            <span class="oddsvalue">{{item.oddsBwin}}</span>
+          <div class="col-xs-4 oddsContainer nopaddingLeft nopaddingRight" *ngFor="let akt of outcome"
+          id="{{tools.decodeId(match._id,akt.sign,match[akt.name])}}"
+          [class.activeOdds]="akt.sign == SelectedOdds"
+          (click)="oddsClick(match,match[akt.name],$event,akt.sign)">
+            <span class="oddspos">{{akt.sign}}</span>
+            <span class="oddsvalue">{{match[akt.name]}}</span>
           </div>
         </div>
       </div>
-      <div class="col-xs-12 colorwhite"><span class="datetime">{{item.date | timestampToDate}}</span></div>
-      <div class="col-xs-12 colorwhite"><span class="location">{{item.location}}</span></div>
+      <div class="col-xs-12 colorwhite"><span class="datetime">{{match.date | timestampToDate}}</span></div>
+      <div class="col-xs-12 colorwhite"><span class="location">{{match.location}}</span></div>
     </div>
   </div>
   <div class="hidden-xs hidden-sm col-md-2 col-lg-2 colorwhite displaytable">
-    <div class="displaytablecell nationalname">{{item.teamB.name}}</div>
+    <div class="displaytablecell nationalname">{{match.teamB.name}}</div>
   </div>
-  <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2"><img src="./assets/icons/flags/{{item.teamB.flag}}" alt=""></div>
+  <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2"><img src="./assets/icons/flags/{{match.teamB.flag}}" alt=""></div>
 </div>

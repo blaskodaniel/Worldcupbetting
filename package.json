@@ -6,9 +6,10 @@
   "scripts": {
     "desktop": "electron ./src/Desktop/main.js",
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --open",
     "build": "ng build",
-    "buildprod": "ng build --prod",
+    "buildprod": "ng build --prod --aot=false",
+    "build:staticapp": "ng build --prod --aot=false --base-href ./",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

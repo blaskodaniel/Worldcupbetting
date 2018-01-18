@@ -9,7 +9,9 @@
             </div>
           </div>
           <div class="row nomarginLeft nomarginRight templatebg">
-              <app-match [matches]="ActiveMatches"></app-match>
+              <div *ngFor="let i = index;let item of ActiveMatches">
+                    <app-match [match]="item"></app-match>
+              </div>
           </div>
     </div>
     <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
