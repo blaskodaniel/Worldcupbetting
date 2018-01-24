@@ -1,5 +1,5 @@
 export interface Match{
-    id:number,
+    _id:string,
     teamA:number,
     teamB:number,
     goalA:number,

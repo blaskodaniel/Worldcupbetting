@@ -64,6 +64,20 @@ span.oddspos{
     background-color: #9acd3273;
 }
 
+.modal-header, .modal-body {
+    padding: 18px 50px;
+}
+
+.text_match{
+    font-size: 22px;
+    color: white;
+}
+
+.text_bet{
+    font-size: 20px;
+    color: white;
+}
+
 @media only screen and (max-width: 1200px){
     .nationalname{
         font-size: 20px;
