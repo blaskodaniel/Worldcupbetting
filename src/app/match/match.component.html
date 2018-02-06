@@ -1,60 +1,43 @@
-<div class="row text-center matchRow">
-  <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2"><img src="./assets/icons/flags/{{match.teamA.flag}}" alt=""></div>
-  <div class="hidden-xs hidden-sm col-md-2 col-lg-2 colorwhite displaytable">
-    <div class="displaytablecell nationalname">{{match.teamA.name}}</div>
-  </div>
-  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-    <div class="row">
-      <div class="col-xs-12 colorwhite">
-        <div class="row">
-          <div class="col-xs-4 oddsContainer nopaddingLeft nopaddingRight" *ngFor="let akt of outcome"
-          id="{{tools.decodeId(match._id,akt.sign,match[akt.name])}}"
-          [class.activeOdds]="akt.sign == SelectedOdds"
-          (click)="oddsClick(match,match[akt.name],$event,akt.sign)">
-            <span class="oddspos">{{akt.sign}}</span>
-            <span class="oddsvalue">{{match[akt.name]}}</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-12 colorwhite"><span class="datetime">{{match.date | timestampToDate}}</span></div>
-      <div class="col-xs-12 colorwhite"><span class="location">{{match.location}}</span></div>
-    </div>
-  </div>
-  <div class="hidden-xs hidden-sm col-md-2 col-lg-2 colorwhite displaytable">
-    <div class="displaytablecell nationalname">{{match.teamB.name}}</div>
-  </div>
-  <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2"><img src="./assets/icons/flags/{{match.teamB.flag}}" alt=""></div>
-</div>
-<hr />
 
-<!-- Modal Group-->
+<div class="col-xs-4 oddsContainer nopaddingLeft nopaddingRight" *ngFor="let akt of outcome"
+  id="{{tools.decodeId(match._id,akt.sign,match[akt.name])}}"
+  [class.activeOdds]="akt.sign == SelectedOdds"
+  (click)="oddsClick(match,match[akt.name],$event,akt.sign)">
+  <span class="oddspos">{{akt.sign}}</span>
+  <span class="oddsvalue">{{match[akt.name]}}</span>
+</div>
+
+<!-- Modal Group
 <div class="modal fade" id="addbet" role="dialog">
     <div class="modal-dialog modal-md">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Tét megadása</h4>
+          <h4 class="modal-title">Szelvény</h4>
         </div>
         <div class="modal-body">
             <div class="row">
                 <div class="col-xs-12 text-center text_match"></div>
-                <div class="col-xs-12 text-center text_bet"></div>
+                <div class="col-xs-12 text-center text_bet">{{addNewBet.value.bet}}</div>
             </div>
             <form [formGroup]="addNewBet" (ngSubmit)="addNewBetFunction()">
-                <div class="form-group">
-                  <input type="number" class="form-control input-style" 
-                  id="bet" 
-                  placeholder="Tét" 
-                  formControlName="bet" 
-                  required>
+                <div class="form-group row">
+                  <div class="col-xs-4 col-xs-offset-4">
+                    <input type="number" class="form-control input-style betInput" 
+                      id="bet" 
+                      placeholder="Tét" 
+                      formControlName="bet" 
+                      required>
+                  </div>
                 </div>
-                <p>{{addNewBet.value.bet}}*{{modalodds}}</p>
-                <button type="submit" class="btn btn-default float-right" [disabled]="!addNewBet.valid">Fogad</button>
+                <p class="formula">{{addNewBet.value.bet}}*{{modalodds}}</p>
+                
             </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Mégsem</button>
+          <button type="button" class="btn btn-default" (click)="ModalClose()">Mégsem</button>
+          <button type="button" class="btn btn-success float-right" (click)="ModalBetting()" [disabled]="!addNewBet.valid">Fogad</button>
         </div>
       </div>
     </div>
-  </div>
+  </div>-->

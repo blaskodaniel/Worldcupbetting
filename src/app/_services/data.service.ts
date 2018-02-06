@@ -101,6 +101,11 @@ export class DataService{
         return this.httpclient.post(`${this.BaseURL}/api/addmatch`,match);
     }
 
+    addCoupon(coupon){
+        // Create coupon
+        return this.httpclient.post(`${this.BaseURL}/api/newcoupon`,coupon);
+    }
+    
     updateUser(user){
         // Update user by ID
         return this.httpclient.patch(`${this.BaseURL}/api/user/${user._id}`,user);

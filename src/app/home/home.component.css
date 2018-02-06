@@ -97,3 +97,127 @@ li.match{
 .templatebg{
     background-color: #374f6796;
 }
+
+
+/*MATCH*/
+div.colorwhite{
+    color:white;
+}
+
+.displaytable{
+    display: table;
+    height: 100%;
+}
+
+.matchRow{
+    min-height: 80px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.displaytablecell{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.nationalname{
+    font-size: 17px;
+}
+
+.locationtime{
+    font-size: 12px;
+}
+
+.noMargin{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.noPadding{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.goals{
+    font-size: 28px;
+}
+
+img {
+    max-width: 50px;
+    vertical-align: middle;
+    border: 0;
+}
+
+.oddsContainer{
+    background-color: #0000002e;
+    border: 1px solid #4fda7154;
+    cursor: pointer;
+}
+
+span.oddspos{
+    width: 100%;
+    background: #ff0a0aa8;
+    position: relative;
+    float: left;
+}
+
+.activeOdds{
+    background-color: #9acd3273;
+}
+
+.modal-header, .modal-body {
+    padding: 18px 50px;
+}
+
+.text_match{
+    font-size: 22px;
+    color: white;
+}
+
+.text_bet{
+    font-size: 20px;
+    color: white;
+}
+
+.modal-header {
+    padding: 10px 35px;
+    
+}
+
+.modal-header, h4, .close{
+    text-align: left;
+}
+
+.modal-header h4{
+    letter-spacing: 2px;
+}
+
+.betInput{
+    width: 100px;
+    height: 40px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.formula{
+    text-align: center;
+    font-size: 17px;
+    color: white;
+}
+
+@media only screen and (max-width: 1200px){
+    .nationalname{
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 450px){
+    img{
+        max-width: 70px;
+    }
+    li.match{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}

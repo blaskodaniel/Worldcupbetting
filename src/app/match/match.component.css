@@ -78,6 +78,32 @@ span.oddspos{
     color: white;
 }
 
+.modal-header {
+    padding: 10px 35px;
+    
+}
+
+.modal-header, h4, .close{
+    text-align: left;
+}
+
+.modal-header h4{
+    letter-spacing: 2px;
+}
+
+.betInput{
+    width: 100px;
+    height: 40px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.formula{
+    text-align: center;
+    font-size: 17px;
+    color: white;
+}
+
 @media only screen and (max-width: 1200px){
     .nationalname{
         font-size: 20px;
