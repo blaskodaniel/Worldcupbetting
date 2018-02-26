@@ -1,6 +1,7 @@
 import { AuthService } from '../_services/auth.service';
 import { DataService } from '../_services/data.service';
 import { Component, OnInit } from '@angular/core';
+import { Coupon } from '../_interfaces/coupon';
 
 @Component({
   selector: 'app-profile',
@@ -9,6 +10,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
   private user;
+  img_success:String = "./assets/img/medal.png";
+  coupon:Coupon;
 
   constructor(private dataservice:DataService,private authservice:AuthService) { }
 
@@ -20,6 +23,24 @@ export class ProfileComponent implements OnInit {
       },
       (error)=>{
         console.log("Error");
+      }
+    )
+    this.getCoupons();
+  }
+
+  getCoupons(){
+    this.dataservice.getCouponsByUserIs(this.authservice.getUserId()).subscribe(
+      (coupon:Coupon)=>{
+        this.coupon = coupon;
+      }
+    )
+  }
+
+  removeCoupon(c){
+    this.dataservice.removeCoupon(c).subscribe(
+      response=>{
+        console.log("Törlés sikeres");
+        this.getCoupons();
       }
     )
   }

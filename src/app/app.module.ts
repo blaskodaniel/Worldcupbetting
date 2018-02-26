@@ -40,6 +40,7 @@ import { ToplistComponent } from './toplist/toplist.component';
 import { ToTeamName } from './_pipes/teamIDtoName';
 import { BetcartComponent } from './betcart/betcart.component';
 import { LogsComponent } from './dashboard/logs/logs.component';
+import { GeneralModalComponent } from './modals/general-modal/general-modal.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { LogsComponent } from './dashboard/logs/logs.component';
     FinishmatchComponent,
     ToplistComponent,
     BetcartComponent,
-    LogsComponent
+    LogsComponent,
+    GeneralModalComponent
   ],
   imports: [
     BrowserModule,

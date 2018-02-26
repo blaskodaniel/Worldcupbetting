@@ -10,5 +10,7 @@ export interface Match{
     type:String,
     location:String,
     active:Number,
-    comment:String
+    comment:String,
+    blocked?:Boolean,
+    matchoutcome?:String
 }

@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class NavigationComponent implements OnInit {
   private username:string;
+  userid:string;
+
   constructor(private dataservice:DataService, 
     public authservice:AuthService,
     private router: Router) { }
@@ -21,6 +23,7 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit() {
     console.log("Navigation bar OnInit");
+    this.userid = this.authservice.getUserId();
   }
 
   logout(){

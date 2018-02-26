@@ -6,6 +6,7 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
 import {Subject} from 'rxjs/Subject';
+import { Match } from '../_models/match.models';
 
 @Injectable()
 export class DataService{
@@ -105,6 +106,21 @@ export class DataService{
         // Create coupon
         return this.httpclient.post(`${this.BaseURL}/api/newcoupon`,coupon);
     }
+
+    // getCoupons() {
+    //     // Get coupons
+    //     return this.httpclient.get(`${this.BaseURL}/api/allcoupon`);
+    // }
+
+    getCouponsByUserIs(userid){
+        // Get coupons by user id (http://beerlak.com/api/coupons/all/:id)
+        return this.httpclient.get(`${this.BaseURL}/api/coupons/all/${userid}`);
+    }
+
+    removeCoupon(c){
+        // Remove coupon
+        return this.httpclient.delete(`${this.BaseURL}/api/coupon/${c._id}`,c);
+    }
     
     updateUser(user){
         // Update user by ID
@@ -133,7 +149,7 @@ export class DataService{
 
     getMatches(query) {
         // Get All user
-        return this.http.get(`${this.BaseURL}/getmatches${query}`);
+        return this.http.get(`${this.BaseURL}/getmatches${query}`).map((x:Response)=>x.json());
     }
 
 }

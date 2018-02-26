@@ -1,7 +1,6 @@
 import { DataService } from '../_services/data.service';
 import { Component, OnInit, OnDestroy, OnChanges, SimpleChanges, ViewContainerRef, ViewChild, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/Rx';
 import { Observer } from 'rxjs/Observer';
 import { Subscription } from 'rxjs/Subscription';
 import { Match } from '../_interfaces/match';
@@ -9,6 +8,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr';
 import { Coupon } from '../_interfaces/coupon';
 import { AuthService } from '../_services/auth.service';
+import { Betinfo } from '../_interfaces/betinfo';
+import { Router } from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -17,69 +18,96 @@ declare var $: any;
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  isActive = false;
   ActiveMatches:Match[] = [];
+  UsersCoupons:Coupon[] = [];
   newCoupon:Coupon;
-  betresult:number;
   betvalue:number = 0;
   currentMatch:Match;
-  currentOdds:string;
-  currentResult:string;
+  currentOdds:number;
+  currentResult:String;
 
-  constructor(private dataservice:DataService,public authservice:AuthService,) { 
+  constructor(private dataservice:DataService,public authservice:AuthService,private route: Router,
+    public toastr: ToastsManager, vcr: ViewContainerRef) { 
+    this.toastr.setRootViewContainerRef(vcr);
     
   }
 
-  ngOnInit() {
+  ngOnInit(){
+    this.loadMatchList();
+  }
+
+  loadMatchList(){
     this.dataservice.getMatches("?active=1").subscribe(
       (response)=>{
-        this.ActiveMatches = response.json();
+        this.ActiveMatches = response;
+        if(this.authservice.isAuthenticated()){
+          // If the user is log in then load the user's coupons
+          this.dataservice.getCouponsByUserIs(this.authservice.getUserId()).subscribe(
+            (coupon:Coupon[])=>{
+              this.UsersCoupons = coupon;
+              this.filterMatches(this.ActiveMatches,this.UsersCoupons);
+            }
+          )
+        }
       },
       (error)=>console.log(error)
     )
   }
 
-  openBetModal(match,event){
-    //console.log(match);
-    this.currentMatch = match;
-    let betHTMLElement:HTMLCollection = event.currentTarget.getElementsByClassName("activeOdds");
-    if(betHTMLElement.length > 0){
-      console.log("Aktivált fogadás");
-      const __odds:NodeListOf<Element> = betHTMLElement[0].getElementsByClassName("oddsvalue");
-      const __result:NodeListOf<Element> = betHTMLElement[0].getElementsByClassName("oddspos");
-      this.currentOdds = __odds[0].innerHTML;
-      this.currentResult = __result[0].innerHTML;
-      $("#betModal").modal();
+  filterMatches(matches:Match[],coupons:Coupon[]):void{
+    let blockMatches = matches.filter(x=>{
+      let coupon = coupons.find(c=>c.matchid["_id"] == x._id);
+      if(coupon){
+        x["blocked"] = true;
+        x["matchoutcome"] = coupon.outcome;
+      }
+    });
+  }
+
+  ModalClose() {
+    $("#betModal").modal('hide');
+  }
+
+  CreateCoupon(teamAid,teamBid,matchid){
+    if(this.authservice.isAuthenticated()){
+      console.log("Fogadás mentése");
+      this.newCoupon = {
+        bet:this.betvalue, // mennyi pontot tett fel
+        odds: +this.currentOdds, // aktuális odds
+        result: this.betvalue*+this.currentOdds, // nyereménye
+        outcome: this.currentResult,
+        matchid: matchid,
+        teamA: teamAid,
+        teamB: teamBid,
+        userid: this.authservice.getUserId() as any,
+        username: this.authservice.getUsername()
+      }
+      console.log("Fogadás:"+JSON.stringify(this.newCoupon));
+      this.dataservice.addCoupon(this.newCoupon).subscribe(
+        result => {
+          console.log(result);
+          this.loadMatchList();
+          this.ModalClose();
+          this.toastr.success('Sikeres fogadás', 'Üzenet',{positionClass:"toast-bottom-left"});
+        },
+        error => {
+          console.log("Hiba a szelvény mentése közben")
+        }
+      )
     }else{
-      console.log("Deaktivált fogadás");
+      this.route.navigate(['/login']);
     }
     
   }
 
-  ModalClose() {
-    console.log("Close")
-  }
-
-  BettingStart(teamAid,teamBid,matchid){
-    console.log("Fogadás mentése");
-    this.newCoupon = {
-      bet:this.betvalue,
-      odds: +this.currentOdds,
-      result: this.betvalue*+this.currentOdds,
-      matchid: matchid,
-      teamA: teamAid,
-      teamB: teamBid,
-      userid: this.authservice.getUserId() as any,
-      username: this.authservice.getUsername()
+  openModal(betinfo:Betinfo,match){
+    if(!match.blocked){
+      this.currentMatch = match;
+      this.currentOdds = betinfo.selectedOdds;
+      this.currentResult = betinfo.selectedResult;
+      $("#betModal").modal();
     }
-    this.dataservice.addCoupon(this.newCoupon).subscribe(
-      result => {
-        console.log(result);
-      },
-      error => {
-        console.log("Hiba a szelvény mentése közben")
-      }
-    )
+    
   }
 
 }
