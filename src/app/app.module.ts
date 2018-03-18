@@ -11,9 +11,9 @@ import { TokenInterceptor } from './_services/interceptor.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { Ng2OrderModule } from 'ng2-order-pipe';
-import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { NgModule } from '@angular/core';
-import {HttpModule} from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -34,6 +34,7 @@ import { UsersComponent } from './dashboard/users/users.component';
 import { TeamsgroupsComponent } from './dashboard/teamsgroups/teamsgroups.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TimestampToDate } from './_pipes/timestampToDate';
+import { sortPlayersByNum } from './_pipes/sortbynumber';
 import { MatchesComponent } from './dashboard/matches/matches.component';
 import { FinishmatchComponent } from './match/finishmatch/finishmatch.component';
 import { ToplistComponent } from './toplist/toplist.component';
@@ -59,6 +60,7 @@ import { GeneralModalComponent } from './modals/general-modal/general-modal.comp
     TeamsgroupsComponent,
     ProfileComponent,
     TimestampToDate,
+    sortPlayersByNum,
     ToTeamName,
     MatchesComponent,
     FinishmatchComponent,

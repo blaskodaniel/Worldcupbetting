@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../_models/user.models';
+import { DataService } from '../_services/data.service';
 
 @Component({
   selector: 'app-toplist',
@@ -6,21 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./toplist.component.css']
 })
 export class ToplistComponent implements OnInit {
-  selectedname:string;
-  test:any[] = [
-    {name:"Dani",pont:23},
-    {name:"Sanyi",pont:10},
-    {name:"Gabi",pont:17},
-    {name:"Tibi",pont:12}
-  ];
+  players:User[];
 
-  constructor() { }
-
-  Selected(data){
-    this.selectedname = data.name;
-  }
+  constructor(private dataservice:DataService) { }
 
   ngOnInit() {
+    this.getPlayers();
+  }
+
+  getPlayers(){
+    this.dataservice.getPlayers().subscribe(
+      x=>{
+        this.players = <User[]>x;
+      })
   }
 
 }

@@ -25,6 +25,10 @@ export class HomeComponent implements OnInit {
   currentMatch:Match;
   currentOdds:number;
   currentResult:String;
+  currentTeam:String;
+
+  error_status:boolean = false;
+  error_msg:string = "";
 
   constructor(private dataservice:DataService,public authservice:AuthService,private route: Router,
     public toastr: ToastsManager, vcr: ViewContainerRef) { 
@@ -70,31 +74,40 @@ export class HomeComponent implements OnInit {
 
   CreateCoupon(teamAid,teamBid,matchid){
     if(this.authservice.isAuthenticated()){
-      console.log("Fogadás mentése");
-      this.newCoupon = {
-        bet:this.betvalue, // mennyi pontot tett fel
-        odds: +this.currentOdds, // aktuális odds
-        result: this.betvalue*+this.currentOdds, // nyereménye
-        outcome: this.currentResult,
-        matchid: matchid,
-        teamA: teamAid,
-        teamB: teamBid,
-        userid: this.authservice.getUserId() as any,
-        username: this.authservice.getUsername()
-      }
-      console.log("Fogadás:"+JSON.stringify(this.newCoupon));
-      this.dataservice.addCoupon(this.newCoupon).subscribe(
-        result => {
-          console.log(result);
-          this.loadMatchList();
-          this.ModalClose();
-          this.toastr.success('Sikeres fogadás', 'Üzenet',{positionClass:"toast-bottom-left"});
-        },
-        error => {
-          console.log("Hiba a szelvény mentése közben")
+      if(this.betvalue > 0){
+        console.log("Fogadás mentése");
+        this.newCoupon = {
+          bet:this.betvalue, // mennyi pontot tett fel
+          odds: +this.currentOdds, // aktuális odds
+          result: this.betvalue*+this.currentOdds, // nyereménye
+          outcome: this.currentResult,
+          matchid: matchid,
+          teamA: teamAid,
+          teamB: teamBid,
+          userid: this.authservice.getUserId() as any,
+          username: this.authservice.getUsername()
         }
-      )
+        console.log("Fogadás:"+JSON.stringify(this.newCoupon));
+        this.dataservice.addCoupon(this.newCoupon).subscribe(
+          result => {
+            console.log(result);
+            this.loadMatchList();
+            this.ModalClose();
+            this.toastr.success('Sikeres fogadás', 'Üzenet',{positionClass:"toast-bottom-left"});
+          },
+          error => {
+            if(error.error.msg === "negative score"){
+              this.error_status = true;
+              this.error_msg = "Nincs ennyi pontod!";
+            }
+            console.log("Hiba a szelvény mentése közben")
+          }
+        )
+      }else{
+        this.toastr.error('Minimum 1 pontot fel kell raknod!','Hiba',{positionClass:"toast-bottom-left"});
+      }
     }else{
+      this.ModalClose();
       this.route.navigate(['/login']);
     }
     
@@ -103,8 +116,10 @@ export class HomeComponent implements OnInit {
   openModal(betinfo:Betinfo,match){
     if(!match.blocked){
       this.currentMatch = match;
+      this.currentTeam = betinfo.selectedTeam;
       this.currentOdds = betinfo.selectedOdds;
       this.currentResult = betinfo.selectedResult;
+      console.log(betinfo.selectedTeam);
       $("#betModal").modal();
     }
     

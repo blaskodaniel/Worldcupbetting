@@ -1,19 +1,20 @@
-.toplist{
+.toplist {
     background: rgba(51, 51, 51, 0.425);
     margin-top: 0;
     padding: 12px 17px;
     border-radius: 0 0 3px 3px;
 }
 
-.tab-header{
+.tab-header {
     color: white;
 }
 
-.news-list{
+.news-list {
     padding-left: 13px;
 }
 
-.news-list li, .users-list li {
+.news-list li,
+.users-list li {
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
@@ -27,31 +28,46 @@
     transition: background-color 0.2s ease-out;
 }
 
-.news-list img, .news-list .icon, .users-list img, .users-list .icon {
+.news-list img,
+.news-list .icon,
+.users-list img,
+.users-list .icon {
     float: left;
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
 }
 
-.news-list .news-item-info, .users-list .news-item-info {
+.news-list .news-item-info,
+.users-list .news-item-info {
     margin-left: 62px;
     color: black;
 }
 
-.news-list .name, .users-list .name {
+.news-list .name,
+.users-list .name {
     margin: 0;
-    text-transform: uppercase;
 }
 
-.news-list .name, .news-list .time, .news-list .position, .users-list .name, .users-list .time, .users-list .position {
+.news-list {
+    list-style: none;
+}
+
+.news-list .name,
+.news-list .time,
+.news-list .position,
+.users-list .name,
+.users-list .time,
+.users-list .position {
     line-height: 16px;
 }
 
-.news-list .name a, .users-list .name a {
+.news-list .name a,
+.users-list .name a {
     text-decoration: none;
 }
 
-.news-list .comment, .users-list .comment {
+.news-list .comment,
+.users-list .comment {
     font-size: 12px;
     color: #f8f8f8;
     line-height: 1.3em;
@@ -62,6 +78,26 @@ a {
     text-decoration: none;
 }
 
-.selected{
+.selected {
     background-color: chartreuse;
+}
+
+.position {
+    color: #feaf14;
+    padding: 10px 30px;
+    font-size: 15px;
+}
+
+.name {
+    font-size: 17px;
+}
+
+.positionNumber {
+    font-size: 16px;
+    color: white;
+    padding: 0px 10px;
+    background: #ff5400;
+    border-radius: 50px;
+    margin-left: -15px;
+    margin-right: 15px;
 }

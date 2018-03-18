@@ -170,6 +170,12 @@ img.result{
     padding-right: 12px;
 }
 
+.scoredisplay{
+    font-weight: bold;
+    letter-spacing: 3px;
+    font-size: 21px;
+}
+
 /* Small devices (landscape phones, 576px and up) */
 @media (max-width: 576px) {  
     

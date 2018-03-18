@@ -15,11 +15,12 @@ export class BetcartService{
     constructor() {
         console.log("betcart service konstruktor");
         if(localStorage.getItem("cart")){
-            if(<betCartStorage[]>JSON.parse(localStorage.getItem("cart"))){
-                this.storageList = [];
-                this.storageList = <betCartStorage[]>JSON.parse(localStorage.getItem("cart"));
-                this.counter = this.storageList.length;
-            }
+            localStorage.removeItem("cart");
+            // if(<betCartStorage[]>JSON.parse(localStorage.getItem("cart"))){
+            //     this.storageList = [];
+            //     this.storageList = <betCartStorage[]>JSON.parse(localStorage.getItem("cart"));
+            //     this.counter = this.storageList.length;
+            // }
         }
     }
 

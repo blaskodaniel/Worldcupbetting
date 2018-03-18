@@ -10,36 +10,41 @@ import { Coupon } from '../_interfaces/coupon';
 })
 export class ProfileComponent implements OnInit {
   private user;
-  img_success:String = "./assets/img/medal.png";
-  coupon:Coupon;
+  img_success: String = "./assets/img/medal.png";
+  coupon: Coupon;
 
-  constructor(private dataservice:DataService,private authservice:AuthService) { }
+  constructor(private dataservice: DataService, private authservice: AuthService) { }
 
   ngOnInit() {
-    this.dataservice.getUserById(this.authservice.getUserId()).subscribe(
-      (user)=>{
-        console.log(user);
-        this.user = user;
-      },
-      (error)=>{
-        console.log("Error");
-      }
-    )
+    this.getUser();
     this.getCoupons();
   }
 
-  getCoupons(){
+  getCoupons() {
     this.dataservice.getCouponsByUserIs(this.authservice.getUserId()).subscribe(
-      (coupon:Coupon)=>{
+      (coupon: Coupon) => {
         this.coupon = coupon;
       }
     )
   }
 
-  removeCoupon(c){
+  getUser() {
+    this.dataservice.getUserById(this.authservice.getUserId()).subscribe(
+      (user) => {
+        console.log(user);
+        this.user = user;
+      },
+      (error) => {
+        console.log("Error");
+      }
+    )
+  }
+
+  removeCoupon(c) {
     this.dataservice.removeCoupon(c).subscribe(
-      response=>{
+      response => {
         console.log("Törlés sikeres");
+        this.getUser();
         this.getCoupons();
       }
     )

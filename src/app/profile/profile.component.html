@@ -3,8 +3,8 @@
   <!-- Add the bg color to the header using any of the bg-* classes -->
   <div class="widget-user-header bg-aqua-active">
     <h3 class="widget-user-username">{{user?.username}}</h3>
+    <h3 class="scoredisplay float-right">{{user?.score}} pont</h3>
     <h5 class="widget-user-desc">{{user?.email}}</h5>
-    <h5 class="widget-user-desc">Status: {{user?.role}}</h5>
   </div>
   <div class="widget-user-image">
     <img class="img-circle" src="./assets/img/{{user?.avatar}}" alt="User Avatar">
@@ -89,7 +89,7 @@
   <div class="list-group" *ngFor="let i = index;let c of coupon"> 
       <a class="list-group-item active"> 
         <span class="status">
-          <span class="score">55 p</span>
+          <span class="score">{{c.result}} p</span>
           <img class="result" [src]="img_success">
         </span>
         <h4 class="list-group-item-heading">{{c.teamA}} - {{c.teamB}} ({{c.outcome}})</h4>
@@ -98,7 +98,7 @@
                 <p class="date">({{c.date | timestampToDate}})</p>
                 <p class="list-group-item-text">Feltett pont: {{c.bet}} pont</p> 
                 <p class="list-group-item-text">Szorzó: {{c.odds}}</p>
-                <p class="list-group-item-text">Nyereményed: {{c.result}} pont</p>
+                <p class="list-group-item-text win">Nyereményed: {{c.result}} pont</p>
           </div>
           <div class="col-xs-6 buttons">
               <button class="btn btn-save" (click)="editCoupon(c)">Módosít</button>

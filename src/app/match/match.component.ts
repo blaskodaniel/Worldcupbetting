@@ -47,9 +47,18 @@ export class MatchComponent implements OnInit {
   }
 
   oddsClick(matchobject, odds, event, akt) {
+    let teamname:String = "";
+    if(akt.name == "oddsAwin"){
+      teamname = matchobject.teamA.name;
+    }else if(akt.name == "oddsBwin"){
+      teamname = matchobject.teamB.name;
+    }else{
+      teamname = "Döntetlen";
+    }
     this.SelectedObject = {
       selectedOdds: +odds,
-      selectedResult: akt
+      selectedTeam: teamname,
+      selectedResult: akt.sign
     }
     this.resultClick.emit(this.SelectedObject);
   }

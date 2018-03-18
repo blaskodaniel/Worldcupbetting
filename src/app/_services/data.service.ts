@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
 import {Subject} from 'rxjs/Subject';
 import { Match } from '../_models/match.models';
+import { User } from '../_models/user.models';
 
 @Injectable()
 export class DataService{
@@ -92,6 +93,11 @@ export class DataService{
         return this.http.get(`${this.BaseURL}/getteams`,this.noauthoptions);
     }
 
+    getPlayers(){
+        // Get Players (name,score,avatar)
+        return this.http.get(`${this.BaseURL}/getplayers`).map((x:Response)=>x.json());
+    }
+
     addUser(user){
         // Create user
         return this.httpclient.post(`${this.BaseURL}/api/adduser`,user);
@@ -148,7 +154,7 @@ export class DataService{
     }
 
     getMatches(query) {
-        // Get All user
+        // Get All match
         return this.http.get(`${this.BaseURL}/getmatches${query}`).map((x:Response)=>x.json());
     }
 

@@ -1,8 +1,6 @@
-<div class="col-xs-4 oddsContainer nopaddingLeft nopaddingRight" *ngFor="let akt of outcome" [ngClass]="{activeOdds:match.blocked && akt.sign == match.matchoutcome}"
-  id="{{tools.decodeId(match._id,akt.sign,match[akt.name])}}"
-  (click)="oddsClick(match,match[akt.name],$event,akt.sign)">
-  <span class="oddspos">{{akt.sign}}</span>
-  <span class="oddsvalue">{{match[akt.name]}}</span>
+<div class="col-xs-4 oddsContainer nopaddingLeft nopaddingRight" *ngFor="let akt of outcome" [ngClass]="{activeOdds:match.blocked && akt.sign == match.matchoutcome}" id="{{tools.decodeId(match._id,akt.sign,match[akt.name])}}" (click)="oddsClick(match,match[akt.name],$event,akt)">
+    <span class="oddspos">{{akt.sign}}</span>
+    <span class="oddsvalue">{{match[akt.name] | number:'1.2'}}</span>
 </div>
 
 <!-- [class.activeOdds]="akt.sign == SelectedOdds" -->

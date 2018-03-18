@@ -38,7 +38,7 @@ export class MatchesComponent implements OnInit {
     this.dataservice.getMatches("").subscribe(
       (response)=>{
         console.log(response);
-        this.matches = JSON.parse(response["_body"]);
+        this.matches = response;
       },
       (error)=>console.log(error)
     )
