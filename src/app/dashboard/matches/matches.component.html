@@ -1,150 +1,143 @@
 <div class="row">
-  <h2 class="page-title">Dashboard
-          <small></small>
-  </h2> 
+    <h2 class="page-title">Dashboard
+        <small></small>
+    </h2>
 </div>
 
 <!-- Matches -->
 <div class="row">
-      <div class="col-xs-12">
-          <section class="widget">
-              <header>
-                  <h4>
-                      Matches <span class="fw-semi-bold"></span>
-                  </h4>
-                  <div class="widget-controls">
-                      <div class="form-group">
-                          <input type="text" class="form-control input-style" 
-                          name="search" 
-                          placeholder="Search.." 
-                          [(ngModel)]="search">
-                        </div>
-                  </div>
-              </header>
-              <div class="body">
-                  <table class="table table-striped">
-                      <thead>
-                      <tr>
-                          <th class="hidden-xs">#</th>
-                          <th class="hidden-xs">ID</th>
-                          <th>TeamA</th>
-                          <th>TeamB</th>
-                          <th>Odds</th>
-                          <th class="hidden-xs">Location</th>
-                          <th>Active</th>
-                          <th>Date</th>
-                          <th class="hidden-xs">Type</th>
-                          <th></th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      <tr *ngFor="let i = index;let item of matches | orderBy: OrderKey : OrderReverse | filter:search">
-                          <td class="hidden-xs">{{i+1}}</td>
-                          <td class="hidden-xs">{{item._id}}</td>
-                          <td>
-                              <input class="transparentinput" style="width:90px;" type="text" [(ngModel)]="item.teamA.name" name="teamA" >
-                              <p class="no-margin">
-                                <small>
+    <div class="col-xs-12">
+        <section class="widget">
+            <header>
+                <h4>
+                    Matches <span class="fw-semi-bold"></span>
+                </h4>
+                <div class="widget-controls">
+                    <div class="form-group">
+                        <input type="text" class="form-control input-style" name="search" placeholder="Search.." [(ngModel)]="search">
+                    </div>
+                </div>
+            </header>
+            <div class="body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="hidden-xs">#</th>
+                            <th class="hidden-xs">ID</th>
+                            <th>TeamA</th>
+                            <th>TeamB</th>
+                            <th>Odds</th>
+                            <th class="hidden-xs">Location</th>
+                            <th>State</th>
+                            <th>Date</th>
+                            <th class="hidden-xs">Type</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let i = index;let item of matches | orderBy: OrderKey : OrderReverse | filter:search">
+                            <td class="hidden-xs">{{i+1}}</td>
+                            <td class="hidden-xs">{{item._id}}</td>
+                            <td>
+                                <input class="transparentinput" style="width:90px;" type="text" [(ngModel)]="item.teamA.name" name="teamA">
+                                <p class="no-margin">
+                                    <small>
                                     <span class="fw-semi-bold">Goals:</span>
-                                    {{item.goalA}}
+                                    <input class="transparentinput" style="width:90px;" type="text" [(ngModel)]="item.goalA" name="goalA" >
                                 </small>
-                            </p>
-                          </td>
-                          <td>
-                            <input class="transparentinput" style="width:90px;" type="text" [(ngModel)]="item.teamB.name" name="teamB" >
-                            <p class="no-margin">
-                              <small>
+                                </p>
+                            </td>
+                            <td>
+                                <input class="transparentinput" style="width:90px;" type="text" [(ngModel)]="item.teamB.name" name="teamB">
+                                <p class="no-margin">
+                                    <small>
                                   <span class="fw-semi-bold">Goals:</span>
-                                  {{item.goalB}}
+                                  <input class="transparentinput" style="width:90px;" type="text" [(ngModel)]="item.goalB" name="goalB" >
                               </small>
-                            </p>
-                          </td>
-                          <td class="hidden-xs text-muted">
-                            <div class="row">
-                              <div class="col-xs-4">
-                                  1:<input class="transparentinput" style="width:30px;" type="text" [(ngModel)]="item.oddsAwin" name="oddsAwin" >
-                              </div>
-                              <div class="col-xs-4">
-                                  x:<input class="transparentinput" style="width:30px;" type="text" [(ngModel)]="item.oddsDraw" name="oddsDraw" >
-                              </div>
-                              <div class="col-xs-4">
-                                  2:<input class="transparentinput" style="width:30px;" type="text" [(ngModel)]="item.oddsBwin" name="oddsBwin" >
-                              </div>
-                            </div>
-                          </td>
-                          <td>
-                              <input class="transparentinput numberInput" type="text" [(ngModel)]="item.location" name="location">
-                          </td>
-                          <td class="hidden-xs text-muted">
-                              <input class="transparentinput numberInput" type="text" [(ngModel)]="item.active" name="active" >
-                          </td>
-                          <td>
-                              <input class="transparentinput numberInput" type="text" [(ngModel)]="item.date" name="date">
-                              <div>{{item.date | timestampToDate}}</div>
-                          </td>
-                          <td>
-                            <input class="transparentinput numberInput" type="text" [(ngModel)]="item.type" name="type">
-                          </td>
-                          
-                          <td>
-                            <i class="fa fa-floppy-o hidden-lg hidden-sm hidden-md" aria-hidden="true" (click)="Edit(item)"></i>&nbsp;&nbsp;
-                            <i class="fa fa-trash hidden-lg hidden-sm hidden-md" aria-hidden="true" (click)="Delete(item)"></i>
-                            <button class="btn btn-save hidden-xs" (click)="Edit(item)">Save</button>
-                            <button class="btn btn-remove hidden-xs" (click)="Delete(item)">Remove</button>
-                          </td>
-                      </tr>
-                      
-                      </tbody>
-    
-                  </table>
-                  <div class="clearfix">
-                      <div class="pull-right">
-                          <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#newMatch">
+                                </p>
+                            </td>
+                            <td class="hidden-xs text-muted">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        1:<input class="transparentinput" style="width:30px;" type="text" [(ngModel)]="item.oddsAwin" name="oddsAwin">
+                                    </div>
+                                    <div class="col-xs-4">
+                                        x:<input class="transparentinput" style="width:30px;" type="text" [(ngModel)]="item.oddsDraw" name="oddsDraw">
+                                    </div>
+                                    <div class="col-xs-4">
+                                        2:<input class="transparentinput" style="width:30px;" type="text" [(ngModel)]="item.oddsBwin" name="oddsBwin">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <input class="transparentinput numberInput" type="text" [(ngModel)]="item.location" name="location">
+                            </td>
+                            <td class="hidden-xs text-muted">
+                                <input class="transparentinput numberInput" type="text" [(ngModel)]="item.active" name="active">
+                            </td>
+                            <td>
+                                <input class="transparentinput numberInput" type="text" [(ngModel)]="item.date" name="date">
+                                <div>{{item.date | timestampToDate}}</div>
+                            </td>
+                            <td>
+                                <input class="transparentinput numberInput" type="text" [(ngModel)]="item.type" name="type">
+                            </td>
+
+                            <td>
+                                <i class="fa fa-floppy-o hidden-lg hidden-sm hidden-md" aria-hidden="true" (click)="Edit(item)"></i>&nbsp;&nbsp;
+                                <i class="fa fa-trash hidden-lg hidden-sm hidden-md" aria-hidden="true" (click)="Delete(item)"></i>
+                                <button class="btn btn-save hidden-xs" (click)="Edit(item)">Save</button>
+                                <button class="btn btn-remove hidden-xs" (click)="Delete(item)">Remove</button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+                <div class="clearfix">
+                    <div class="pull-right">
+                        <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#newMatch">
                             Add new
                           </button>
-                      </div>
-                      <p>Basic table with styled content</p>
-                  </div>
-              </div>
-          </section>
-      </div>
+                    </div>
+                    <p>Basic table with styled content</p>
+                </div>
+            </div>
+        </section>
+    </div>
 </div>
 
-  <!-- Modal Matches-->
+<!-- Modal Matches-->
 <div class="modal fade" id="newMatch" role="dialog">
     <div class="modal-dialog modal-md">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Új mérkőzés létrehozása</h4>
-        </div>
-        <div class="modal-body">
-            <form [formGroup]="addNewForm" (ngSubmit)="addNew()">
-                <div class="form-group">
-                    <select class="form-control input-style select-style" formControlName="teamA" required>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Új mérkőzés létrehozása</h4>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addNewForm" (ngSubmit)="addNew()">
+                    <div class="form-group">
+                        <select class="form-control input-style select-style" formControlName="teamA" required>
                         <option [ngValue]="null">Hazai csapat</option>
                         <option *ngFor="let team of teams" [ngValue]="team._id">{{team.name}}</option>
                     </select>
-                </div>
-                <div class="form-group">
-                    <select class="form-control input-style select-style" formControlName="teamB" required>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control input-style select-style" formControlName="teamB" required>
                         <option [ngValue]="null">Idegen csapat</option>
                         <option *ngFor="let team of teams" [ngValue]="team._id">{{team.name}}</option>
                     </select>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control input-style" 
-                    id="date" 
-                    placeholder="Dátum" 
-                    formControlName="date" 
-                    required>
-                </div>
-                <button type="submit" class="btn btn-default float-right" [disabled]="!addNewForm.valid">Létrehoz</button>
-          </form>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control input-style" id="date" placeholder="Dátum" formControlName="date" required>
+                    </div>
+                    <button type="submit" class="btn btn-default float-right" [disabled]="!addNewForm.valid">Létrehoz</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Mégsem</button>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Mégsem</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>

@@ -96,9 +96,12 @@ export class HomeComponent implements OnInit {
             this.toastr.success('Sikeres fogadás', 'Üzenet',{positionClass:"toast-bottom-left"});
           },
           error => {
-            if(error.error.msg === "negative score"){
-              this.error_status = true;
+            this.error_status = true;
+            if(error.error.code === 2){
               this.error_msg = "Nincs ennyi pontod!";
+            }
+            if(error.error.code === 1){
+              this.error_msg = "Erre a mérkőzésre már nem fogadthatsz!";
             }
             console.log("Hiba a szelvény mentése közben")
           }

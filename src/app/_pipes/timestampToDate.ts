@@ -10,7 +10,7 @@ export class TimestampToDate implements PipeTransform {
         // "MMM Do YY"
         return moment(parseInt(value)).format(format);
       }else{
-        return moment(parseInt(value)).format("YYYY-MM-DD HH:mm:SS");
+        return moment(parseInt(value)).format("YYYY-MM-DD HH:mm:ss");
       }
     
   }
