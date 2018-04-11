@@ -1,0 +1,92 @@
+<div class="row">
+    <h2 class="page-title">Szelvények
+        <small></small>
+    </h2>
+</div>
+
+<!-- TEAMS -->
+<div class="row">
+    <div class="col-xs-12">
+        <section class="widget">
+            <header>
+                <h4>
+                    Minden szelvény<span class="fw-semi-bold"></span>
+                </h4>
+                <div class="widget-controls">
+                    <div class="form-group">
+                        <input type="text" class="form-control input-style" name="search" placeholder="Search.." [(ngModel)]="couponsearch">
+                    </div>
+                </div>
+            </header>
+            <div class="body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="hidden-xs">#</th>
+                            <th>MatchID</th>
+                            <th>Username</th>
+                            <th class="hidden-xs">Match</th>
+                            <th class="hidden-xs">Bet</th>
+                            <th class="hidden-xs">Odds</th>
+                            <th class="hidden-xs">Result</th>
+                            <th>Win?</th>
+                            <th>Outcome</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let i = index;let item of coupons | orderBy: couponOrderKey : couponOrderReverse | filter:couponsearch">
+                            <td class="hidden-xs">{{i+1}}</td>
+                            <td>
+                                <input class="transparentinput" style="width:60px;" type="text" [(ngModel)]="item.matchid._id" name="matchid">
+                            </td>
+                            <td>
+                                <input class="transparentinput" type="text" [(ngModel)]="item.username" name="username">
+                            </td>
+                            <td class="hidden-xs text-muted">
+                                {{item.teamA}} - {{item.teamB}}
+                            </td>
+                            <td class="hidden-xs text-muted">
+                                <input class="transparentinput numberInput" type="text" [(ngModel)]="item.bet" name="bet">
+                            </td>
+                            <td>
+                                <input class="transparentinput numberInput" type="text" [(ngModel)]="item.odds" name="odds">
+                            </td>
+                            <td>
+                                <input class="transparentinput numberInput" type="text" [(ngModel)]="item.result" name="result">
+                            </td>
+                            <td>
+                                <input class="transparentinput numberInput" type="text" [(ngModel)]="item.success" name="success">
+                            </td>
+                            <td>
+                                <input class="transparentinput numberInput" type="text" [(ngModel)]="item.outcome" name="outcome">
+                            </td>
+                            <td>
+                                <i class="fa fa-floppy-o hidden-lg hidden-sm hidden-md" aria-hidden="true" (click)="EditCoupon(item)"></i>&nbsp;&nbsp;
+                                <i class="fa fa-trash hidden-lg hidden-sm hidden-md" aria-hidden="true" (click)="DeletesCoupon(item)"></i>
+                                <button class="btn btn-save hidden-xs" (click)="EditCoupon(item)">Save</button>
+                                <button class="btn btn-remove hidden-xs" (click)="DeleteCoupon(item)">Remove</button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+                <div class="clearfix">
+                    <div class="pull-right">
+                        <button class="btn btn-default btn-sm">
+                              All delete
+                          </button>
+                        <div class="btn-group">
+                            <button class="btn btn-sm btn-inverse dropdown-toggle" data-toggle="dropdown">
+                                &nbsp; Add new &nbsp;
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <p>Basic table with styled content</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

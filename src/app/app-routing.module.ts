@@ -15,6 +15,7 @@ import { AdminGuardService } from './_services/adminguard.service';
 import { EditorGuardService } from './_services/editorguard.service';
 import { MatchesComponent } from './dashboard/matches/matches.component';
 import { LogsComponent } from './dashboard/logs/logs.component';
+import { CouponsComponent } from './dashboard/coupons/coupons.component';
 
 const appRoutes:Routes = [
     {path:'', redirectTo:'/home', pathMatch:'full'},
@@ -22,6 +23,7 @@ const appRoutes:Routes = [
     {path:'profile',component:ProfileComponent, canActivate:[GuardService]},
     {path:'users', component:UsersComponent, canActivate:[GuardService,AdminGuardService]},
     {path:'teamsgroups', component:TeamsgroupsComponent, canActivate:[GuardService,EditorGuardService]},
+    {path:'admincoupons', component:CouponsComponent, canActivate:[GuardService,EditorGuardService]},
     {path:'logs', component:LogsComponent, canActivate:[GuardService,AdminGuardService]},
     {path:'matches', component:MatchesComponent,canActivate:[GuardService,EditorGuardService]},
     {path:'registration', component:RegistrationComponent},

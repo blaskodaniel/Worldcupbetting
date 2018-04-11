@@ -9,7 +9,7 @@
     border-top: 3px solid #d2d6de;
     margin-bottom: 20px;
     width: 100%;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 .widget-user .widget-user-header {
@@ -19,7 +19,9 @@
     border-top-left-radius: 3px;
 }
 
-.bg-aqua-active, .modal-info .modal-header, .modal-info .modal-footer {
+.bg-aqua-active,
+.modal-info .modal-header,
+.modal-info .modal-footer {
     background-color: #374f6796 !important;
 }
 
@@ -28,15 +30,26 @@
     margin-bottom: 5px;
     font-size: 25px;
     font-weight: 300;
-    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
-h3{
+h3 {
     color: #fff9f9;
 }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-    font-family: 'Source Sans Pro',sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .widget-user .widget-user-desc {
@@ -99,12 +112,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: black;
 }
 
-table > tbody{
+table>tbody {
     background-color: #21232575;
     color: white;
 }
 
-table > thead{
+table>thead {
     background-color: #2d2d30cc;
     color: white;
 }
@@ -112,23 +125,26 @@ table > thead{
 .btn {
     padding: 5px 10px;
     min-width: 80px;
-   
 }
 
-.btn-remove{
+.btn-remove {
     background-color: #d21b1b;
 }
 
-
-.btn-remove:hover{
+.btn-remove:hover {
     background-color: #ffffff;
 }
 
-.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
-    vertical-align:0;
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
+    vertical-align: 0;
 }
 
-.list-group-item-heading{
+.list-group-item-heading {
     color: #fff !important;
     text-align: left;
     font-size: 18px;
@@ -137,46 +153,98 @@ table > thead{
     background-color: transparent;
 }
 
-.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover{
+.list-group-item.active,
+.list-group-item.active:focus,
+.list-group-item.active:hover {
     background-color: #41546e;
     border-color: #337ab7;
 }
 
-div.buttons{
+div.buttons {
     padding: 17px 17px 5px 13px;
     text-align: right;
 }
 
-.date{
+.date {
     font-style: italic;
-    font-size: 12px;
+    font-size: 15px;
 }
 
-span.status{
+span.status {
     position: relative;
     float: right;
     padding-left: 35px;
 }
 
-span.score{
+span.score {
     font-size: 20px;
 }
 
-img.result{
+img.result {
     max-width: 50px;
 }
 
-.coupon_info{
+.coupon_info {
     padding-right: 12px;
 }
 
-.scoredisplay{
+.scoredisplay {
     font-weight: bold;
     letter-spacing: 3px;
     font-size: 21px;
 }
 
-/* Small devices (landscape phones, 576px and up) */
-@media (max-width: 576px) {  
-    
+.run {
+    color: #ef7070;
+    font-size: 18px;
 }
+
+.finish {
+    font-size: 15px;
+}
+
+.updatematchnames {
+    text-align: center;
+    color: white;
+    font-size: 20px;
+}
+
+.updatewin {
+    color: white;
+    text-align: center;
+}
+
+.updatebetinput {
+    margin: 0 auto;
+    text-align: center;
+    width: 100px;
+    font-size: 18px;
+}
+
+.btn-success {
+    margin-left: 10px;
+}
+
+.emptycoupon {
+    color: white;
+    border: 1px solid #00000052;
+    padding: 10px;
+    background-color: #40556f75;
+}
+
+.dataform {
+    padding: 10px 0px;
+    margin-top: -20px;
+    background-color: #2d2d306b;
+}
+
+.input-style {
+    border: none;
+    color: #f8f8f8;
+    background-color: #2d2d3094;
+}
+
+
+/* Small devices (landscape phones, 576px and up) */
+
+@media (max-width: 576px) {}

@@ -1,43 +1,43 @@
-div.colorwhite{
-    color:white;
+div.colorwhite {
+    color: white;
 }
 
-.displaytable{
+.displaytable {
     display: table;
     height: 100%;
 }
 
-.matchRow{
+.matchRow {
     min-height: 80px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-.displaytablecell{
+.displaytablecell {
     display: table-cell;
     vertical-align: middle;
     text-align: center;
 }
 
-.nationalname{
+.nationalname {
     font-size: 17px;
 }
 
-.locationtime{
+.locationtime {
     font-size: 12px;
 }
 
-.noMargin{
+.noMargin {
     margin-left: 0;
     margin-right: 0;
 }
 
-.noPadding{
+.noPadding {
     padding-left: 0;
     padding-right: 0;
 }
 
-.goals{
+.goals {
     font-size: 28px;
 }
 
@@ -47,74 +47,76 @@ img {
     border: 0;
 }
 
-.oddsContainer{
-    background-color: #0000002e;
-    border: 1px solid #4fda7154;
+.oddsContainer {
+    background-color: #124633a6;
+    border: 1px solid #05050e5c;
     cursor: pointer;
 }
 
-span.oddspos{
+span.oddspos {
     width: 100%;
-    background: #ff0a0aa8;
     position: relative;
     float: left;
 }
 
-.activeOdds{
-    background-color: #9acd3273;
+.activeOdds {
+    background-color: #01133391;
+    font-weight: bold;
 }
 
-.modal-header, .modal-body {
+.modal-header,
+.modal-body {
     padding: 18px 50px;
 }
 
-.text_match{
+.text_match {
     font-size: 22px;
     color: white;
 }
 
-.text_bet{
+.text_bet {
     font-size: 20px;
     color: white;
 }
 
 .modal-header {
     padding: 10px 35px;
-    
 }
 
-.modal-header, h4, .close{
+.modal-header,
+h4,
+.close {
     text-align: left;
 }
 
-.modal-header h4{
+.modal-header h4 {
     letter-spacing: 2px;
 }
 
-.betInput{
+.betInput {
     width: 100px;
     height: 40px;
     font-size: 20px;
     text-align: center;
 }
 
-.formula{
+.formula {
     text-align: center;
     font-size: 17px;
     color: white;
 }
 
-@media only screen and (max-width: 1200px){
-    .nationalname{
+@media only screen and (max-width: 1200px) {
+    .nationalname {
         font-size: 20px;
     }
 }
 
-@media only screen and (max-width: 450px){
-    img{
+@media only screen and (max-width: 450px) {
+    img {
         max-width: 70px;
     }
-    li.match{
+    li.match {
         padding-left: 10px;
         padding-right: 10px;
     }

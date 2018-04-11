@@ -151,8 +151,7 @@ img {
 }
 
 .oddsContainer {
-    background-color: #0000002e;
-    border: 1px solid #4fda7154;
+    border: 1px solid #4fda7117;
     cursor: pointer;
 }
 
@@ -164,7 +163,8 @@ span.oddspos {
 }
 
 .activeOdds {
-    background-color: #9acd3273;
+    background-color: #01133391;
+    font-weight: bold;
 }
 
 .modal-header,
@@ -202,6 +202,7 @@ h4,
 }
 
 .betInput {
+    margin: 0 auto;
     width: 100px;
     height: 40px;
     font-size: 20px;
@@ -218,6 +219,20 @@ h4,
     font-size: 15px;
     color: red;
     text-align: center;
+}
+
+.teamAgoal {
+    position: absolute;
+    top: 75px;
+    right: 65px;
+    font-size: 20px;
+}
+
+.teamBgoal {
+    position: absolute;
+    top: 76px;
+    right: 65px;
+    font-size: 20px;
 }
 
 @media only screen and (max-width: 1200px) {

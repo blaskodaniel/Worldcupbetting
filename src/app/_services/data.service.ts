@@ -1,25 +1,30 @@
-import {Injectable, OnInit} from'@angular/core';
-import {Http,Headers,Response, RequestOptionsArgs, RequestOptions} from '@angular/http';
-import { HttpClient } from '@angular/common/http';
+import { Injectable, OnInit } from '@angular/core';
+import { Http, Headers, Response, RequestOptionsArgs, RequestOptions } from '@angular/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { catchError } from 'rxjs/operators';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
-import 'rxjs/Rx';
-import {Subject} from 'rxjs/Subject';
-import { Match } from '../_models/match.models';
+import 'rxjs/add/operator/do';
+//import 'rxjs/Rx';
+import { Subject } from 'rxjs/Subject';
+import { Match } from '../_interfaces/match';
 import { User } from '../_models/user.models';
+import { ErrorHTTP } from '../_models/errorhttp.model';
+import { Coupon } from '../_interfaces/coupon';
 
 @Injectable()
-export class DataService{
+export class DataService {
     private options: RequestOptions;
     private headers: Headers;
     private noautheaders: Headers;
     private noauthoptions: RequestOptions;
-    private Loged:boolean = false;
+    private Loged: boolean = false;
     private secretToken: string;
-    private BaseURL:string = "http://beerlak.com";
+    private BaseURL: string = "http://beerlak.com";
 
-    constructor(private http:Http, private httpclient:HttpClient){ 
+    constructor(private http: Http, private httpclient: HttpClient) {
         this.noautheaders = new Headers({ 'Content-Type': 'application/json' });
         this.noauthoptions = new RequestOptions({ headers: this.noautheaders });
         this.headers = new Headers();
@@ -28,42 +33,42 @@ export class DataService{
         this.options = new RequestOptions({ headers: this.headers });
     }
 
-    login(email:string, password:string):Observable<boolean> {
+    login(email: string, password: string): Observable<boolean> {
         let data = {
-            email:email,
-            password:password
+            email: email,
+            password: password
         };
         return this.http.post(`${this.BaseURL}/login`, data)
-          .map(res => res.json())
-          .do(
-            data => {
-                if(data.success){
-                    localStorage.setItem('token', data.token);
-                    this.secretToken = data.token;
-                    return true;
-                }else{
-                    return data;
-                }
-                
-            },
-            error => {return false;}
-          );
+            .map(res => res.json())
+            .do(
+                data => {
+                    if (data.success) {
+                        localStorage.setItem('token', data.token);
+                        this.secretToken = data.token;
+                        return true;
+                    } else {
+                        return data;
+                    }
+
+                },
+                error => { return false; }
+            );
     }
 
     register(user) {
-        console.log("Regisztráció:",user);
+        console.log("Regisztráció:", user);
         return this.http.post(`${this.BaseURL}/register`, user);
-    } 
-
-    addGroup(group){
-        return this.httpclient.post(`${this.BaseURL}/api/group/add`,group);
     }
 
-    addTeam(team){
-        return this.httpclient.post(`${this.BaseURL}/api/addteam`,team);
+    addGroup(group) {
+        return this.httpclient.post(`${this.BaseURL}/api/group/add`, group);
     }
 
-    getUserById(id){
+    addTeam(team) {
+        return this.httpclient.post(`${this.BaseURL}/api/addteam`, team);
+    }
+
+    getUserById(id) {
         // Get user by ID
         return this.httpclient.get(`${this.BaseURL}/api/getuserbyid/${id}`);
     }
@@ -75,12 +80,12 @@ export class DataService{
 
     getLogs(page) {
         // Get logs
-        return this.httpclient.post(`${this.BaseURL}/api/logs`,{page:page});
+        return this.httpclient.post(`${this.BaseURL}/api/logs`, { page: page });
     }
 
-    deleteLog(log){
+    deleteLog(log) {
         // Delete log by ID
-        return this.httpclient.delete(`${this.BaseURL}/api/logs/${log._id}`,log);
+        return this.httpclient.delete(`${this.BaseURL}/api/logs/${log._id}`, log);
     }
 
     getGroups() {
@@ -90,72 +95,98 @@ export class DataService{
 
     getTeams() {
         // Get Teams
-        return this.http.get(`${this.BaseURL}/getteams`,this.noauthoptions);
+        return this.http.get(`${this.BaseURL}/getteams`, this.noauthoptions);
     }
 
-    getPlayers(){
+    getPlayers() {
         // Get Players (name,score,avatar)
-        return this.http.get(`${this.BaseURL}/getplayers`).map((x:Response)=>x.json());
+        return this.http.get(`${this.BaseURL}/getplayers`).map((x: Response) => x.json());
     }
 
-    addUser(user){
+    addUser(user) {
         // Create user
-        return this.httpclient.post(`${this.BaseURL}/api/adduser`,user);
+        return this.httpclient.post(`${this.BaseURL}/api/adduser`, user);
     }
 
-    addMatch(match){
+    addMatch(match) {
         // Create match
-        return this.httpclient.post(`${this.BaseURL}/api/addmatch`,match);
+        return this.httpclient.post(`${this.BaseURL}/api/addmatch`, match);
     }
 
-    addCoupon(coupon){
+    addCoupon(coupon) {
         // Create coupon
-        return this.httpclient.post(`${this.BaseURL}/api/newcoupon`,coupon);
+        return this.httpclient.post(`${this.BaseURL}/api/newcoupon`, coupon);
     }
 
-    // getCoupons() {
-    //     // Get coupons
-    //     return this.httpclient.get(`${this.BaseURL}/api/allcoupon`);
-    // }
+    getAllCoupons(): Observable<Coupon[] | ErrorHTTP> {
+        // Get all coupons
+        return this.httpclient.get<Coupon[]>(`${this.BaseURL}/api/allcoupon`)
+        .pipe(
+            catchError(err=>this.errorHTTPHandler(err,11,"Hiba a couponok letöltése közben"))
+        );
+    }
 
-    getCouponsByUserIs(userid){
+    updateCoupon(coupon:Coupon):Observable<Coupon | ErrorHTTP>{
+        return this.httpclient.patch(`${this.BaseURL}/api/coupon/${coupon._id}`, coupon)
+        .pipe(
+            catchError(err=>this.errorHTTPHandler(err,12,"Hiba a szelvény módosítása közben"))
+        ).map(
+            (x: Coupon) => x
+        );
+    }
+
+    getCouponsByUserIs(userid) {
         // Get coupons by user id (http://beerlak.com/api/coupons/all/:id)
         return this.httpclient.get(`${this.BaseURL}/api/coupons/all/${userid}`);
     }
 
-    removeCoupon(c){
+    removeCoupon(c) {
         // Remove coupon
-        return this.httpclient.delete(`${this.BaseURL}/api/coupon/${c._id}`,c);
+        return this.httpclient.delete(`${this.BaseURL}/api/coupon/${c._id}`, c);
     }
-    
-    updateUser(user){
+
+    updateUser(user) {
         // Update user by ID
-        return this.httpclient.patch(`${this.BaseURL}/api/user/${user._id}`,user);
+        return this.httpclient.patch(`${this.BaseURL}/api/user/${user._id}`, user);
     }
 
-    updateMatch(item){
+    updateMatch(item) {
         // Update match by ID
-        return this.httpclient.patch(`${this.BaseURL}/api/match/${item._id}`,item);
+        return this.httpclient.patch(`${this.BaseURL}/api/match/${item._id}`, item);
     }
 
-    deleteUser(user){
+    deleteUser(user) {
         // Delete user by ID
-        return this.httpclient.delete(`${this.BaseURL}/api/user/${user._id}`,user);
+        return this.httpclient.delete(`${this.BaseURL}/api/user/${user._id}`, user);
     }
 
-    updateTeam(team){
+    updateTeam(team) {
         // Update team by ID
-        return this.httpclient.patch(`${this.BaseURL}/api/team/${team._id}`,team);
+        return this.httpclient.patch(`${this.BaseURL}/api/team/${team._id}`, team);
     }
 
-    deleteTeam(team){
+    deleteTeam(team) {
         // Delete team by ID
-        return this.httpclient.delete(`${this.BaseURL}/api/team/${team._id}`,team);
+        return this.httpclient.delete(`${this.BaseURL}/api/team/${team._id}`, team);
     }
 
-    getMatches(query) {
+    getMatches(query): Observable<Match[] | ErrorHTTP> {
         // Get All match
-        return this.http.get(`${this.BaseURL}/getmatches${query}`).map((x:Response)=>x.json());
+        return this.http.get(`${this.BaseURL}/getmatches${query}`)
+            .pipe(
+                catchError(err => this.errorHTTPHandler(err, 10, "Hiba a mérkőzések letöltése közben")))
+            .map(
+                (x: Response) => x.json()
+            );
+    }
+
+    // Error handler function
+    private errorHTTPHandler(error: HttpErrorResponse, errornumber: number, msg: string): Observable<ErrorHTTP> {
+        let httperror = new ErrorHTTP();
+        httperror.errornumber = errornumber;
+        httperror.message = error.statusText;
+        httperror.uimessage = msg;
+        return ErrorObservable.create(httperror);
     }
 
 }

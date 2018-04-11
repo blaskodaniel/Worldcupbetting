@@ -10,6 +10,7 @@ import { Coupon } from '../_interfaces/coupon';
 import { AuthService } from '../_services/auth.service';
 import { Betinfo } from '../_interfaces/betinfo';
 import { Router } from '@angular/router';
+import { ErrorHTTP } from '../_models/errorhttp.model';
 declare var $: any;
 
 @Component({
@@ -41,8 +42,8 @@ export class HomeComponent implements OnInit {
   }
 
   loadMatchList(){
-    this.dataservice.getMatches("?active=1").subscribe(
-      (response)=>{
+    this.dataservice.getMatches("?active=0").subscribe(
+      (response:Match[])=>{
         this.ActiveMatches = response;
         if(this.authservice.isAuthenticated()){
           // If the user is log in then load the user's coupons
@@ -54,7 +55,12 @@ export class HomeComponent implements OnInit {
           )
         }
       },
-      (error)=>console.log(error)
+      (error:ErrorHTTP)=>{
+        this.toastr.error("Sajnos jelenleg nem érhető el kapcsolat a szerverrel. Próbáld meg később.","Szerver nem elérhető",{
+          positionClass:'toast-top-full-width',
+          timeOut: 0,
+        })
+      }
     )
   }
 

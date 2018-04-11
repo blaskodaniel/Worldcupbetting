@@ -42,6 +42,7 @@ import { ToTeamName } from './_pipes/teamIDtoName';
 import { BetcartComponent } from './betcart/betcart.component';
 import { LogsComponent } from './dashboard/logs/logs.component';
 import { GeneralModalComponent } from './modals/general-modal/general-modal.component';
+import { CouponsComponent } from './dashboard/coupons/coupons.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { GeneralModalComponent } from './modals/general-modal/general-modal.comp
     ToplistComponent,
     BetcartComponent,
     LogsComponent,
-    GeneralModalComponent
+    GeneralModalComponent,
+    CouponsComponent
   ],
   imports: [
     BrowserModule,

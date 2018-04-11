@@ -1,0 +1,180 @@
+.btn {
+    padding: 5px 10px;
+}
+
+.btn-remove {
+    background-color: #d21b1b;
+}
+
+.btn-remove:hover {
+    background-color: #ffffff;
+}
+
+
+/* TABLE */
+
+.widget {
+    border-radius: 3px;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    padding: 12px 17px;
+    color: #f8f8f8;
+    background: rgba(51, 51, 51, 0.4);
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.widget>header {
+    position: relative;
+    background: none;
+    color: #fff;
+}
+
+h3,
+h4 {
+    letter-spacing: 5px;
+}
+
+.modal-header,
+h4,
+.close {
+    background: none;
+    text-align: left;
+    font-size: 30px;
+}
+
+.widget>header h4 {
+    font-size: 14px;
+}
+
+.widget>header h1,
+.widget>header h2,
+.widget>header h3,
+.widget>header h4,
+.widget>header h5 {
+    margin: 0;
+    line-height: 20px;
+    font-weight: 600;
+    color: inherit;
+}
+
+.fw-semi-bold {
+    font-weight: 600;
+}
+
+.widget-controls {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    font-size: 12px;
+    word-spacing: 1px;
+}
+
+.widget-controls>a,
+.widget-controls>span {
+    padding: 1px 4px;
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.45);
+    -webkit-transition: color 0.15s ease-in-out;
+    -o-transition: color 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out;
+}
+
+.widget .body {
+    margin-top: 10px;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 18px;
+}
+
+table {
+    background-color: transparent;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.table>caption+thead>tr:first-child>th,
+.table>caption+thead>tr:first-child>td,
+.table>colgroup+thead>tr:first-child>th,
+.table>colgroup+thead>tr:first-child>td,
+.table>thead:first-child>tr:first-child>th,
+.table>thead:first-child>tr:first-child>td {
+    border-top: 0;
+}
+
+.widget .table th {
+    color: #fff;
+}
+
+.table>thead>tr>th {
+    font-weight: 600;
+    text-transform: uppercase;
+    border-bottom-width: 1px;
+}
+
+.table thead>tr>th {
+    border-bottom: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-bottom-width: 1px;
+}
+
+th {
+    text-align: left;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: rgba(51, 51, 51, 0.3);
+}
+
+.table>thead>tr>th,
+.table>thead>tr>td,
+.table>tbody>tr>th,
+.table>tbody>tr>td,
+.table>tfoot>tr>th,
+.table>tfoot>tr>td {
+    padding: 8px;
+    line-height: 1.428571429;
+    vertical-align: top;
+    border-top: 1px solid rgba(51, 51, 51, 0.35);
+}
+
+.text-muted {
+    color: #d2d2d2;
+}
+
+.transparentinput {
+    background-color: transparent;
+    border: 0;
+}
+
+.numberInput {
+    width: 30px;
+}
+
+.fa {
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 450px) {
+    input {
+        width: 100px;
+    }
+    .btn {
+        float: right;
+    }
+    .btn-remove {
+        margin-top: 20px;
+    }
+}
+
+
+/* END TABLE */

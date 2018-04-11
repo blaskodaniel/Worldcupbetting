@@ -1,4 +1,5 @@
 export interface Coupon{
+    _id?:string,
     userid:String,
     matchid:Number,
     username:String,
@@ -7,6 +8,7 @@ export interface Coupon{
     bet:Number,
     odds:Number,
     result:Number,
+    success?:Boolean,
     outcome:String,
     date?:String
 }

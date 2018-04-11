@@ -1,6 +1,8 @@
 <div class="row">
-    <h2 class="page-title">Dashboard
-        <small></small>
+    <h2 class="page-title">Mérkőzések
+        <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#newMatch">
+            Új mérkőzés
+        </button>
     </h2>
 </div>
 
@@ -26,6 +28,7 @@
                             <th class="hidden-xs">ID</th>
                             <th>TeamA</th>
                             <th>TeamB</th>
+                            <th>Outcome</th>
                             <th>Odds</th>
                             <th class="hidden-xs">Location</th>
                             <th>State</th>
@@ -55,6 +58,9 @@
                                   <input class="transparentinput" style="width:90px;" type="text" [(ngModel)]="item.goalB" name="goalB" >
                               </small>
                                 </p>
+                            </td>
+                            <td>
+                                <input class="transparentinput numberInput" type="text" [(ngModel)]="item.outcome" name="outcome">
                             </td>
                             <td class="hidden-xs text-muted">
                                 <div class="row">

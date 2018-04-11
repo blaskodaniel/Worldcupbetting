@@ -10,5 +10,6 @@ export interface Match{
     date:string,
     type:string,
     active:number,
-    comment:string
+    comment:string,
+    outcome?:String
 }
