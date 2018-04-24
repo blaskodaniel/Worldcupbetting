@@ -41,16 +41,25 @@
     </div>
 </div>
 <div class="row dataform">
-    <form>
+    <form #profilform="ngForm" (ngSubmit)="profilSave(profilform.value)">
         <div class="form-row">
-            <div class="col-xs-12 col-sm-6">
-                <input type="text" class="form-control input-style" placeholder="Teljes név">
+            <div class="col-xs-12 col-sm-5">
+                <input type="text" class="form-control input-style" [(ngModel)]="fullname" name="fullname" placeholder="Teljes név">
             </div>
-            <div class="col-xs-12 col-sm-6">
-                <input type="text" class="form-control input-style" [value]="user?.username" placeholder="Felhasználónév">
+            <div class="col-xs-12 col-sm-5">
+                <input type="text" class="form-control input-style" [(ngModel)]="username" name="username" placeholder="Felhasználónév">
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <button class="btn btn-primary" type="submit">Mentés</button>
             </div>
         </div>
     </form>
+</div>
+<div class="row">
+    <div class="col-xs-12 colorwhite">
+        <h2>Szelvényeid</h2>
+    </div>
+    <hr/>
 </div>
 <div class="row" *ngIf="coupon?.length == 0">
     <div class="col-xs-12 emptycoupon">

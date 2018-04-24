@@ -1,58 +1,38 @@
 <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
-      <h3 class="page-title">Regisztráció</h3>
-  </div>
-  <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 registration-container">
-    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-          <div class="form-group has-success has-feedback">
-            <input type="text" class="form-control input-style" 
-            id="username" 
-            placeholder="Username" 
-            formControlName="username" 
-            required>
-            <span class="glyphicon form-control-feedback" 
-            [ngClass]="{'glyphicon-ok': registrationForm.get('username').valid && registrationForm.get('username').touched }"></span>
-            <span *ngIf="!registrationForm.get('username').valid && registrationForm.get('username').touched" 
-            class="help-block">Please enter a username!</span>
-          </div>
-          <div class="form-group has-success has-feedback">
-            <input type="email" class="form-control input-style" 
-            id="email" 
-            placeholder="Email" 
-            formControlName="email"  
-            required>
-            <span class="glyphicon form-control-feedback"
-            [ngClass]="{'glyphicon-ok': registrationForm.get('email').valid && registrationForm.get('email').touched }"></span>
-            <span *ngIf="!registrationForm.get('email').valid && registrationForm.get('email').touched" 
-            class="help-block">Please enter a valid email!</span>
-          </div>
-          <div class="form-group has-success has-feedback">
-            <input type="password" class="form-control input-style" 
-            id="Password" 
-            placeholder="Password" 
-            formControlName="password"
-            required>
-            <span class="glyphicon form-control-feedback"
-            [ngClass]="{'glyphicon-ok': registrationForm.get('password').valid && registrationForm.get('password').touched }"></span>
-            <span *ngIf="!registrationForm.get('password').valid && registrationForm.get('password').touched" 
-            class="help-block">Please enter a password!</span>
-          </div>
-          <div class="form-group has-success has-feedback">
-              <input type="password" class="form-control input-style" 
-              id="Passwordre" 
-              placeholder="Password again" 
-              formControlName="passwordre" 
-              required>
-              <span class="glyphicon form-control-feedback"
-              [ngClass]="{'glyphicon-ok': registrationForm.get('passwordre').valid && registrationForm.get('passwordre').touched &&
+    <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+        <h3 class="page-title">Regisztráció</h3>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 registration-container">
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+            <div class="form-group has-success has-feedback">
+                <input type="text" class="form-control input-style" id="username" placeholder="Username" formControlName="username" required>
+                <span class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok': registrationForm.get('username').valid && registrationForm.get('username').touched }"></span>
+                <span *ngIf="!registrationForm.get('username').valid && registrationForm.get('username').touched" class="help-block">Please enter a username!</span>
+            </div>
+            <div class="form-group has-success has-feedback">
+                <input type="email" class="form-control input-style" id="email" placeholder="Email" formControlName="email" required>
+                <span class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok': registrationForm.get('email').valid && registrationForm.get('email').touched }"></span>
+                <span *ngIf="!registrationForm.get('email').valid && registrationForm.get('email').touched" class="help-block">Please enter a valid email!</span>
+            </div>
+            <div class="form-group has-success has-feedback">
+                <input type="password" class="form-control input-style" id="Password" placeholder="Password" formControlName="password" required>
+                <span class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok': registrationForm.get('password').valid && registrationForm.get('password').touched }"></span>
+                <span *ngIf="!registrationForm.get('password').valid && registrationForm.get('password').touched" class="help-block">Please enter a password!</span>
+            </div>
+            <div class="form-group has-success has-feedback">
+                <input type="password" class="form-control input-style" id="Passwordre" placeholder="Password again" formControlName="passwordre" required>
+                <span class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok': registrationForm.get('passwordre').valid && registrationForm.get('passwordre').touched &&
               (registrationForm.get('passwordre').value == registrationForm.get('password').value) }"></span>
-              <span *ngIf="!registrationForm.get('passwordre').valid && registrationForm.get('passwordre').touched" 
-              class="help-block">Please enter a password again!</span>
-              <span *ngIf="(registrationForm.get('passwordre').value != registrationForm.get('password').value) && registrationForm.get('passwordre').touched" 
-              class="help-block">The passwords not same!</span>
-          </div>
-          <button type="submit" class="btn btn-default" [disabled]="!registrationForm.valid">Registration</button>
-    </form>
-  </div>
+                <span *ngIf="!registrationForm.get('passwordre').valid && registrationForm.get('passwordre').touched" class="help-block">Please enter a password again!</span>
+                <span *ngIf="(registrationForm.get('passwordre').value != registrationForm.get('password').value) && registrationForm.get('passwordre').touched" class="help-block">The passwords not same!</span>
+            </div>
+            <div class="form-group">
+                <select class="form-control input-style select-style" formControlName="teamid" required>
+                <option [ngValue]="null">Kedvenc csapat...</option>
+                <option *ngFor="let team of teams" [ngValue]="team._id">{{team.name}}</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-default" [disabled]="!registrationForm.valid">Registration</button>
+        </form>
+    </div>
 </div>
-

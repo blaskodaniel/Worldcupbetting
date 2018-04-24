@@ -1,45 +1,42 @@
 <div class="row">
-  <h2 class="page-title">Users
-          <small></small>
-  </h2> 
+    <h2 class="page-title">Users
+        <small></small>
+    </h2>
 </div>
-  
+
 <!-- USERS -->
 <div class="row">
-      <div class="col-xs-12">
-          <section class="widget">
-              <header>
+    <div class="col-xs-12">
+        <section class="widget">
+            <header>
                 <button class="btn btn-default btn-sm float-left" data-toggle="modal" data-target="#newUser">
                     Add new user
                 </button>
                 <div class="widget-controls">
-                      <div class="form-group">
-                          <input type="text" class="form-control input-style" 
-                          name="search" 
-                          placeholder="Search.." 
-                          [(ngModel)]="userSearch">
-                        </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control input-style" name="search" placeholder="Search.." [(ngModel)]="userSearch">
+                    </div>
                 </div>
-              </header>
-              <div class="body">
-                  <table class="table table-striped">
-                      <thead>
-                      <tr>
-                          <th class="hidden-xs">#</th>
-                          <th class="hidden-xs">ID</th>
-                          <th class="hidden-xs">Image</th>
-                          <th class="hidden-xs">Username</th>
-                          <th>Info</th>
-                          <th class="hidden-xs">Regdate</th>
-                          <th class="hidden-xs">Aktiv</th>
-                          <th>Score</th>
-                          <th></th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      <tr *ngFor="let i = index;let item of users | orderBy: userOrderKey : userOrderReverse | filter:userSearch">
-                          <td class="hidden-xs">{{i+1}}</td>
-                          <td class="hidden-xs">
+            </header>
+            <div class="body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="hidden-xs">#</th>
+                            <th class="hidden-xs">ID</th>
+                            <th class="hidden-xs">Image</th>
+                            <th class="hidden-xs">Username</th>
+                            <th>Info</th>
+                            <th class="hidden-xs">Regdate</th>
+                            <th class="hidden-xs">Aktiv</th>
+                            <th>Score</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let i = index;let item of users | orderBy: userOrderKey : userOrderReverse | filter:userSearch">
+                            <td class="hidden-xs">{{i+1}}</td>
+                            <td class="hidden-xs">
                                 <p class="no-margin">
                                     <small>
                                         <span class="fw-semi-bold">User ID:</span>
@@ -52,113 +49,98 @@
                                         <input class="transparentinput max130px" type="text" [(ngModel)]="item.teamid" name="teamid" >
                                     </small>
                                 </p>
-                          </td>
-                          <td class="hidden-xs">
-                              <input class="transparentinput max100px" type="text" [(ngModel)]="item.avatar" name="avatar" >
-                              <img class="img-rounded" src="./assets/img/{{item.avatar}}" alt="" height="50">
-                          </td>
-                          <td class="hidden-xs">
-                                <input class="transparentinput max100px" type="text" [(ngModel)]="item.username" name="username" >
-                          </td>
-                          <td>
-                              <p class="no-margin hidden-sm hidden-md hidden-lg">
-                                  <small>
+                            </td>
+                            <td class="hidden-xs">
+                                <input class="transparentinput max100px" type="text" [(ngModel)]="item.avatar" name="avatar">
+                                <img class="img-rounded" src="./assets/img/{{item.avatar}}" alt="" height="50">
+                            </td>
+                            <td class="hidden-xs">
+                                <input class="transparentinput max100px" type="text" [(ngModel)]="item.username" name="username">
+                            </td>
+                            <td>
+                                <p class="no-margin hidden-sm hidden-md hidden-lg">
+                                    <small>
                                       <span class="fw-semi-bold">Username:</span>
                                       <input class="transparentinput max100px" type="text" [(ngModel)]="item.username" name="username" >
                                   </small>
-                              </p>
-                              <p class="no-margin">
+                                </p>
+                                <p class="no-margin">
                                     <small>
                                         <span class="fw-semi-bold">Name:</span>
                                         <input class="transparentinput max100px" type="text" [(ngModel)]="item.name" name="name" >
                                     </small>
-                              </p>
-                              <p class="no-margin">
-                                  <small>
+                                </p>
+                                <p class="no-margin">
+                                    <small>
                                       <span class="fw-semi-bold">Email:</span>
                                       <input class="transparentinput max100px" type="text" [(ngModel)]="item.email" name="email" >
                                   </small>
-                              </p>
-                              <p>
-                                  <small>
+                                </p>
+                                <p>
+                                    <small>
                                       <span class="fw-semi-bold">Password:</span>
                                       <input class="transparentinput max100px" type="text" [(ngModel)]="item.password" name="password" >
                                   </small>
-                              </p>
-                              <p>
-                                  <small>
+                                </p>
+                                <p>
+                                    <small>
                                       <span class="fw-semi-bold">Role:</span>
                                       <input class="transparentinput max100px" type="text" [(ngModel)]="item.role" name="role" >
                                   </small>
-                              </p>
-                          </td>
-                          <td class="hidden-xs text-muted">
-                                  {{item.regdate | timestampToDate}}
-                          </td>
-                          <td class="hidden-xs text-muted">
-                                <input class="transparentinput max100px" type="text" [(ngModel)]="item.aktiv" name="aktiv" >
-                          </td>
-                          <td class="text-muted">
-                                <input class="transparentinput max100px" type="text" [(ngModel)]="item.score" name="score" >
-                          </td>
-                          <td>
-                              <button class="btn btn-save" (click)="EditUser(item)">Save</button>
-                              <button class="btn btn-remove" (click)="DeleteUser(item)">Remove</button>
-                          </td>
-                      </tr>
-                      
-                      </tbody>
-    
-                  </table>
-                  <div class="clearfix">
-                      <div class="pull-right">
-                          <button class="btn btn-default btn-sm hidden">
+                                </p>
+                            </td>
+                            <td class="hidden-xs text-muted">
+                                {{item.regdate | timestampToDate}}
+                            </td>
+                            <td class="hidden-xs text-muted">
+                                <input class="transparentinput max100px" type="text" [(ngModel)]="item.aktiv" name="aktiv">
+                            </td>
+                            <td class="text-muted">
+                                <input class="transparentinput max100px" type="text" [(ngModel)]="item.score" name="score">
+                            </td>
+                            <td>
+                                <button class="btn btn-save" (click)="EditUser(item)">Save</button>
+                                <button class="btn btn-remove" (click)="DeleteUser(item)">Remove</button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+                <div class="clearfix">
+                    <div class="pull-right">
+                        <button class="btn btn-default btn-sm hidden">
                                 Add new user
                           </button>
-                      </div>
-                      <p>Basic table with styled content</p>
-                  </div>
-              </div>
-          </section>
-      </div>
+                    </div>
+                    <p>Basic table with styled content</p>
+                </div>
+            </div>
+        </section>
+    </div>
 </div>
 
-  <!-- Modal User-->
-  <div class="modal fade" id="newUser" role="dialog">
-        <div class="modal-dialog modal-md">
-          <div class="modal-content">
+<!-- Modal User-->
+<div class="modal fade" id="newUser" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Create new user</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Create new user</h4>
             </div>
             <div class="modal-body">
                 <form [formGroup]="addNewUserForm" (ngSubmit)="addNewUser()">
                     <div class="form-group">
-                      <input type="text" class="form-control input-style" 
-                      id="name" 
-                      placeholder="Teljes név" 
-                      formControlName="name">
+                        <input type="text" class="form-control input-style" id="name" placeholder="Teljes név" formControlName="name">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control input-style" 
-                        id="username" 
-                        placeholder="Felhasználónév *" 
-                        formControlName="username" 
-                        required>
+                        <input type="text" class="form-control input-style" id="username" placeholder="Felhasználónév *" formControlName="username" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control input-style" 
-                        id="email" 
-                        placeholder="Email *" 
-                        formControlName="email" 
-                        required>
+                        <input type="text" class="form-control input-style" id="email" placeholder="Email *" formControlName="email" required>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control input-style" 
-                        id="password" 
-                        placeholder="Jelszó *" 
-                        formControlName="password" 
-                        required>
+                        <input type="password" class="form-control input-style" id="password" placeholder="Jelszó *" formControlName="password" required>
                     </div>
                     <div class="form-group">
                         <select class="form-control input-style select-style" formControlName="teamid" id="teamid" required>
@@ -167,23 +149,17 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control input-style" 
-                        id="role" 
-                        placeholder="Jogosultság" 
-                        formControlName="role">
+                        <input type="text" class="form-control input-style" id="role" placeholder="Jogosultság" formControlName="role">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control input-style" 
-                        id="avatar" 
-                        placeholder="Avatar" 
-                        formControlName="avatar">
+                        <input type="text" class="form-control input-style" id="avatar" placeholder="Avatar" formControlName="avatar">
                     </div>
                     <button type="submit" class="btn btn-default float-right" [disabled]="!addNewUserForm.valid">Create user</button>
-              </form>
+                </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Mégsem</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Mégsem</button>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+</div>

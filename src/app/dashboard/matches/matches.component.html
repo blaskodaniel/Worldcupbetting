@@ -25,7 +25,7 @@
                     <thead>
                         <tr>
                             <th class="hidden-xs">#</th>
-                            <th class="hidden-xs">ID</th>
+                            <th class="hidden">ID</th>
                             <th>TeamA</th>
                             <th>TeamB</th>
                             <th>Outcome</th>
@@ -40,7 +40,7 @@
                     <tbody>
                         <tr *ngFor="let i = index;let item of matches | orderBy: OrderKey : OrderReverse | filter:search">
                             <td class="hidden-xs">{{i+1}}</td>
-                            <td class="hidden-xs">{{item._id}}</td>
+                            <td class="hidden">{{item._id}}</td>
                             <td>
                                 <input class="transparentinput" style="width:90px;" type="text" [(ngModel)]="item.teamA.name" name="teamA">
                                 <p class="no-margin">
@@ -106,7 +106,14 @@
                             Add new
                           </button>
                     </div>
-                    <p>Basic table with styled content</p>
+                    <p>
+                        STATE:
+                    </p>
+                    <ul>
+                        <li>0-még nem játszották le</li>
+                        <li>1-éppen most játszák</li>
+                        <li>2-már lejátszották</li>
+                    </ul>
                 </div>
             </div>
         </section>

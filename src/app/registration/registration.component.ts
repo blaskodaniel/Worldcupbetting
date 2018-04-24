@@ -3,6 +3,7 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+import { Team } from '../_models/team.model';
 
 @Component({
   selector: 'app-registration',
@@ -11,6 +12,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
+  teams:Team[];
   
   constructor(private dataService:DataService,
     public toastr: ToastsManager, vcr: ViewContainerRef) { 
@@ -18,11 +20,13 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.GetTeams();
     this.registrationForm = new FormGroup({
       'username':new FormControl(null, Validators.required),
       'email': new FormControl(null, [Validators.required,Validators.email]),
       'password': new FormControl(null, Validators.required),
-      'passwordre': new FormControl(null, Validators.required)
+      'passwordre': new FormControl(null, Validators.required),
+      'teamid':new FormControl(null,Validators.required)
     });
   }
 
@@ -34,8 +38,14 @@ export class RegistrationComponent implements OnInit {
     );
   }
 
-  suggestedValue(){
-    
+  GetTeams(){
+    this.dataService.getTeams().subscribe(
+      (response)=>{
+        console.log(response);
+        this.teams = JSON.parse(response["_body"]);
+      },
+      (error)=>console.log(error)
+    )
   }
 
   // Custom validator: Validators.checkPasswords.bind(this)

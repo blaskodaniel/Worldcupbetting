@@ -13,6 +13,7 @@ import { Match } from '../_interfaces/match';
 import { User } from '../_models/user.models';
 import { ErrorHTTP } from '../_models/errorhttp.model';
 import { Coupon } from '../_interfaces/coupon';
+import { ServerResponse } from '../_interfaces/serverResponse';
 
 @Injectable()
 export class DataService {
@@ -126,12 +127,12 @@ export class DataService {
         );
     }
 
-    updateCoupon(coupon:Coupon):Observable<Coupon | ErrorHTTP>{
+    updateCoupon(coupon:Coupon):Observable<ServerResponse | ErrorHTTP>{
         return this.httpclient.patch(`${this.BaseURL}/api/coupon/${coupon._id}`, coupon)
         .pipe(
             catchError(err=>this.errorHTTPHandler(err,12,"Hiba a szelvény módosítása közben"))
         ).map(
-            (x: Coupon) => x
+            (x: ServerResponse) => x
         );
     }
 
@@ -163,6 +164,11 @@ export class DataService {
     updateTeam(team) {
         // Update team by ID
         return this.httpclient.patch(`${this.BaseURL}/api/team/${team._id}`, team);
+    }
+
+    saveProfil(userid:String,fullname:String,username:String){
+        // Save user's profile
+        return this.httpclient.patch(`${this.BaseURL}/api/profil/${userid}`, {name:fullname,username:username});
     }
 
     deleteTeam(team) {

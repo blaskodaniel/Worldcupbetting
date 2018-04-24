@@ -6,6 +6,7 @@ import { Coupon } from '../_interfaces/coupon';
 import { ErrorHTTP } from '../_models/errorhttp.model';
 import { Match } from '../_interfaces/match';
 import { User } from '../_models/user.models';
+import { ServerResponse } from '../_interfaces/serverResponse';
 declare var $: any;
 
 @Component({
@@ -15,6 +16,8 @@ declare var $: any;
 })
 export class ProfileComponent implements OnInit {
   private user:User;
+  fullname:String;
+  username:String;
   img_success: String = "./assets/img/medal.png";
   modCoupon:Coupon;
   coupon: Coupon[];
@@ -55,6 +58,12 @@ export class ProfileComponent implements OnInit {
       (user:User) => {
         console.log(user);
         this.user = user;
+        if(this.user.username){
+          this.username = this.user.username;
+        }
+        if(this.user.name){
+          this.fullname = this.user.name;
+        }
       },
       (error) => {
         console.log("Error");
@@ -72,10 +81,19 @@ export class ProfileComponent implements OnInit {
   updateCoupon(coupon:Coupon):void{
     console.log(`Tét: ${coupon.bet}, Csapatok: ${coupon.teamA}`);
     this.dataservice.updateCoupon(coupon).subscribe(
-      (x:Coupon)=>{
-        this.toastr.success("A kuponod sikeresen módosult.");
-        this.getUser();
-        this.getCoupons();
+      (x:ServerResponse)=>{
+        if(x.status === "true"){
+          this.toastr.success("A kuponod sikeresen módosult.");
+          this.getUser();
+          this.getCoupons();
+          $("#updateCoupon").modal('hide');
+        }else{
+          if(x.code == 2){
+            this.toastr.error("Nincs ennyi pontod");
+          }
+          
+        }
+        
       },
       (x:ErrorHTTP)=>{
         this.toastr.error(x.uimessage);
@@ -93,6 +111,18 @@ export class ProfileComponent implements OnInit {
         console.log("Törlés sikeres");
         this.getUser();
         this.getCoupons();
+      }
+    )
+  }
+
+  profilSave(values){
+    console.log(values);
+    this.dataservice.saveProfil(this.user._id,values.fullname,values.username).subscribe(
+      (x)=>{
+        this.toastr.success("Sikeresen mentetted a profilod");
+      },
+      (err)=>{
+        this.toastr.error("Sikertelen mentés");
       }
     )
   }
