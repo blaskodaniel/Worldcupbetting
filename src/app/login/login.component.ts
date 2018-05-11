@@ -4,6 +4,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DataService } from '../_services/data.service';
 import { Router } from '@angular/router';
+declare var $: any;
 
 @Component({
   selector: 'app-login',
@@ -24,6 +25,9 @@ export class LoginComponent implements OnInit {
     }
 
   ngOnInit() {
+    if($("#myNavbar").hasClass("in")){
+      $('.navbar-toggle').click();
+    }
     if(this.authservice.isAuthenticated()){
       this.router.navigate(['/home']);
     }

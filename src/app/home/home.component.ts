@@ -9,8 +9,9 @@ import { ToastsManager } from 'ng2-toastr';
 import { Coupon } from '../_interfaces/coupon';
 import { AuthService } from '../_services/auth.service';
 import { Betinfo } from '../_interfaces/betinfo';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ErrorHTTP } from '../_models/errorhttp.model';
+import { User } from '../_models/user.models';
 declare var $: any;
 
 @Component({
@@ -20,8 +21,10 @@ declare var $: any;
 })
 export class HomeComponent implements OnInit {
   ActiveMatches:Match[] = [];
+  ResolverMatch:Match[] = [];
   UsersCoupons:Coupon[] = [];
   newCoupon:Coupon;
+  currentUser: User;
   betvalue:number = 0;
   currentMatch:Match;
   currentOdds:number;
@@ -31,14 +34,19 @@ export class HomeComponent implements OnInit {
   error_status:boolean = false;
   error_msg:string = "";
 
-  constructor(private dataservice:DataService,public authservice:AuthService,private route: Router,
+  constructor(private dataservice:DataService,public authservice:AuthService,private route: Router,private activatedRoute:ActivatedRoute,
     public toastr: ToastsManager, vcr: ViewContainerRef) { 
     this.toastr.setRootViewContainerRef(vcr);
     
   }
 
   ngOnInit(){
+    if($("#myNavbar").hasClass("in")){
+      $('.navbar-toggle').click();
+    }
+    this.ResolverMatch = this.activatedRoute.snapshot.data['matches'];
     this.loadMatchList();
+    this.getUser();
   }
 
   loadMatchList(){
@@ -120,6 +128,18 @@ export class HomeComponent implements OnInit {
       this.route.navigate(['/login']);
     }
     
+  }
+
+  getUser() {
+    this.dataservice.getUserById(this.authservice.getUserId()).subscribe(
+      (user: User) => {
+        console.log(user);
+        this.currentUser = user;
+      },
+      (error) => {
+        console.log("Error");
+      }
+    )
   }
 
   openModal(betinfo:Betinfo,match){

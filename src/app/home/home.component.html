@@ -64,6 +64,7 @@
                         </div>
                     </div>
                     <p class="formula">Nyeremény: {{betvalue*currentOdds | number:'1.2'}}</p>
+                    <p class="formula">Jelenleg {{currentUser?.score}} pontod van</p>
                     <p class="error_msg" *ngIf="error_status">{{error_msg}}</p>
                 </form>
             </div>

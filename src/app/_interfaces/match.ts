@@ -11,5 +11,6 @@ export interface Match{
     type:string,
     active:number,
     comment:string,
-    outcome?:String
+    outcome?:String,
+    externalID?:String
 }

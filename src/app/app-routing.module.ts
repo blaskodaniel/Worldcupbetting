@@ -16,14 +16,17 @@ import { EditorGuardService } from './_services/editorguard.service';
 import { MatchesComponent } from './dashboard/matches/matches.component';
 import { LogsComponent } from './dashboard/logs/logs.component';
 import { CouponsComponent } from './dashboard/coupons/coupons.component';
+import { ExternalApiComponent } from './dashboard/external-api/external-api.component';
+import { HomeResolver } from './_resolvers/home.resolver';
 
 const appRoutes:Routes = [
     {path:'', redirectTo:'/home', pathMatch:'full'},
-    {path:'home', component:HomeComponent},
+    {path:'home', component:HomeComponent, resolve:{matches:HomeResolver}},
     {path:'profile',component:ProfileComponent, canActivate:[GuardService]},
     {path:'users', component:UsersComponent, canActivate:[GuardService,AdminGuardService]},
     {path:'teamsgroups', component:TeamsgroupsComponent, canActivate:[GuardService,EditorGuardService]},
     {path:'admincoupons', component:CouponsComponent, canActivate:[GuardService,EditorGuardService]},
+    {path:'extarnalAPI', component:ExternalApiComponent, canActivate:[GuardService,EditorGuardService]},
     {path:'logs', component:LogsComponent, canActivate:[GuardService,AdminGuardService]},
     {path:'matches', component:MatchesComponent,canActivate:[GuardService,EditorGuardService]},
     {path:'registration', component:RegistrationComponent},

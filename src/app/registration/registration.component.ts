@@ -4,6 +4,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Team } from '../_models/team.model';
+declare var $: any;
 
 @Component({
   selector: 'app-registration',
@@ -20,6 +21,9 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
+    if($("#myNavbar").hasClass("in")){
+      $('.navbar-toggle').click();
+    }
     this.GetTeams();
     this.registrationForm = new FormGroup({
       'username':new FormControl(null, Validators.required),

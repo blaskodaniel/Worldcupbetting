@@ -122,3 +122,18 @@ body {
 .nopaddingRight {
     padding-right: 0;
 }
+
+
+/* Mobile */
+
+@media screen and (max-width: 765px) and (min-width: 451px) {
+    .mb-sm {
+        margin-bottom: 5px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .mb-xs {
+        margin-bottom: 5px;
+    }
+}

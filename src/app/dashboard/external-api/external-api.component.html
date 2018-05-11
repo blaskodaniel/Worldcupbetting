@@ -1,0 +1,117 @@
+<div class="row">
+    <h2 class="page-title">Extarnal API Matches
+        <button class="btn btn-default" (click)="oddsrefresh()">
+          Import from API
+      </button>
+    </h2>
+</div>
+
+<section class="widget">
+    <header>
+        <div class="widget-controls">
+            <div class="form-group">
+                <input type="text" class="form-control input-style" name="search" placeholder="Search.." [(ngModel)]="search">
+            </div>
+        </div>
+    </header>
+    <div class="body listBody">
+        <div class="row tableheader">
+            <div class="col-xs-12 col-md-1">
+                #
+            </div>
+            <div class="col-xs-12 col-md-2">
+                matchString
+            </div>
+            <div class="col-xs-12 col-md-2">
+                teamA
+            </div>
+            <div class="col-xs-12 col-md-2">
+                teamB
+            </div>
+            <div class="col-xs-12 col-md-1">
+                startDate
+            </div>
+            <div class="col-xs-12 col-md-1">
+                oddsAwin
+            </div>
+            <div class="col-xs-12 col-md-1">
+                oddsDraw
+            </div>
+            <div class="col-xs-12 col-md-1">
+                oddsBwin
+            </div>
+            <div class="col-xs-12 col-md-1">
+
+            </div>
+        </div>
+        <div class="row tablerow" *ngFor="let i = index;let item of externalmatches | filter:search ">
+            <div class="col-xs-12 col-md-1">
+                {{i+1}}
+            </div>
+            <div class="col-xs-12 col-md-2">
+                {{item.matchString}}
+            </div>
+            <div class="col-xs-12 col-md-2">
+                {{item.teamA}}
+            </div>
+            <div class="col-xs-12 col-md-2">
+                {{item.teamB}}
+            </div>
+            <div class="col-xs-12 col-md-1">
+                {{item.startDate}}
+            </div>
+            <div class="col-xs-12 col-md-1">
+                {{item.oddsAwin}}
+            </div>
+            <div class="col-xs-12 col-md-1">
+                {{item.oddsDraw}}
+            </div>
+            <div class="col-xs-12 col-md-1">
+                {{item.oddsBwin}}
+            </div>
+            <div class="col-xs-12 col-md-1">
+                <button class="btn btn-sm btn-save" (click)="openModal(item)">Attach</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Modal Matches-->
+<div class="modal fade" id="attach" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Attach to game match</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="row">
+                        <div class="form-group">
+                            <select class="form-control input-style select-style" [(ngModel)]="selectedmatchid" name="teamid" required>
+                                <option [ngValue]="null">Select match...</option>
+                                <option *ngFor="let match of matches" [ngValue]="match">{{match.teamA.name}} - {{match.teamB.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            <p class="textWhite">1: {{selectedmatchid?.oddsAwin}} - X: {{selectedmatchid?.oddsDraw}} - 2: {{selectedmatchid?.oddsBwin}}</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <p class="textWhite">Active: {{selectedmatchid?.active}}</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <p class="textWhite">Attach to: {{selectedmatchid?.externalID}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success float-right" (click)="attachMatch()">Attach</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

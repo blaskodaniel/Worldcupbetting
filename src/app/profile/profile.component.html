@@ -13,24 +13,24 @@
             <div class="row">
                 <div class="col-sm-4 border-right">
                     <div class="description-block">
-                        <h5 class="description-header">{{user?.score}} pont</h5>
-                        <span class="description-text">Összessen</span>
+                        <h5 class="description-header">{{actcoupons?.length}}</h5>
+                        <span class="description-text">Aktív fogadás</span>
                     </div>
                     <!-- /.description-block -->
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-4 border-right">
                     <div class="description-block">
-                        <h5 class="description-header">{{actcoupons?.length}}</h5>
-                        <span class="description-text">Aktív szelvény</span>
+                        <h5 class="description-header">{{stat_winCoupon}}</h5>
+                        <span class="description-text">Nyerő fogadás</span>
                     </div>
                     <!-- /.description-block -->
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-4">
                     <div class="description-block">
-                        <h5 class="description-header">35 pont</h5>
-                        <span class="description-text">Eddigi nyeremény</span>
+                        <h5 class="description-header">{{stat_loseCoupon}}</h5>
+                        <span class="description-text">Elvesztett fogadás</span>
                     </div>
                     <!-- /.description-block -->
                 </div>
@@ -43,13 +43,22 @@
 <div class="row dataform">
     <form #profilform="ngForm" (ngSubmit)="profilSave(profilform.value)">
         <div class="form-row">
-            <div class="col-xs-12 col-sm-5">
+            <div class="form-group col-xs-12 col-sm-3 mb-xs mb-sm">
+                <label for="fullname">Teljes nevem</label>
                 <input type="text" class="form-control input-style" [(ngModel)]="fullname" name="fullname" placeholder="Teljes név">
             </div>
-            <div class="col-xs-12 col-sm-5">
+            <div class="form-group col-xs-12 col-sm-4 mb-xs mb-sm">
+                <label for="teamid">Kedvenc csapatom</label>
+                <select class="form-control input-style select-style" [(ngModel)]="teamid" name="teamid" required>
+                    <option *ngFor="let team of teams" [ngValue]="team._id">{{team.name}}</option>
+                </select>
+                <small id="emailHelp" class="form-text text-muted">Az VB első mérkőzésének kezdési időpontjáig módosítható.</small>
+            </div>
+            <div class="form-group col-xs-12 col-sm-3 mb-xs mb-sm">
+                <label for="username">Felhasználónevem</label>
                 <input type="text" class="form-control input-style" [(ngModel)]="username" name="username" placeholder="Felhasználónév">
             </div>
-            <div class="col-xs-12 col-sm-2">
+            <div class="form-group col-xs-12 col-sm-2 text-center profileButton">
                 <button class="btn btn-primary" type="submit">Mentés</button>
             </div>
         </div>
@@ -57,21 +66,56 @@
 </div>
 <div class="row">
     <div class="col-xs-12 colorwhite">
-        <h2>Szelvényeid</h2>
+        <h2>Aktív fogadásaim</h2>
     </div>
-    <hr/>
 </div>
-<div class="row" *ngIf="coupon?.length == 0">
+<hr />
+<div class="row" *ngIf="actcoupons?.length == 0">
     <div class="col-xs-12 emptycoupon">
         <span>Nincsen aktív fogadásod</span>
     </div>
 </div>
-<div class="row" *ngIf="coupon?.length > 0">
-    <div class="list-group" *ngFor="let i = index;let c of coupon">
+<div class="row" *ngIf="actcoupons?.length > 0">
+    <div class="list-group" *ngFor="let i = index;let c of actcoupons">
         <a class="list-group-item active">
+            <h4 class="list-group-item-heading">
+                {{c.teamA}} <span class="finish" *ngIf="c.matchid.active == 2">{{c.matchid.goalA}}</span> -
+                <span class="finish" *ngIf="c.matchid.active == 2">{{c.matchid.goalB}}</span> {{c.teamB}} ({{c.outcome}})
+            </h4>
+            <div class="row">
+                <div class="col-xs-6 coupon_info">
+                    <p class="date" *ngIf="c.matchid.active == 0">Mérkőzés kezdése: {{c.date | timestampToDate}}</p>
+                    <p class="run" *ngIf="c.matchid.active == 1">Jelenleg tart a mérkőzés</p>
+                    <p class="list-group-item-text">Feltett pont: {{c.bet}} pont</p>
+                    <p class="list-group-item-text">Szorzó: {{c.odds}}</p>
+                    <p class="list-group-item-text win">Nyereményed: {{winnerPoint(c) | number:'1.2'}} pont</p>
+                </div>
+                <div class="col-xs-6 buttons">
+                    <button class="btn btn-save" (click)="openModal(c)">Módosít</button>
+                    <button class="btn btn-remove" (click)="removeCoupon(c)">Töröl</button>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 colorwhite">
+        <h2>Lejárt fogadásaim</h2>
+    </div>
+</div>
+<hr />
+<div class="row" *ngIf="finishcoupons?.length == 0">
+    <div class="col-xs-12 emptycoupon">
+        <span>Nincsen lejárt fogadásod</span>
+    </div>
+</div>
+<div class="row" *ngIf="finishcoupons?.length > 0">
+    <div class="list-group" *ngFor="let i = index;let c of finishcoupons">
+        <a class="list-group-item active" [ngClass]="{'winCoupon':c.success, 'loseCoupon':!c.success}">
             <span class="status">
-          <span class="score">{{c.result | number:'1.2'}} p</span>
-            <img class="result" [src]="img_success">
+                    <span class="score">{{c.success?(c.result | number:'1.2'):"0"}} pont</span>
+            <img *ngIf="c.success" class="result" [src]="img_success" />
+            <img *ngIf="!c.success" class="result" [src]="img_lose" />
             </span>
             <h4 class="list-group-item-heading">
                 {{c.teamA}} <span class="finish" *ngIf="c.matchid.active == 2">{{c.matchid.goalA}}</span> -
@@ -84,10 +128,6 @@
                     <p class="list-group-item-text">Feltett pont: {{c.bet}} pont</p>
                     <p class="list-group-item-text">Szorzó: {{c.odds}}</p>
                     <p class="list-group-item-text win">Nyereményed: {{c.bet*c.odds | number:'1.2'}} pont</p>
-                </div>
-                <div class="col-xs-6 buttons">
-                    <button class="btn btn-save" (click)="openModal(c)">Módosít</button>
-                    <button class="btn btn-remove" (click)="removeCoupon(c)">Töröl</button>
                 </div>
             </div>
         </a>

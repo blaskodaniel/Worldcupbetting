@@ -3,6 +3,7 @@ import { AuthService } from './_services/auth.service';
 import { DataService } from './_services/data.service';
 import { ToolsService } from './_services/tools.service';
 import { GuardService } from './_services/guard.service';
+import { HomeResolver } from './_resolvers/home.resolver';
 import { EditorGuardService } from './_services/editorguard.service';
 import { AdminGuardService } from './_services/adminguard.service';
 import { BetcartService } from './_services/betcart.service';
@@ -43,6 +44,7 @@ import { BetcartComponent } from './betcart/betcart.component';
 import { LogsComponent } from './dashboard/logs/logs.component';
 import { GeneralModalComponent } from './modals/general-modal/general-modal.component';
 import { CouponsComponent } from './dashboard/coupons/coupons.component';
+import { ExternalApiComponent } from './dashboard/external-api/external-api.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,8 @@ import { CouponsComponent } from './dashboard/coupons/coupons.component';
     BetcartComponent,
     LogsComponent,
     GeneralModalComponent,
-    CouponsComponent
+    CouponsComponent,
+    ExternalApiComponent
   ],
   imports: [
     BrowserModule,
@@ -86,6 +89,7 @@ import { CouponsComponent } from './dashboard/coupons/coupons.component';
   providers: [
     DataService,
     ToolsService,
+    HomeResolver,
     AuthService,
     GuardService,
     BetcartService,

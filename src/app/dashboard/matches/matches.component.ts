@@ -4,6 +4,7 @@ import { DataService } from '../../_services/data.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { FormGroup} from '@angular/forms';
+import { Match } from '../../_interfaces/match';
 
 @Component({
   selector: 'app-matches',
@@ -68,8 +69,24 @@ export class MatchesComponent implements OnInit {
     )
   }
 
-  Delete(){
-    
+  Delete(match:Match){
+    this.dataservice.deleteMatch(match).subscribe(
+      x=>{
+        this.toastr.success("Remove succesfully!");
+        this.GetMatches();
+      }
+    )
+  }
+
+  refreshOdds(){
+    if(window.confirm("Biztosan frissíted az összes Odds-ot?")){
+      this.dataservice.refreshOdds().subscribe(
+        x=>{
+          this.toastr.success("Oddsok frissítése rendben lezajlott.");
+          this.GetMatches();
+        }
+      )
+    }
   }
 
 }

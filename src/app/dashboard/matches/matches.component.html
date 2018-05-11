@@ -3,6 +3,9 @@
         <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#newMatch">
             Új mérkőzés
         </button>
+        <button class="btn btn-default btn-sm" (click)="refreshOdds()">
+            Odds frissítés
+        </button>
     </h2>
 </div>
 
@@ -31,7 +34,7 @@
                             <th>Outcome</th>
                             <th>Odds</th>
                             <th class="hidden-xs">Location</th>
-                            <th>State</th>
+                            <th>State (active)</th>
                             <th>Date</th>
                             <th class="hidden-xs">Type</th>
                             <th></th>
@@ -49,6 +52,7 @@
                                     <input class="transparentinput" style="width:90px;" type="text" [(ngModel)]="item.goalA" name="goalA" >
                                 </small>
                                 </p>
+                                <p>externalID: {{item?.externalID}}</p>
                             </td>
                             <td>
                                 <input class="transparentinput" style="width:90px;" type="text" [(ngModel)]="item.teamB.name" name="teamB">

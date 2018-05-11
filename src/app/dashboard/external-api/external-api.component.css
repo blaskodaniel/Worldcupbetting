@@ -1,0 +1,29 @@
+.listBody {
+    background-color: #333333a6;
+    color: white;
+    padding: 10px;
+}
+
+.btn-sm {
+    padding: 0 10px;
+}
+
+.tableheader {
+    background-color: #2d2d30;
+    font-weight: bold;
+    margin-top: -10px;
+    border-bottom: 1px solid black;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.tablerow:hover {
+    background-color: silver;
+    color: black;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.textWhite {
+    color: white;
+}

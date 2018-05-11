@@ -112,6 +112,14 @@ h6,
     color: black;
 }
 
+.winCoupon {
+    background-color: #3f6b27c9 !important;
+}
+
+.loseCoupon {
+    background-color: #211818e3 !important;
+}
+
 table>tbody {
     background-color: #21232575;
     color: white;
@@ -182,6 +190,7 @@ span.score {
 
 img.result {
     max-width: 50px;
+    padding: 7px;
 }
 
 .coupon_info {
@@ -242,6 +251,21 @@ img.result {
     border: none;
     color: #f8f8f8;
     background-color: #2d2d3094;
+}
+
+.form-group label {
+    color: white;
+}
+
+.form-group small {
+    color: #d0c0c0;
+    font-size: 11px;
+    font-style: italic;
+}
+
+.profileButton {
+    height: 100%;
+    margin-top: 32px;
 }
 
 

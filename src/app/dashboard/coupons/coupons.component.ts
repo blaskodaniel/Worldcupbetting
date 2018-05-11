@@ -41,12 +41,12 @@ export class CouponsComponent implements OnInit {
     )
   }
 
-  DeletesCoupon(coupon){
+  DeleteCoupon(coupon){
     console.log(coupon);
     this.dataservice.removeCoupon(coupon).subscribe(
       (x)=>{
         this.toastr.success('Sikeres Törlés!', 'Üzenet');
-        
+        this.getCoupons();
       }
     )
   }

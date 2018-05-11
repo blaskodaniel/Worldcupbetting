@@ -14,6 +14,7 @@ import { User } from '../_models/user.models';
 import { ErrorHTTP } from '../_models/errorhttp.model';
 import { Coupon } from '../_interfaces/coupon';
 import { ServerResponse } from '../_interfaces/serverResponse';
+import { ExtAPIMatch } from '../_models/extapimatch';
 
 @Injectable()
 export class DataService {
@@ -166,14 +167,19 @@ export class DataService {
         return this.httpclient.patch(`${this.BaseURL}/api/team/${team._id}`, team);
     }
 
-    saveProfil(userid:String,fullname:String,username:String){
+    saveProfil(userid:String,fullname:String,username:String,teamid:String){
         // Save user's profile
-        return this.httpclient.patch(`${this.BaseURL}/api/profil/${userid}`, {name:fullname,username:username});
+        return this.httpclient.patch(`${this.BaseURL}/api/profil/${userid}`, {name:fullname,username:username,teamid:teamid});
     }
 
     deleteTeam(team) {
         // Delete team by ID
         return this.httpclient.delete(`${this.BaseURL}/api/team/${team._id}`, team);
+    }
+
+    deleteMatch(match) {
+        // Delete match by ID
+        return this.httpclient.delete(`${this.BaseURL}/api/match/${match._id}`, match);
     }
 
     getMatches(query): Observable<Match[] | ErrorHTTP> {
@@ -184,6 +190,32 @@ export class DataService {
             .map(
                 (x: Response) => x.json()
             );
+    }
+
+    getExtAPIMatches(query): Observable<ExtAPIMatch[] | ErrorHTTP> {
+        // Import matches and odds from external API (https://api.the-odds-api.com)
+        return this.httpclient.get(`${this.BaseURL}/api/getextAPImatches${query}`)
+            .pipe(
+                catchError(err => this.errorHTTPHandler(err, 13, "Hiba a mérkőzések letöltése közben")))
+            .map(
+                (x: ExtAPIMatch[]) => x
+            );
+    }
+
+    // Import Odds
+    importExternalMatches(){
+        return this.httpclient.get(`${this.BaseURL}/api/importapi`);
+    }
+
+    // Refresh odds
+    refreshOdds(){
+        return this.httpclient.get(`${this.BaseURL}/api/refreshodds`);
+    }
+
+    attachMatchToGame(externalmatch:ExtAPIMatch, match:Match){
+        return this.httpclient.post(`${this.BaseURL}/api/attachmatch`,{externalmatch:externalmatch,match:match})
+        .pipe(catchError(err => this.errorHTTPHandler(err, 10, "[attachMatchToGame] Hiba")))
+        .map((x:Response)=>x);
     }
 
     // Error handler function
