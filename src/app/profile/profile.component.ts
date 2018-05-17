@@ -16,13 +16,12 @@ declare var $: any;
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  private user: User;
+  user: User;
   fullname: String;
   username: String;
   teamid: String;
   img_success: String = "./assets/icons/medal3.png";
   img_lose: String = "./assets/icons/lose.png";
-  modCoupon: Coupon;
   coupon: Coupon[];
   backupBet: Number;
   actcoupons: Coupon[];
@@ -33,17 +32,6 @@ export class ProfileComponent implements OnInit {
 
   constructor(private dataservice: DataService, private authservice: AuthService, public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
-    this.modCoupon = {
-      userid: "",
-      matchid: 0,
-      username: "",
-      teamA: "",
-      teamB: "",
-      bet: 0,
-      odds: 0,
-      result: 0,
-      outcome: ""
-    }
   }
 
   ngOnInit() {
@@ -73,7 +61,7 @@ export class ProfileComponent implements OnInit {
       (user: User) => {
         console.log(user);
         this.user = user;
-        this.teamid = this.user.teamid;
+        this.teamid = this.user.teamid as string;
         if (this.user.username) {
           this.username = this.user.username;
         }
@@ -108,51 +96,6 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  openModal(coupon: Coupon) {
-    this.modCoupon = coupon;
-    this.backupBet = coupon.bet;
-    console.log(`Tét: ${this.modCoupon.bet}, Csapatok: ${this.modCoupon.teamA}`);
-    $("#updateCoupon").modal();
-  }
-
-  updateCoupon(coupon: Coupon): void {
-    console.log(`Tét: ${coupon.bet}, Csapatok: ${coupon.teamA}`);
-    this.dataservice.updateCoupon(coupon).subscribe(
-      (x: ServerResponse) => {
-        if (x.status === "true") {
-          this.toastr.success("A kuponod sikeresen módosult.");
-          this.getUser();
-          this.getCoupons();
-          $("#updateCoupon").modal('hide');
-        } else {
-          if (x.code == 2) {
-            this.toastr.error("Nincs ennyi pontod");
-          }
-
-        }
-
-      },
-      (x: ErrorHTTP) => {
-        this.toastr.error(x.uimessage);
-      }
-    )
-  }
-
-  cancelupdateCoupon() {
-    this.modCoupon.bet = this.backupBet;
-  }
-
-  removeCoupon(c) {
-    if (confirm("Biztosan törlöd?")) {
-      this.dataservice.removeCoupon(c).subscribe(
-        response => {
-          console.log("Törlés sikeres");
-          this.getUser();
-          this.getCoupons();
-        }
-      )
-    }
-  }
 
   profilSave(values) {
     console.log(values);

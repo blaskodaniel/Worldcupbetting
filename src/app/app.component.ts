@@ -2,6 +2,9 @@ import { Component, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Router, Event, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
+import { DataService } from './_services/data.service';
+import { AuthService } from './_services/auth.service';
+import { User } from './_models/user.models';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +14,8 @@ import { Router, Event, NavigationStart, NavigationEnd, NavigationCancel, Naviga
 export class AppComponent implements OnInit{
   loading = false;
 
-  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private router:Router) { 
+  constructor(private dataservice:DataService,private authservice:AuthService,
+     public toastr: ToastsManager, vcr: ViewContainerRef, private router:Router) { 
     console.log("AppComponent constructor");
     this.toastr.setRootViewContainerRef(vcr);
     
@@ -23,6 +27,18 @@ export class AppComponent implements OnInit{
 
   ngOnInit(){
     console.log("AppComponent OnInit");
+    this.getUser();
+  }
+
+  getUser() {
+    this.dataservice.getUserById(this.authservice.getUserId()).subscribe(
+      (user: User) => {
+        this.dataservice.updateScore(user.score);
+      },
+      (error) => {
+        console.log("Nincs bejelentkezve felhasználó");
+      }
+    )
   }
 
   checkRouterEvent(routerEvent: Event): void{

@@ -1,6 +1,8 @@
+import { Team } from "./team.model";
+
 export interface Match{
-    teamA:String,
-    teamB:String,
+    teamA:Team,
+    teamB:Team,
     goalA:Number,
     goalB:Number,
     oddsAwin:Number,

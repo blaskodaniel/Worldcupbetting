@@ -12,8 +12,8 @@ declare var $: any;
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  public email: string = "blaskoi@gmail.com";
-  public password:string = "bastya";
+  public email: string = "";
+  public password:string = "";
   loginForm: FormGroup;
   token:string;
 

@@ -1,6 +1,8 @@
+import { Team } from "./team.model";
+
 export interface User{
     _id?: String,
-    teamid?:String,
+    teamid?:Team,
     regdate?:String,
     username?: String,
     name: String,

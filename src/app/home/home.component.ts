@@ -23,9 +23,12 @@ export class HomeComponent implements OnInit {
   ActiveMatches:Match[] = [];
   ResolverMatch:Match[] = [];
   UsersCoupons:Coupon[] = [];
+  arrow_up = "./assets/icons/arrow_up.png";
+  arrow_down = "./assets/icons/arrow_down.png";
+  accordion1 = false;
   newCoupon:Coupon;
   currentUser: User;
-  betvalue:number = 0;
+  betvalue:number;
   currentMatch:Match;
   currentOdds:number;
   currentResult:String;
@@ -49,10 +52,15 @@ export class HomeComponent implements OnInit {
     this.getUser();
   }
 
+  openstage(){
+    this.accordion1 = !this.accordion1;
+  }
+
   loadMatchList(){
     this.dataservice.getMatches("?active=0").subscribe(
       (response:Match[])=>{
         this.ActiveMatches = response;
+        this.sortBy();
         if(this.authservice.isAuthenticated()){
           // If the user is log in then load the user's coupons
           this.dataservice.getCouponsByUserIs(this.authservice.getUserId()).subscribe(
@@ -70,6 +78,14 @@ export class HomeComponent implements OnInit {
         })
       }
     )
+  }
+
+  sortBy(){
+    this.ActiveMatches = this.ActiveMatches.sort((a,b)=>{
+      if(a.date < b.date) return -1;
+      else if (a.date > b.date) return 1;
+      else return 0;
+    });
   }
 
   filterMatches(matches:Match[],coupons:Coupon[]):void{
@@ -104,7 +120,8 @@ export class HomeComponent implements OnInit {
         console.log("Fogadás:"+JSON.stringify(this.newCoupon));
         this.dataservice.addCoupon(this.newCoupon).subscribe(
           result => {
-            console.log(result);
+            console.log("Mentett fogadás: "+JSON.stringify(result));
+            this.getUser();
             this.loadMatchList();
             this.ModalClose();
             this.toastr.success('Sikeres fogadás', 'Üzenet',{positionClass:"toast-bottom-left"});
@@ -135,9 +152,10 @@ export class HomeComponent implements OnInit {
       (user: User) => {
         console.log(user);
         this.currentUser = user;
+        this.dataservice.updateScore(this.currentUser.score);
       },
       (error) => {
-        console.log("Error");
+        console.log("Nincs bejelentkezve felhasználó");
       }
     )
   }

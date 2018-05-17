@@ -1,7 +1,9 @@
+import { Team } from "../_models/team.model";
+
 export interface Match{
     _id:string,
-    teamA:number,
-    teamB:number,
+    teamA:Team,
+    teamB:Team,
     goalA:number,
     goalB:number,
     oddsAwin:number,

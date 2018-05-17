@@ -221,17 +221,27 @@ h4,
     text-align: center;
 }
 
+.teamAgoal_mobile {
+    color: white;
+    position: relative;
+    top: 15px;
+    right: 0px;
+    font-size: 20px;
+}
+
 .teamAgoal {
-    position: absolute;
-    top: 75px;
-    right: 65px;
+    font-size: 20px;
+}
+
+.teamBgoal_mobile {
+    color: white;
+    position: relative;
+    top: 15px;
+    right: 0;
     font-size: 20px;
 }
 
 .teamBgoal {
-    position: absolute;
-    top: 76px;
-    right: 65px;
     font-size: 20px;
 }
 
@@ -242,6 +252,13 @@ h4,
 
 .arrow {
     max-width: 25px;
+}
+
+.emptycoupon {
+    color: white;
+    border: 1px solid #00000052;
+    padding: 10px;
+    background-color: #40556f75;
 }
 
 @media only screen and (max-width: 1200px) {

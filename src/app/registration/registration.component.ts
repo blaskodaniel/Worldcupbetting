@@ -4,6 +4,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Team } from '../_models/team.model';
+import { Router } from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -15,7 +16,7 @@ export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
   teams:Team[];
   
-  constructor(private dataService:DataService,
+  constructor(private dataService:DataService, private route: Router,
     public toastr: ToastsManager, vcr: ViewContainerRef) { 
     this.toastr.setRootViewContainerRef(vcr);
   }
@@ -37,7 +38,9 @@ export class RegistrationComponent implements OnInit {
   onSubmit(){
     console.log(this.registrationForm);
     this.dataService.register(this.registrationForm.value).subscribe(
-      (response)=>{this.toastr.success('Sikeres regisztráció!', 'Siker!');},
+      (response)=>{
+        this.toastr.success('Sikeres regisztráció!', 'Siker!');
+      },
       (error)=>console.log(error)
     );
   }

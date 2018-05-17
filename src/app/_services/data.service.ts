@@ -26,6 +26,8 @@ export class DataService {
     private secretToken: string;
     private BaseURL: string = "http://beerlak.com";
 
+    scoreSubject = new Subject<Number>();
+
     constructor(private http: Http, private httpclient: HttpClient) {
         this.noautheaders = new Headers({ 'Content-Type': 'application/json' });
         this.noauthoptions = new RequestOptions({ headers: this.noautheaders });
@@ -62,8 +64,12 @@ export class DataService {
         return this.http.post(`${this.BaseURL}/register`, user);
     }
 
+    updateScore(score:Number){
+        this.scoreSubject.next(score);
+    }
+
     addGroup(group) {
-        return this.httpclient.post(`${this.BaseURL}/api/group/add`, group);
+        return this.httpclient.post(`${this.BaseURL}/api/groupadd`, group);
     }
 
     addTeam(team) {
@@ -167,6 +173,11 @@ export class DataService {
         return this.httpclient.patch(`${this.BaseURL}/api/team/${team._id}`, team);
     }
 
+    updateGroup(group) {
+        // Update group by ID
+        return this.httpclient.patch(`${this.BaseURL}/api/group/${group._id}`, group);
+    }
+
     saveProfil(userid:String,fullname:String,username:String,teamid:String){
         // Save user's profile
         return this.httpclient.patch(`${this.BaseURL}/api/profil/${userid}`, {name:fullname,username:username,teamid:teamid});
@@ -175,6 +186,11 @@ export class DataService {
     deleteTeam(team) {
         // Delete team by ID
         return this.httpclient.delete(`${this.BaseURL}/api/team/${team._id}`, team);
+    }
+
+    deleteGroup(group) {
+        // Delete group by ID
+        return this.httpclient.delete(`${this.BaseURL}/api/group/${group._id}`, group);
     }
 
     deleteMatch(match) {

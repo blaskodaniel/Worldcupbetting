@@ -1,14 +1,31 @@
-a{
+a {
     cursor: pointer;
 }
+
 .dropdown-menu li a {
     color: #fff !important;
     font-size: 12px;
 }
-.dropdown-menu{
+
+.dropdown-menu {
     background-color: #2b3036;
 }
 
-.navbar{
+.navbar {
     opacity: 1;
+}
+
+.showScore {
+    border-right: 1px solid #ffffff2e;
+    padding-right: 8px;
+    margin-right: 13px;
+}
+
+.score {
+    font-size: 11px;
+    color: white;
+}
+
+.redBg {
+    background-color: #902525;
 }

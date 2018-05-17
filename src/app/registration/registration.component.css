@@ -37,3 +37,7 @@ span.help-block {
 select option {
     background-color: rgb(35, 37, 39);
 }
+
+.registration-container button {
+    width: 100%;
+}

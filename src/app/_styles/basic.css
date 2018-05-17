@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 body {
-    background-color: #154265 20%;
+    background-color: #288e68;
     background-image: radial-gradient(farthest-side ellipse at 10% 0, #154265 20%, #7392c2);
     background-image: -webkit-radial-gradient(10% 0, farthest-side ellipse, #154265 20%, #7392c2);
     background-image: -moz-radial-gradient(10% 0, farthest-side ellipse, #154265 20%, #7392c2);
@@ -130,9 +130,18 @@ body {
     .mb-sm {
         margin-bottom: 5px;
     }
+    .mobile-mt15 {
+        margin-top: 15px;
+    }
 }
 
 @media only screen and (max-width: 450px) {
+    body {
+        background-image: none;
+    }
+    .mobile-mt15 {
+        margin-top: 15px;
+    }
     .mb-xs {
         margin-bottom: 5px;
     }

@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class NavigationComponent implements OnInit {
   private username:string;
+  userscore:Number;
   userid:string;
 
   constructor(private dataservice:DataService, 
@@ -22,6 +23,12 @@ export class NavigationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dataservice.scoreSubject.subscribe(
+      x=>{
+        this.userscore = x;
+        console.log("Navigation score:"+this.userscore);
+      }
+    )
     console.log("Navigation bar OnInit");
     this.userid = this.authservice.getUserId();
   }

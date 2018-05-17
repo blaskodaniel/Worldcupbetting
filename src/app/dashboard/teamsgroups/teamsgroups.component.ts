@@ -39,9 +39,12 @@ export class TeamsgroupsComponent implements OnInit {
   }
 
   addNewGroup(){
-    console.log(this.addNewGroupForm);
+    console.log("Group: "+JSON.stringify(this.addNewGroupForm.value));
     this.dataservice.addGroup(this.addNewGroupForm.value).subscribe(
-      (response)=>{this.toastr.success('Group hozzáadva', 'Siker!');},
+      (response)=>{
+        this.toastr.success('Group hozzáadva', 'Siker!');
+        this.getgroups();
+      },
       (error)=>console.log(error)
     );
   }
@@ -88,7 +91,26 @@ export class TeamsgroupsComponent implements OnInit {
     this.dataservice.deleteTeam(team).subscribe(
       (x)=>{
         this.toastr.success('Sikeres Törlés!', 'Üzenet');
-        
+        this.getteams();
+      }
+    )
+  }
+
+  EditGroup(group){
+    console.log(group);
+    this.dataservice.updateGroup(group).subscribe(
+      (x)=>{
+        this.toastr.success('Sikeres mentés!', 'Üzenet',{positionClass:"toast-bottom-left"});
+      }
+    )
+  }
+
+  DeleteGroup(group){
+    console.log(group);
+    this.dataservice.deleteGroup(group).subscribe(
+      (x)=>{
+        this.toastr.success('Sikeres Törlés!', 'Üzenet');
+        this.getgroups();
       }
     )
   }

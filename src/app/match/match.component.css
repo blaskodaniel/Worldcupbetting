@@ -120,4 +120,7 @@ h4,
         padding-left: 10px;
         padding-right: 10px;
     }
+    .oddsvalue {
+        font-size: 14px;
+    }
 }

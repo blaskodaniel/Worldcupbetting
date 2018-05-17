@@ -18,11 +18,15 @@ import { LogsComponent } from './dashboard/logs/logs.component';
 import { CouponsComponent } from './dashboard/coupons/coupons.component';
 import { ExternalApiComponent } from './dashboard/external-api/external-api.component';
 import { HomeResolver } from './_resolvers/home.resolver';
+import { PlayedmatchesComponent } from './playedmatches/playedmatches.component';
+import { MycouponsComponent } from './mycoupons/mycoupons.component';
 
 const appRoutes:Routes = [
     {path:'', redirectTo:'/home', pathMatch:'full'},
     {path:'home', component:HomeComponent, resolve:{matches:HomeResolver}},
+    {path:'playedmatch', component:PlayedmatchesComponent},
     {path:'profile',component:ProfileComponent, canActivate:[GuardService]},
+    {path:'mycoupons',component:MycouponsComponent, canActivate:[GuardService]},
     {path:'users', component:UsersComponent, canActivate:[GuardService,AdminGuardService]},
     {path:'teamsgroups', component:TeamsgroupsComponent, canActivate:[GuardService,EditorGuardService]},
     {path:'admincoupons', component:CouponsComponent, canActivate:[GuardService,EditorGuardService]},

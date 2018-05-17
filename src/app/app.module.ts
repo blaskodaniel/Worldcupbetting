@@ -40,11 +40,12 @@ import { MatchesComponent } from './dashboard/matches/matches.component';
 import { FinishmatchComponent } from './match/finishmatch/finishmatch.component';
 import { ToplistComponent } from './toplist/toplist.component';
 import { ToTeamName } from './_pipes/teamIDtoName';
-import { BetcartComponent } from './betcart/betcart.component';
 import { LogsComponent } from './dashboard/logs/logs.component';
 import { GeneralModalComponent } from './modals/general-modal/general-modal.component';
 import { CouponsComponent } from './dashboard/coupons/coupons.component';
 import { ExternalApiComponent } from './dashboard/external-api/external-api.component';
+import { PlayedmatchesComponent } from './playedmatches/playedmatches.component';
+import { MycouponsComponent } from './mycoupons/mycoupons.component';
 
 @NgModule({
   declarations: [
@@ -68,11 +69,12 @@ import { ExternalApiComponent } from './dashboard/external-api/external-api.comp
     MatchesComponent,
     FinishmatchComponent,
     ToplistComponent,
-    BetcartComponent,
     LogsComponent,
     GeneralModalComponent,
     CouponsComponent,
-    ExternalApiComponent
+    ExternalApiComponent,
+    PlayedmatchesComponent,
+    MycouponsComponent
   ],
   imports: [
     BrowserModule,
