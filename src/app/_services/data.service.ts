@@ -106,6 +106,20 @@ export class DataService {
         return this.http.get(`${this.BaseURL}/getteams`, this.noauthoptions);
     }
 
+    getTeamById(teamid) {
+        // Get Team
+        let obj = {};
+        obj['teamid'] = teamid;
+        return this.http.post(`${this.BaseURL}/getteambyid`, obj).map(x=>x.json());
+    }
+
+    getTeamsByGroup(groupid) {
+        // Get Team
+        let obj = {};
+        obj['groupid'] = groupid;
+        return this.http.post(`${this.BaseURL}/getTeamsByGroup`, obj).map(x=>x.json());
+    }
+
     getPlayers() {
         // Get Players (name,score,avatar)
         return this.http.get(`${this.BaseURL}/getplayers`).map((x: Response) => x.json());

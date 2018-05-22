@@ -211,7 +211,7 @@ h4,
 
 .formula {
     text-align: center;
-    font-size: 17px;
+    font-size: 15px;
     color: white;
 }
 
@@ -242,6 +242,23 @@ h4,
 
 .arrow {
     max-width: 25px;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: #b2c711;
+}
+
+.favoriteTeam {
+    font-weight: bold;
+    color: chartreuse;
+}
+
+.winScore {
+    color: red;
 }
 
 @media only screen and (max-width: 1200px) {

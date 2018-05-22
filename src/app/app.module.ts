@@ -1,5 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthService } from './_services/auth.service';
+import { AppService } from './_services/app.service';
 import { DataService } from './_services/data.service';
 import { ToolsService } from './_services/tools.service';
 import { GuardService } from './_services/guard.service';
@@ -13,7 +14,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
@@ -46,6 +47,15 @@ import { CouponsComponent } from './dashboard/coupons/coupons.component';
 import { ExternalApiComponent } from './dashboard/external-api/external-api.component';
 import { PlayedmatchesComponent } from './playedmatches/playedmatches.component';
 import { MycouponsComponent } from './mycoupons/mycoupons.component';
+import { TeamdataComponent } from './teamdata/teamdata.component';
+
+// APP_INITIALIZER injection token
+export function init_app(service: AppService){
+  return () => service.testDB();
+}
+export function loadSetting(service: AppService){
+  return () => service.downloadSetting();
+}
 
 @NgModule({
   declarations: [
@@ -74,7 +84,8 @@ import { MycouponsComponent } from './mycoupons/mycoupons.component';
     CouponsComponent,
     ExternalApiComponent,
     PlayedmatchesComponent,
-    MycouponsComponent
+    MycouponsComponent,
+    TeamdataComponent
   ],
   imports: [
     BrowserModule,
@@ -90,6 +101,9 @@ import { MycouponsComponent } from './mycoupons/mycoupons.component';
   ],
   providers: [
     DataService,
+    AppService,
+    { provide: APP_INITIALIZER, useFactory: init_app, deps: [AppService], multi: true },
+    { provide: APP_INITIALIZER, useFactory: loadSetting, deps: [AppService], multi: true },
     ToolsService,
     HomeResolver,
     AuthService,

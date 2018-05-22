@@ -26,6 +26,7 @@
                             <th class="hidden-xs">ID</th>
                             <th>Csoport</th>
                             <th>Name</th>
+                            <th>Statisztika</th>
                             <th class="hidden-xs">Flag</th>
                             <th class="hidden-xs">Aktiv</th>
                             <th>Score</th>
@@ -41,6 +42,28 @@
                             </td>
                             <td>
                                 <input class="transparentinput" type="text" [(ngModel)]="item.name" name="name">
+                            </td>
+                            <td>
+                                <div>
+                                    <span>GY:</span>
+                                    <input class="transparentinput width30" type="text" [(ngModel)]="item.win" name="win">
+                                </div>
+                                <div>
+                                    <span>D:</span>
+                                    <input class="transparentinput width30" type="text" [(ngModel)]="item.draw" name="draw">
+                                </div>
+                                <div>
+                                    <span>V:</span>
+                                    <input class="transparentinput width30" type="text" [(ngModel)]="item.loss" name="loss">
+                                </div>
+                                <div>
+                                    <span>KG:</span>
+                                    <input class="transparentinput width30" type="text" [(ngModel)]="item.getgoal" name="getgoal">
+                                </div>
+                                <div>
+                                    <span>RG:</span>
+                                    <input class="transparentinput width30" type="text" [(ngModel)]="item.kickgoal" name="kickgoal">
+                                </div>
                             </td>
                             <td class="hidden-xs text-muted">
                                 <input class="transparentinput" type="text" [(ngModel)]="item.flag" name="flag">

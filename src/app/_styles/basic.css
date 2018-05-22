@@ -104,7 +104,7 @@ body {
 }
 
 .modal input {
-    background-color: rgba(8, 0, 0, 0.4);
+    background-color: #17d01266;
 }
 
 .nomarginLeft {
@@ -121,6 +121,14 @@ body {
 
 .nopaddingRight {
     padding-right: 0;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+a:hover {
+    text-decoration: none;
 }
 
 

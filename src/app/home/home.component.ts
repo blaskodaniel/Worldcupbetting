@@ -12,6 +12,7 @@ import { Betinfo } from '../_interfaces/betinfo';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ErrorHTTP } from '../_models/errorhttp.model';
 import { User } from '../_models/user.models';
+import { AppService } from '../_services/app.service';
 declare var $: any;
 
 @Component({
@@ -23,8 +24,10 @@ export class HomeComponent implements OnInit {
   ActiveMatches:Match[] = [];
   ResolverMatch:Match[] = [];
   UsersCoupons:Coupon[] = [];
+  favoritepath = "./assets/icons/favorite.png";
   arrow_up = "./assets/icons/arrow_up.png";
   arrow_down = "./assets/icons/arrow_down.png";
+  favoriteImg = this.appService.clientSetting.FavoriteTeamImage;
   accordion1 = false;
   newCoupon:Coupon;
   currentUser: User;
@@ -33,11 +36,14 @@ export class HomeComponent implements OnInit {
   currentOdds:number;
   currentResult:String;
   currentTeam:String;
+  currentTeamID:String;
+  favoritTeamFactor = this.appService.favoritTeamFactor;
 
   error_status:boolean = false;
   error_msg:string = "";
 
-  constructor(private dataservice:DataService,public authservice:AuthService,private route: Router,private activatedRoute:ActivatedRoute,
+  constructor(private dataservice:DataService,public authservice:AuthService,private appService: AppService,
+    private route: Router,private activatedRoute:ActivatedRoute,
     public toastr: ToastsManager, vcr: ViewContainerRef) { 
     this.toastr.setRootViewContainerRef(vcr);
     
@@ -164,8 +170,10 @@ export class HomeComponent implements OnInit {
     if(!match.blocked){
       this.currentMatch = match;
       this.currentTeam = betinfo.selectedTeam;
+      this.currentTeamID = betinfo.selectedTeamID;
       this.currentOdds = betinfo.selectedOdds;
       this.currentResult = betinfo.selectedResult;
+      this.betvalue = null;
       console.log(betinfo.selectedTeam);
       $("#betModal").modal();
     }

@@ -250,7 +250,7 @@ img.result {
 .input-style {
     border: none;
     color: #f8f8f8;
-    background-color: #2d2d3094;
+    background-color: #17d01266;
 }
 
 .form-group label {
@@ -266,6 +266,15 @@ img.result {
 .profileButton {
     height: 100%;
     margin-top: 32px;
+}
+
+.modal-title {
+    letter-spacing: 2px;
+    text-align: left;
+}
+
+.modal .modal-header {
+    padding: 15px 20px;
 }
 
 

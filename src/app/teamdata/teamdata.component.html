@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 team_container nopaddingLeft nopaddingRight">
+        <div class="col-xs-12 header">
+            <div class="row">
+                <div class="col-xs-6 text-right">
+                    <p>{{currentTeam?.name}}</p>
+                </div>
+                <div class="col-xs-6">
+                    <p>{{currentTeam?.score}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 body">
+            <div class="row">
+                <div class="col-xs-6 text-right">Győzelem</div>
+                <div class="col-xs-6 text-left">{{currentTeam?.win}}</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 text-right">Döntetlen</div>
+                <div class="col-xs-6 text-left">{{currentTeam?.draw}}</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 text-right">Vereség</div>
+                <div class="col-xs-6 text-left">{{currentTeam?.loss}}</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 text-right">Kapott gólok</div>
+                <div class="col-xs-6 text-left">{{currentTeam?.getgoal}}</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 text-right">Rúgott gólok</div>
+                <div class="col-xs-6 text-left">{{currentTeam?.kickgoal}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-10">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 team_container nopaddingLeft nopaddingRight">
+        <div class="col-xs-12 header">
+            <div class="row">
+                <div class="col-xs-6">
+                    <p>CSOPORT ÁLLÁS</p>
+                </div>
+                <div class="col-xs-1">P</div>
+                <div class="col-xs-1">GY</div>
+                <div class="col-xs-1">D</div>
+                <div class="col-xs-1">V</div>
+                <div class="col-xs-1">KG</div>
+                <div class="col-xs-1">RG</div>
+            </div>
+        </div>
+        <div class="col-xs-12 body">
+            <div class="row" *ngFor="let i = index;let item of groupTeams" [ngClass]="{'actualteam':item._id == currentTeam._id}">
+                <div class="col-xs-6 pointer" [routerLink]="['/team',item._id]">{{item.name}}</div>
+                <div class="col-xs-1">{{item.score}}</div>
+                <div class="col-xs-1">{{item.win}}</div>
+                <div class="col-xs-1">{{item.draw}}</div>
+                <div class="col-xs-1">{{item.loss}}</div>
+                <div class="col-xs-1">{{item.getgoal}}</div>
+                <div class="col-xs-1">{{item.kickgoal}}</div>
+            </div>
+        </div>
+    </div>
+</div>
