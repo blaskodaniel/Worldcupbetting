@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { Subscription } from 'rxjs/Subscription';
 import { Match } from '../_interfaces/match';
+import * as moment from 'moment';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr';
 import { Coupon } from '../_interfaces/coupon';
@@ -22,6 +23,7 @@ declare var $: any;
 })
 export class HomeComponent implements OnInit {
   ActiveMatches:Match[] = [];
+  TodayMatches:Match[] = [];
   ActiveMatchesGroupby = [];
   ResolverMatch:Match[] = [];
   UsersCoupons:Coupon[] = [];
@@ -30,6 +32,7 @@ export class HomeComponent implements OnInit {
   arrow_down = "./assets/icons/arrow_down.png";
   favoriteImg = this.appService.clientSetting.FavoriteTeamImage;
   accordion1 = false;
+  today_moment = moment(new Date()).format("YYYYMMDD");
   newCoupon:Coupon;
   currentUser: User;
   betvalue:number;
@@ -47,7 +50,7 @@ export class HomeComponent implements OnInit {
     private route: Router,private activatedRoute:ActivatedRoute,
     public toastr: ToastsManager, vcr: ViewContainerRef) { 
     this.toastr.setRootViewContainerRef(vcr);
-    
+    moment.locale("hu");
   }
 
   ngOnInit(){
@@ -76,6 +79,12 @@ export class HomeComponent implements OnInit {
         this.ActiveMatches = response;
         this.sortBy();
         this.ActiveMatchesGroupby = this.groupby(this.ActiveMatches, 'type');
+        
+        this.TodayMatches = this.ActiveMatches.filter(x=>{
+          if(moment(parseInt(x.date)).format("YYYYMMDD") == this.today_moment){
+            return x;
+          }
+        })
         let openPart = 0;
 
         let index = 0;

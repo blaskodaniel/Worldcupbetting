@@ -261,6 +261,13 @@ a:hover {
     color: red;
 }
 
+.emptycoupon {
+    color: white;
+    border: 1px solid #00000052;
+    padding: 10px;
+    background-color: #40556f75;
+}
+
 @media only screen and (max-width: 1200px) {
     .nationalname {
         font-size: 20px;

@@ -18,11 +18,13 @@
             </h4>
             <div class="row">
                 <div class="col-xs-6 coupon_info">
-                    <p class="date" *ngIf="c.matchid.active == 0">Mérkőzés kezdése: {{c.date | timestampToDate}}</p>
+                    <p class="date" *ngIf="c.matchid.active == 0">Mérkőzés kezdése: {{c.matchid.date | timestampToDate}}</p>
                     <p class="run" *ngIf="c.matchid.active == 1">Jelenleg tart a mérkőzés</p>
                     <p class="list-group-item-text">Feltett pont: {{c.bet}} pont</p>
                     <p class="list-group-item-text">Szorzó: {{c.odds}}</p>
-                    <p class="list-group-item-text win">Nyereményed: {{winnerPoint(c) | number:'1.1'}} pont</p>
+                    <p class="list-group-item-text win">Nyereményed: {{c.win | number:'1.1'}} pont
+                        <span [ngClass]="{'hidden':!c.favoriteTeam}">({{favoritTeamFactor}}× szorzó)</span>
+                    </p>
                 </div>
                 <div class="col-xs-6 buttons">
                     <button class="btn btn-save" (click)="openModal(c)">Módosít</button>

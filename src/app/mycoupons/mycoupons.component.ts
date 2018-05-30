@@ -8,6 +8,7 @@ import { ToastsManager } from 'ng2-toastr';
 import { ServerResponse } from '../_interfaces/serverResponse';
 import { ErrorHTTP } from '../_models/errorhttp.model';
 import { Match } from '../_interfaces/match';
+import { AppService } from '../_services/app.service';
 declare var $: any;
 
 @Component({
@@ -28,8 +29,10 @@ export class MycouponsComponent implements OnInit {
   stat_winCoupon: number;
   stat_loseCoupon: number;
   teams: Team[];
+  favoritTeamFactor = this.appService.favoritTeamFactor;
 
-  constructor(private dataservice: DataService, private authservice: AuthService, public toastr: ToastsManager, vcr: ViewContainerRef) {
+  constructor(private dataservice: DataService, private authservice: AuthService, private appService: AppService,
+    public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
     this.modCoupon = {
       userid: {} as User,
@@ -44,14 +47,13 @@ export class MycouponsComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     if ($("#myNavbar").hasClass("in")) {
       $('.navbar-toggle').click();
     }
-
     this.getUser();
     this.getCoupons();
-    this.GetTeams();
+    
   }
 
   getCoupons() {
@@ -63,6 +65,7 @@ export class MycouponsComponent implements OnInit {
           this.stat_loseCoupon = this.coupon.filter(x => x.success === false).length;
           this.actcoupons = this.coupon.filter(x => x.matchid["active"] === 0 || x.matchid["active"] === 1);
           this.finishcoupons = this.coupon.filter(x => x.matchid["active"] === 2);
+          this.GetTeams();
         }
       }
     )
@@ -87,16 +90,34 @@ export class MycouponsComponent implements OnInit {
       (response) => {
         // console.log(response);
         this.teams = JSON.parse(response["_body"]);
+        this.extendCoupon();
       },
       (error) => console.log(error)
     )
+  }
+
+  extendCoupon() {
+    this.coupon.map(c=>{
+      if (this.teams != null) {
+        let teamAid = this.teams.find(x => x.name === c.teamA);
+        let teamBid = this.teams.find(x => x.name === c.teamB);
+        console.log(`favoriteTeam lefut`);
+        if (teamAid._id === this.user.teamid || teamBid._id === this.user.teamid) {
+          c.favoriteTeam = true;
+          c.win = (+c.bet * +(+c.odds) * this.favoritTeamFactor);
+        } else {
+          c.favoriteTeam = false;
+          c.win = (+c.bet * +(+c.odds));
+        }
+      }
+    });
   }
 
   winnerPoint(c: Coupon) {
     if (this.teams != null) {
       let teamAid = this.teams.find(x => x.name === c.teamA);
       let teamBid = this.teams.find(x => x.name === c.teamB);
-      console.log(`teamAid:${JSON.stringify(c)}`);
+      console.log(`winnerPoint lefut`);
       if (teamAid._id === this.user.teamid || teamBid._id === this.user.teamid) {
         return (+c.bet * +(+c.odds) * 2)
       } else {
@@ -134,7 +155,7 @@ export class MycouponsComponent implements OnInit {
           this.toastr.error(x.uimessage);
         }
       )
-    }else{
+    } else {
       this.toastr.error("Csak pozitív számot adj meg!");
     }
   }

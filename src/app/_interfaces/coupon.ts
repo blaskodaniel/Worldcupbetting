@@ -14,5 +14,7 @@ export interface Coupon{
     result:Number,
     success?:Boolean,
     outcome:String,
-    date?:String
+    date?:String,
+    favoriteTeam?:Boolean,
+    win?:number
 }
