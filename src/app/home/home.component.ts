@@ -22,6 +22,7 @@ declare var $: any;
 })
 export class HomeComponent implements OnInit {
   ActiveMatches:Match[] = [];
+  ActiveMatchesGroupby = [];
   ResolverMatch:Match[] = [];
   UsersCoupons:Coupon[] = [];
   favoritepath = "./assets/icons/favorite.png";
@@ -62,11 +63,30 @@ export class HomeComponent implements OnInit {
     this.accordion1 = !this.accordion1;
   }
 
+  groupby(xs, key) {
+    return xs.reduce(function(rv, x) {
+      (rv[x[key]] = rv[x[key]] || []).push(x);
+      return rv;
+    }, []);
+  };
+
   loadMatchList(){
     this.dataservice.getMatches("?active=0").subscribe(
       (response:Match[])=>{
         this.ActiveMatches = response;
         this.sortBy();
+        this.ActiveMatchesGroupby = this.groupby(this.ActiveMatches, 'type');
+        let openPart = 0;
+
+        let index = 0;
+        this.ActiveMatchesGroupby.map(w=>{
+          if(index === openPart){
+            w.type = false;
+          }else{
+            w.type = true;
+          }
+          index++;
+        });
         if(this.authservice.isAuthenticated()){
           // If the user is log in then load the user's coupons
           this.dataservice.getCouponsByUserIs(this.authservice.getUserId()).subscribe(

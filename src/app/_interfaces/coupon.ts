@@ -1,4 +1,4 @@
-import { Match } from "./match";
+import { Match } from '../_interfaces/match';
 import { Team } from "../_models/team.model";
 import { User } from "../_models/user.models";
 

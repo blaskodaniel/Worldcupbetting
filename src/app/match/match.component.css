@@ -53,6 +53,10 @@ img {
     cursor: pointer;
 }
 
+.oddsContainer:hover {
+    background-color: #197252a6;
+}
+
 span.oddspos {
     width: 100%;
     position: relative;

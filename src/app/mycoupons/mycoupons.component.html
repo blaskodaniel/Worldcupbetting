@@ -1,15 +1,15 @@
 <div class="row">
     <div class="col-xs-12 colorwhite">
-        <h2>Aktív fogadásaim</h2>
+        <p class="title">Aktív fogadásaim ({{actcoupons?.length}})</p>
     </div>
 </div>
 <hr />
-<div class="row" *ngIf="actcoupons?.length == 0">
+<div class="row nomarginLeft nomarginRight" *ngIf="actcoupons?.length == 0">
     <div class="col-xs-12 emptycoupon">
         <span>Nincsen aktív fogadásod</span>
     </div>
 </div>
-<div class="row" *ngIf="actcoupons?.length > 0">
+<div class="row nomarginLeft nomarginRight" *ngIf="actcoupons?.length > 0">
     <div class="list-group" *ngFor="let i = index;let c of actcoupons">
         <a class="list-group-item active">
             <h4 class="list-group-item-heading">
@@ -34,16 +34,16 @@
 </div>
 <div class="row">
     <div class="col-xs-12 colorwhite">
-        <h2>Lejárt fogadásaim</h2>
+        <p class="title">Lejárt fogadásaim</p>
     </div>
 </div>
 <hr />
-<div class="row" *ngIf="finishcoupons?.length == 0">
+<div class="row nomarginLeft nomarginRight" *ngIf="finishcoupons?.length == 0">
     <div class="col-xs-12 emptycoupon">
         <span>Nincsen lejárt fogadásod</span>
     </div>
 </div>
-<div class="row" *ngIf="finishcoupons?.length > 0">
+<div class="row nomarginLeft nomarginRight" *ngIf="finishcoupons?.length > 0">
     <div class="list-group" *ngFor="let i = index;let c of finishcoupons">
         <a class="list-group-item active" [ngClass]="{'winCoupon':c.success, 'loseCoupon':!c.success}">
             <span class="status">

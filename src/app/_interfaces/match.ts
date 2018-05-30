@@ -14,5 +14,6 @@ export interface Match{
     active:number,
     comment:string,
     outcome?:String,
-    externalID?:String
+    externalID?:String,
+    accordion?:boolean
 }

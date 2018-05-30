@@ -6,62 +6,67 @@
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="result-top-bar">
-                    <span class="pull-left">Csoportkör 1.</span>
-                    <img *ngIf="!accordion1" (click)="openstage()" class="pull-right arrow" [src]="arrow_up" />
-                    <img *ngIf="accordion1" (click)="openstage()" class="pull-right arrow" [src]="arrow_down" />
-                </div>
-            </div>
-        </div>
-        <div class="row nomarginLeft nomarginRight templatebg" [ngClass]="{'collapse on' : accordion1}" id="todayMatches">
-            <div *ngFor="let i = index;let item of ActiveMatches">
-                <div class="row matchTopTitle hidden-sm hidden-md hidden-lg">
+        <div *ngFor="let y = index;let match of ActiveMatchesGroupby">
+            <div class="matchPart" [ngClass]="{'mt-10':y>0}">
+                <div class="row">
                     <div class="col-xs-12">
                         <div class="result-top-bar">
-                            <span class="text-center">
-                                <a [routerLink]="['/team',item.teamA._id]">{{item.teamA.name}}</a> - <a [routerLink]="['/team',item.teamA._id]">{{item.teamB.name}}</a>
-                            </span>
+                            <span class="pull-left">Csoportkör {{y+1}}.</span>
+                            <img *ngIf="!match.type" (click)="match.type = !match.type" class="pull-right arrow" [src]="arrow_up" />
+                            <img *ngIf="match.type" (click)="match.type = !match.type" class="pull-right arrow" [src]="arrow_down" />
                         </div>
                     </div>
                 </div>
-                <div class="row text-center matchRow">
-                    <div class="col-xs-3 col-sm-4 col-md-2 col-lg-2"><img src="./assets/icons/flags/{{item.teamA.flag}}" alt=""></div>
-                    <div class="hidden-xs hidden-sm col-md-2 col-lg-2 colorwhite displaytable">
-                        <div class="displaytablecell nationalname">
-                            <a [routerLink]="['/team',item.teamA._id]" [ngClass]="{'favoriteTeam':item.teamA._id == currentUser?.teamid}">{{item.teamA.name}}</a>
-                        </div>
-                        <span class="teamAgoal">{{item.goalA}}</span>
-                        <span *ngIf="item.teamA._id == currentUser?.teamid && favoriteImg">
-                            <img [src]="favoritepath" />
-                        </span>
-                    </div>
-                    <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                        <div class="row">
-                            <div class="col-xs-12 margin-bottom10 colorwhite"><span class="datetime">{{item.date | timestampToDate:'MMMM Do, HH:mm'}}</span></div>
-                            <div class="col-xs-12 colorwhite">
-                                <div class="row">
-                                    <app-match [match]="item" (resultClick)="openModal($event,item)"></app-match>
+                <div class="row nomarginLeft nomarginRight templatebg" [ngClass]="{'collapse on' : match.type}" id="todayMatches">
+                    <div *ngFor="let i = index;let item of match">
+                        <div class="row matchTopTitle hidden-sm hidden-md hidden-lg">
+                            <div class="col-xs-12">
+                                <div class="result-top-bar">
+                                    <span class="text-center">
+                                        <a [routerLink]="['/team',item.teamA._id]">{{item.teamA.name}}</a> - <a [routerLink]="['/team',item.teamA._id]">{{item.teamB.name}}</a>
+                                    </span>
                                 </div>
                             </div>
-                            <div class="col-xs-12 margin-top10 colorwhite"><span class="location">{{item.location}}</span></div>
                         </div>
-                    </div>
-                    <div class="hidden-xs hidden-sm col-md-2 col-lg-2 colorwhite displaytable">
-                        <div class="displaytablecell nationalname">
-                            <a [routerLink]="['/team',item.teamB._id]" [ngClass]="{'favoriteTeam':item.teamB._id == currentUser?.teamid}">{{item.teamB.name}}</a>
+                        <div class="row text-center matchRow">
+                            <div class="col-xs-3 col-sm-4 col-md-2 col-lg-2"><img src="./assets/icons/flags/{{item.teamA.flag}}" alt=""></div>
+                            <div class="hidden-xs hidden-sm col-md-2 col-lg-2 colorwhite displaytable">
+                                <div class="displaytablecell nationalname">
+                                    <a [routerLink]="['/team',item.teamA._id]" [ngClass]="{'favoriteTeam':item.teamA._id == currentUser?.teamid}">{{item.teamA.name}}</a>
+                                </div>
+                                <span class="teamAgoal">{{item.goalA}}</span>
+                                <span *ngIf="item.teamA._id == currentUser?.teamid && favoriteImg">
+                                    <img [src]="favoritepath" />
+                                </span>
+                            </div>
+                            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                                <div class="row">
+                                    <div class="col-xs-12 margin-bottom10 colorwhite"><span class="datetime">{{item.date | timestampToDate:'MMMM Do, HH:mm'}}</span></div>
+                                    <div class="col-xs-12 colorwhite">
+                                        <div class="row">
+                                            <app-match [match]="item" (resultClick)="openModal($event,item)"></app-match>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 margin-top10 colorwhite"><span class="location">{{item.location}}</span></div>
+                                </div>
+                            </div>
+                            <div class="hidden-xs hidden-sm col-md-2 col-lg-2 colorwhite displaytable">
+                                <div class="displaytablecell nationalname">
+                                    <a [routerLink]="['/team',item.teamB._id]" [ngClass]="{'favoriteTeam':item.teamB._id == currentUser?.teamid}">{{item.teamB.name}}</a>
+                                </div>
+                                <span class="teamBgoal">{{item.goalB}}</span>
+                                <span *ngIf="item.teamB._id == currentUser?.teamid && favoriteImg">
+                                    <img [src]="favoritepath" />
+                                </span>
+                            </div>
+                            <div class="col-xs-3 col-sm-4 col-md-2 col-lg-2"><img src="./assets/icons/flags/{{item.teamB.flag}}" alt=""></div>
                         </div>
-                        <span class="teamBgoal">{{item.goalB}}</span>
-                        <span *ngIf="item.teamB._id == currentUser?.teamid && favoriteImg">
-                            <img [src]="favoritepath" />
-                        </span>
+                        <hr class="hidden-xs" />
                     </div>
-                    <div class="col-xs-3 col-sm-4 col-md-2 col-lg-2"><img src="./assets/icons/flags/{{item.teamB.flag}}" alt=""></div>
                 </div>
-                <hr class="hidden-xs" />
             </div>
         </div>
+
     </div>
     <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 mobile-mt15">
         <app-toplist></app-toplist>

@@ -1,3 +1,7 @@
+p {
+    font-size: 12px;
+}
+
 .box-widget {
     border: none;
     position: relative;
@@ -275,6 +279,15 @@ img.result {
 
 .modal .modal-header {
     padding: 15px 20px;
+}
+
+p.title {
+    margin-bottom: 0;
+    font-size: 18px;
+}
+
+hr {
+    margin-top: 0;
 }
 
 
