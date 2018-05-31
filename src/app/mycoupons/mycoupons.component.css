@@ -290,7 +290,38 @@ hr {
     margin-top: 0;
 }
 
+.teams {
+    letter-spacing: 1px;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.date {
+    font-size: 11px;
+}
+
+.couponbody {
+    border-top: 1px solid #0000003b;
+    padding-top: 15px;
+}
+
 
 /* Small devices (landscape phones, 576px and up) */
 
-@media (max-width: 576px) {}
+@media (max-width: 576px) {
+    .teams {
+        font-size: 12px;
+    }
+    .list-group-item-text {
+        font-size: 10px;
+    }
+    .buttons {
+        padding: 10px 17px 5px 13px;
+    }
+    .btn-save {
+        margin-bottom: 10px;
+    }
+    .run {
+        font-size: 12px;
+    }
+}

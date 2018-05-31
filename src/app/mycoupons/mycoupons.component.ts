@@ -64,11 +64,20 @@ export class MycouponsComponent implements OnInit {
           this.stat_winCoupon = this.coupon.filter(x => x.success === true).length;
           this.stat_loseCoupon = this.coupon.filter(x => x.success === false).length;
           this.actcoupons = this.coupon.filter(x => x.matchid["active"] === 0 || x.matchid["active"] === 1);
+          this.sortBy();
           this.finishcoupons = this.coupon.filter(x => x.matchid["active"] === 2);
           this.GetTeams();
         }
       }
     )
+  }
+
+  sortBy(){
+    this.actcoupons = this.actcoupons.sort((a,b)=>{
+      if(a.date < b.date) return 1;
+      else if (a.date > b.date) return -1;
+      else return 0;
+    });
   }
 
   getUser() {

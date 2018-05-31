@@ -27,7 +27,7 @@ export class MatchesComponent implements OnInit {
   ngOnInit() {
     this.GetMatches();
     this.GetTeams();
-
+    
     this.addNewForm = new FormGroup({
       'teamA': new FormControl(null,Validators.required),
       'teamB': new FormControl(null, Validators.required),
@@ -40,6 +40,7 @@ export class MatchesComponent implements OnInit {
       (response)=>{
         console.log(response);
         this.matches = response;
+        this.sortBy();
       },
       (error)=>console.log(error)
     )
@@ -60,6 +61,14 @@ export class MatchesComponent implements OnInit {
       (response)=>{this.toastr.success("A mérkőzést sikeresen frissítettük","Siker!");this.GetMatches();},
       (error)=>{this.toastr.error("Nem sikerült frissíteni a mérkőzést!","Hiba!")}
     )
+  }
+
+  sortBy(){
+    this.matches = this.matches.sort((a,b)=>{
+      if(a.date < b.date) return 1;
+      else if (a.date > b.date) return -1;
+      else return 0;
+    });
   }
 
   addNew(){

@@ -12,11 +12,11 @@
 <div class="row nomarginLeft nomarginRight" *ngIf="actcoupons?.length > 0">
     <div class="list-group" *ngFor="let i = index;let c of actcoupons">
         <a class="list-group-item active">
-            <h4 class="list-group-item-heading">
+            <h4 class="list-group-item-heading teams">
                 {{c.teamA}} <span class="finish" *ngIf="c.matchid.active == 2">{{c.matchid.goalA}}</span> -
                 <span class="finish" *ngIf="c.matchid.active == 2">{{c.matchid.goalB}}</span> {{c.teamB}} ({{c.outcome}})
             </h4>
-            <div class="row">
+            <div class="row couponbody">
                 <div class="col-xs-6 coupon_info">
                     <p class="date" *ngIf="c.matchid.active == 0">Mérkőzés kezdése: {{c.matchid.date | timestampToDate}}</p>
                     <p class="run" *ngIf="c.matchid.active == 1">Jelenleg tart a mérkőzés</p>
