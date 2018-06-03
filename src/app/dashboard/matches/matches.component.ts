@@ -15,7 +15,7 @@ export class MatchesComponent implements OnInit {
   matches:any;
   teams:any;
   search:string;
-  OrderKey:string = 'name';
+  OrderKey:string = 'date';
   OrderReverse:boolean = false;
   // FromGroups:
   addNewForm:FormGroup;

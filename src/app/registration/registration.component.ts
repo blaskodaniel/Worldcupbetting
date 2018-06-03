@@ -15,6 +15,7 @@ declare var $: any;
 export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
   teams:Team[];
+  infoicon = "./assets/icons/information.png";
   
   constructor(private dataService:DataService, private route: Router,
     public toastr: ToastsManager, vcr: ViewContainerRef) { 
@@ -22,6 +23,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
+    $('[data-toggle="tooltip"]').tooltip();
     if($("#myNavbar").hasClass("in")){
       $('.navbar-toggle').click();
     }

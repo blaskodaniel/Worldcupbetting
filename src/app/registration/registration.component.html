@@ -4,10 +4,16 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 registration-container">
         <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-            <div class="form-group has-success has-feedback">
-                <input type="text" class="form-control input-style" id="username" placeholder="Nicknév" formControlName="username" required>
-                <span class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok': registrationForm.get('username').valid && registrationForm.get('username').touched }"></span>
-                <span *ngIf="!registrationForm.get('username').valid && registrationForm.get('username').touched" class="help-block">Please enter a username!</span>
+            <div class="row form-group has-success has-feedback">
+                <div class="col-xs-11 ">
+                    <input type="text" class="form-control input-style" id="username" placeholder="Nicknév" formControlName="username" required>
+                    <span class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok': registrationForm.get('username').valid && registrationForm.get('username').touched }"></span>
+                    <span *ngIf="!registrationForm.get('username').valid && registrationForm.get('username').touched" class="help-block">Please enter a username!</span>
+                </div>
+                <div class="col-xs-1 nopaddingLeft">
+                    <span class="infobody" *ngIf="infoUsername">Ez a név lesz látható az eredménytáblán.</span>
+                    <img [src]="infoicon" class="infoicon" (click)="infoUsername=!infoUsername" />
+                </div>
             </div>
             <div class="form-group has-success has-feedback">
                 <input type="email" class="form-control input-style" id="email" placeholder="Email (ezzel fogsz tudni belépni az oldalra)" formControlName="email" required>

@@ -261,6 +261,10 @@ h4,
     background-color: #40556f75;
 }
 
+a {
+    color: white;
+}
+
 @media only screen and (max-width: 1200px) {
     .nationalname {
         font-size: 20px;

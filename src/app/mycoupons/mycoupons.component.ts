@@ -156,7 +156,9 @@ export class MycouponsComponent implements OnInit {
             if (x.code == 2) {
               this.toastr.error("Nincs ennyi pontod");
             }
-
+            if(x.code == 6){
+              this.toastr.error("Már fut a mérkőzés. Nem tudsz módosítani.");
+            }
           }
 
         },

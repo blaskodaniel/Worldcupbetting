@@ -1,50 +1,53 @@
 <div class="row">
-  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-      <div class="box">
-          <div class="big-text">
-              {{logs.logcount}}
-          </div>
-          <div class="description">
-              <i class="fa fa-arrow-right"></i>
-              logok száma
-          </div>
-      </div>
-  </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="box">
+            <div class="big-text">
+                {{logs.logcount}}
+            </div>
+            <div class="description">
+                <i class="fa fa-arrow-right"></i> logok száma
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="box">
+            <button class="btn btn-sm btn-alert allLogRemoveBtn" (click)="DeleteAll()">Összes log törlése</button>
+        </div>
+    </div>
 </div>
 <div class="row">
-  <div class="col-xs-12">
-    <table class="table table-striped">
-      <thead>
-          <tr>
-              <th class="hidden-xs">#</th>
-              <th>IP</th>
-              <th>Type</th>
-              <th class="hidden-xs">Message</th>
-              <th>URL</th>
-              <th class="hidden-xs">Date</th>
-              <th></th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let i = index;let item of logs.logs | orderBy: OrderKey : OrderReverse | filter:logsearch">
-              <td class="hidden-xs">{{i+1}}</td>
-              <td>{{item.ip}}</td>
-              <td>{{item.type}}</td>
-              <td class="hidden-xs">{{item.msg}}</td>
-              <td>{{item.url}}</td>
-              <td class="hidden-xs">{{item.date | timestampToDate}}</td>
-              <td>
-                  <i class="fa fa-trash hidden-lg hidden-sm hidden-md" aria-hidden="true" (click)="Delete(item)"></i>
-                  <button class="btn btn-remove hidden-xs" (click)="Delete(item)">Remove</button>
-              </td>
-          </tr>
-      </tbody>
-    </table>
-    <ul class="pagination">
-        <!--class="active"-->
-        <li *ngFor="let i = index;let page of pagers"
-        ngClass="activePage(page)">
-        <a (click)="getlogs(page)">{{page}}</a></li>
-    </ul>
-  </div>
+    <div class="col-xs-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="hidden-xs">#</th>
+                    <th>IP</th>
+                    <th>Type</th>
+                    <th class="hidden-xs">Message</th>
+                    <th>URL</th>
+                    <th class="hidden-xs">Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let i = index;let item of logs.logs | orderBy: OrderKey : OrderReverse | filter:logsearch">
+                    <td class="hidden-xs">{{i+1}}</td>
+                    <td>{{item.ip}}</td>
+                    <td>{{item.type}}</td>
+                    <td class="hidden-xs">{{item.msg}}</td>
+                    <td>{{item.url}}</td>
+                    <td class="hidden-xs">{{item.date | timestampToDate}}</td>
+                    <td>
+                        <i class="fa fa-trash hidden-lg hidden-sm hidden-md" aria-hidden="true" (click)="Delete(item)"></i>
+                        <button class="btn btn-remove hidden-xs" (click)="Delete(item)">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <ul class="pagination">
+            <!--class="active"-->
+            <li *ngFor="let i = index;let page of pagers" ngClass="activePage(page)">
+                <a (click)="getlogs(page)">{{page}}</a></li>
+        </ul>
+    </div>
 </div>

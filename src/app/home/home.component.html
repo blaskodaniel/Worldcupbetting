@@ -24,7 +24,7 @@
                             <div class="result-top-bar">
                                 <span class="text-center">
                                     <a [routerLink]="['/team',item.teamA._id]" [ngClass]="{'favoriteTeam':item.teamA._id == currentUser?.teamid}">{{item.teamA.name}}</a> - 
-                                    <a [routerLink]="['/team',item.teamA._id]" [ngClass]="{'favoriteTeam':item.teamB._id == currentUser?.teamid}">{{item.teamB.name}}</a>
+                                    <a [routerLink]="['/team',item.teamB._id]" [ngClass]="{'favoriteTeam':item.teamB._id == currentUser?.teamid}">{{item.teamB.name}}</a>
                                 </span>
                             </div>
                         </div>
@@ -42,7 +42,8 @@
                         </div>
                         <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
                             <div class="row">
-                                <div class="col-xs-12 margin-bottom10 colorwhite"><span class="datetime">{{item.date | timestampToDate:'MMMM Do, HH:mm'}}</span></div>
+                                <span class="runmatch" *ngIf="item.active==1">Tart a mérkőzés</span>
+                                <div class="col-xs-12 margin-bottom10 colorwhite"><span class="datetime">{{item.date | timestampToDate:'MMMM Do dddd, HH:mm'}}</span></div>
                                 <div class="col-xs-12 colorwhite">
                                     <div class="row">
                                         <app-match [match]="item" (resultClick)="openModal($event,item)"></app-match>
@@ -108,7 +109,7 @@
                             </div>
                             <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
                                 <div class="row">
-                                    <div class="col-xs-12 margin-bottom10 colorwhite"><span class="datetime">{{item.date | timestampToDate:'MMMM Do, HH:mm'}}</span></div>
+                                    <div class="col-xs-12 margin-bottom10 colorwhite"><span class="datetime">{{item.date | timestampToDate:'MMMM Do dddd, HH:mm'}}</span></div>
                                     <div class="col-xs-12 colorwhite">
                                         <div class="row">
                                             <app-match [match]="item" (resultClick)="openModal($event,item)"></app-match>

@@ -14,7 +14,9 @@
                 <div class="row matchTopTitle hidden-sm hidden-md hidden-lg">
                     <div class="col-xs-12">
                         <div class="result-top-bar">
-                            <span class="text-center">{{item.teamA.name}} - {{item.teamB.name}}</span>
+                            <span class="text-center">
+                                <a [routerLink]="['/team',item.teamA._id]">{{item.teamA.name}}</a> - 
+                                <a [routerLink]="['/team',item.teamB._id]">{{item.teamB.name}}</a></span>
                         </div>
                     </div>
                 </div>
@@ -26,7 +28,7 @@
                     <div class="hidden-xs hidden-sm col-md-2 col-lg-2 colorwhite displaytable">
                         <div class="row">
                             <div class="col-xs-12 text-center">
-                                <p class="text-center">{{item.teamA.name}}</p>
+                                <p class="text-center"><a [routerLink]="['/team',item.teamA._id]">{{item.teamA.name}}</a></p>
                             </div>
                             <div class="col-xs-12 text-center">
                                 <p class="teamAgoal text-center">{{item.goalA}}</p>
@@ -47,7 +49,7 @@
                     <div class="hidden-xs hidden-sm col-md-2 col-lg-2 colorwhite displaytable">
                         <div class="row">
                             <div class="col-xs-12">
-                                <p class="text-center">{{item.teamB.name}}</p>
+                                <p class="text-center"><a [routerLink]="['/team',item.teamB._id]">{{item.teamB.name}}</a></p>
                             </div>
                             <div class="col-xs-12">
                                 <p class="teamBgoal text-center">{{item.goalB}}</p>

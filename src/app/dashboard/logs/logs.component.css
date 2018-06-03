@@ -10,13 +10,15 @@
     word-break: break-all;
 }
 
-.table-striped>thead>tr{
+.table-striped>thead>tr {
     background-color: #333333;
     color: white;
     text-transform: uppercase;
 }
 
+
 /* Widget box */
+
 .box {
     border-radius: 3px;
     padding: 5px;
@@ -26,7 +28,8 @@
     color: #f8f8f8;
 }
 
-.box .icon, .box .big-text {
+.box .icon,
+.box .big-text {
     margin-top: 15px;
     font-size: 36px;
     line-height: 36px;
@@ -38,4 +41,8 @@
     font-weight: normal;
     text-align: center;
     margin: 10px -5px;
+}
+
+.allLogRemoveBtn {
+    width: 100%;
 }

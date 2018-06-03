@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit {
   };
 
   loadMatchList(){
-    this.dataservice.getMatches("?active=0").subscribe(
+    this.dataservice.getMatches("?active=0&active=1").subscribe(
       (response:Match[])=>{
         this.ActiveMatches = response;
         this.sortBy();

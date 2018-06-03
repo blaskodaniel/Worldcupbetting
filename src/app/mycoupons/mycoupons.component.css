@@ -185,15 +185,18 @@ div.buttons {
 span.status {
     position: relative;
     float: right;
-    padding-left: 35px;
+    top: -11px;
+    left: 17px;
+    padding-left: 10px;
+    background-color: #27191980;
 }
 
 span.score {
-    font-size: 20px;
+    font-size: 15px;
 }
 
 img.result {
-    max-width: 50px;
+    max-width: 35px;
     padding: 7px;
 }
 
@@ -208,12 +211,13 @@ img.result {
 }
 
 .run {
-    color: #ef7070;
-    font-size: 18px;
+    color: white;
+    background-color: red;
+    font-size: 12px;
 }
 
 .finish {
-    font-size: 15px;
+    font-size: 12px;
 }
 
 .updatematchnames {
@@ -303,6 +307,26 @@ hr {
 .couponbody {
     border-top: 1px solid #0000003b;
     padding-top: 15px;
+}
+
+.flexcontainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.flexitem {
+    padding-left: 0;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    width: 35rem;
+}
+
+h4 {
+    letter-spacing: 0;
 }
 
 

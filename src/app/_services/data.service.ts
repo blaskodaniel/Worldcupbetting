@@ -96,6 +96,11 @@ export class DataService {
         return this.httpclient.delete(`${this.BaseURL}/api/logs/${log._id}`, log);
     }
 
+    deleteLogAll(){
+        // Delete all log
+        return this.httpclient.delete(`${this.BaseURL}/api/logsalldelete`);
+    }
+
     getGroups() {
         // Get All groups
         return this.http.get(`${this.BaseURL}/getgroups`);

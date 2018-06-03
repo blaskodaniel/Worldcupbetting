@@ -45,7 +45,7 @@
                             <td class="hidden-xs">{{i+1}}</td>
                             <td class="hidden">{{item._id}}</td>
                             <td>
-                                <input class="transparentinput" style="width:90px;" type="text" [(ngModel)]="item.teamA.name" name="teamA">
+                                {{item.teamA.name}}
                                 <p class="no-margin">
                                     <small>
                                     <span class="fw-semi-bold">Goals:</span>
@@ -55,12 +55,12 @@
                                 <p>externalID: {{item?.externalID}}</p>
                             </td>
                             <td>
-                                <input class="transparentinput" style="width:90px;" type="text" [(ngModel)]="item.teamB.name" name="teamB">
+                                {{item.teamB.name}}
                                 <p class="no-margin">
                                     <small>
-                                  <span class="fw-semi-bold">Goals:</span>
-                                  <input class="transparentinput" style="width:90px;" type="text" [(ngModel)]="item.goalB" name="goalB" >
-                              </small>
+                                    <span class="fw-semi-bold">Goals:</span>
+                                    <input class="transparentinput" style="width:90px;" type="text" [(ngModel)]="item.goalB" name="goalB" >
+                                    </small>
                                 </p>
                             </td>
                             <td>
