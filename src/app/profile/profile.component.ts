@@ -8,6 +8,7 @@ import { Match } from '../_interfaces/match';
 import { User } from '../_models/user.models';
 import { ServerResponse } from '../_interfaces/serverResponse';
 import { Team } from '../_models/team.model';
+import { AppService } from '../_services/app.service';
 declare var $: any;
 
 @Component({
@@ -20,6 +21,7 @@ export class ProfileComponent implements OnInit {
   fullname: String;
   username: String;
   teamid: String;
+  winteamid: String;
   img_success: String = "./assets/icons/medal3.png";
   img_lose: String = "./assets/icons/lose.png";
   coupon: Coupon[];
@@ -28,9 +30,12 @@ export class ProfileComponent implements OnInit {
   finishcoupons: Coupon[];
   stat_winCoupon: number;
   stat_loseCoupon: number;
+  disabledTeamsSave = this.appsettings.disabledTeamsSave;
+  issuemsg:string;
   teams: Team[];
 
-  constructor(private dataservice: DataService, private authservice: AuthService, public toastr: ToastsManager, vcr: ViewContainerRef) {
+  constructor(private dataservice: DataService, private authservice: AuthService, private appsettings:AppService,
+    public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
   }
 
@@ -62,6 +67,7 @@ export class ProfileComponent implements OnInit {
         console.log(user);
         this.user = user;
         this.teamid = this.user.teamid as string;
+        this.winteamid = this.user.winteamid as string;
         if (this.user.username) {
           this.username = this.user.username;
         }
@@ -99,7 +105,7 @@ export class ProfileComponent implements OnInit {
 
   profilSave(values) {
     console.log(values);
-    this.dataservice.saveProfil(this.user._id, values.fullname, values.username, values.teamid).subscribe(
+    this.dataservice.saveProfil(this.user._id, values.fullname, values.username, values.teamid, values.winteamid).subscribe(
       (x) => {
         this.toastr.success("Sikeresen mentetted a profilod");
       },
@@ -107,6 +113,24 @@ export class ProfileComponent implements OnInit {
         this.toastr.error("Sikertelen mentés");
       }
     )
+  }
+
+
+  helpSave(values){
+    console.log(values);
+    if(typeof values.issuemsg != "undefined"){
+      this.dataservice.sendissue(values.issuemsg, this.user._id).subscribe(x=>{
+        this.issuemsg = "";
+        this.toastr.success("A bejegyzésedet elküldtük. Köszi a segítséged! :)");
+      },
+      y=>{
+        this.toastr.error("Sajnos nem tudtuk elküldeni az üzenetet. Kérlek próbáld meg újra!");
+      });
+    }else{
+      this.toastr.error("Nem írtál semmit!");
+    }
+    
+  
   }
 
 }

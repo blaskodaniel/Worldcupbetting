@@ -3,6 +3,7 @@ import { Team } from "./team.model";
 export interface User{
     _id?: String,
     teamid?:Team,
+    winteamid?:Team,
     regdate?:String,
     username?: String,
     name: String,

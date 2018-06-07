@@ -22,6 +22,15 @@ export class RegistrationComponent implements OnInit {
     this.toastr.setRootViewContainerRef(vcr);
   }
 
+  ModalClose() {
+    $("#regmodal").modal('hide');
+  }
+
+  toLogin(){
+    this.ModalClose();
+    this.route.navigate(['/login']);
+  }
+
   ngOnInit() {
     $('[data-toggle="tooltip"]').tooltip();
     if($("#myNavbar").hasClass("in")){
@@ -41,7 +50,8 @@ export class RegistrationComponent implements OnInit {
     console.log(this.registrationForm);
     this.dataService.register(this.registrationForm.value).subscribe(
       (response)=>{
-        this.toastr.success('Sikeres regisztráció!', 'Siker!');
+        this.registrationForm.reset();
+        $("#regmodal").modal();
       },
       (error)=>console.log(error)
     );

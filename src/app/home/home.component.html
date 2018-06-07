@@ -161,13 +161,13 @@
                         </div>
                     </div>
                     <p *ngIf="betvalue && currentUser?.teamid == currentTeamID" class="formula">
-                        <span>Nyeremény:</span> {{betvalue}}×{{currentOdds}} = {{betvalue*currentOdds | number:'1.1'}}
-                        <span class="winScore">×{{favoritTeamFactor}} = {{betvalue*currentOdds*favoritTeamFactor | number:'1.1'}}</span>
+                        <span>Nyeremény:</span> {{betvalue}}×{{currentOdds}} = {{betvalue*currentOdds | number:'1.0-1'}}
+                        <span class="winScore">×{{favoritTeamFactor}} = {{betvalue*currentOdds*favoritTeamFactor | number:'1.0-1'}}</span>
                     </p>
                     <p *ngIf="betvalue && currentUser?.teamid != currentTeamID" class="formula">
-                        <span>Nyeremény:</span> {{betvalue}}×{{currentOdds}} = {{betvalue*currentOdds | number:'1.1'}}
+                        <span>Nyeremény:</span> {{betvalue}}×{{currentOdds}} = {{betvalue*currentOdds | number:'1.0-1'}}
                     </p>
-                    <p *ngIf="currentUser" class="formula">Jelenleg {{currentUser?.score | number:'1.1'}} pontod van</p>
+                    <p *ngIf="currentUser" class="formula">Jelenleg {{currentUser?.score | number:'1.0-1'}} pontod van</p>
                     <p class="error_msg" *ngIf="error_status">{{error_msg}}</p>
                 </form>
             </div>

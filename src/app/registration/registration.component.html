@@ -4,16 +4,10 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 registration-container">
         <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-            <div class="row form-group has-success has-feedback">
-                <div class="col-xs-11 ">
-                    <input type="text" class="form-control input-style" id="username" placeholder="Nicknév" formControlName="username" required>
-                    <span class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok': registrationForm.get('username').valid && registrationForm.get('username').touched }"></span>
-                    <span *ngIf="!registrationForm.get('username').valid && registrationForm.get('username').touched" class="help-block">Please enter a username!</span>
-                </div>
-                <div class="col-xs-1 nopaddingLeft">
-                    <span class="infobody" *ngIf="infoUsername">Ez a név lesz látható az eredménytáblán.</span>
-                    <img [src]="infoicon" class="infoicon" (click)="infoUsername=!infoUsername" />
-                </div>
+            <div class="form-group has-success has-feedback">
+                <input type="text" class="form-control input-style" id="username" placeholder="Nicknév" formControlName="username" required>
+                <span class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok': registrationForm.get('username').valid && registrationForm.get('username').touched }"></span>
+                <span *ngIf="!registrationForm.get('username').valid && registrationForm.get('username').touched" class="help-block">Please enter a username!</span>
             </div>
             <div class="form-group has-success has-feedback">
                 <input type="email" class="form-control input-style" id="email" placeholder="Email (ezzel fogsz tudni belépni az oldalra)" formControlName="email" required>
@@ -40,5 +34,24 @@
             </div>
             <button type="submit" class="btn btn-default" [disabled]="!registrationForm.valid">Regisztrálok</button>
         </form>
+    </div>
+</div>
+
+<!-- Modal Group-->
+<div class="modal fade" id="regmodal" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Sikeres regisztráció</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row text-center">
+                    <h3>Sikeresen regisztáltál a játékba!</h3>
+                    <p>Az email címedre elküldtük a bejelentkezéshez szükséges adataidat (ha elfelejtenéd).</p>
+                    <button type="button" class="btn btn-default loginbtn" (click)="toLogin()">Bejelentkezés</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

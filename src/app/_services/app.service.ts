@@ -5,7 +5,9 @@ import { Http, Response } from '@angular/http';
 export class AppService {
   BaseURL: string = "http://beerlak.com";
   clientSetting: any;
-  favoritTeamFactor: number = 2;
+  favoritTeamFactor: number;
+  wcwinnerplus: number;
+  disabledTeamsSave: Boolean;
 
   constructor(private http: Http) { }
 
@@ -43,6 +45,9 @@ export class AppService {
         .then(x => {
           let resp = x.json();
           this.clientSetting = resp;
+          this.favoritTeamFactor = resp["favoritTeamFactor"] as number;
+          this.wcwinnerplus = resp["wcwinnerplus"] as number;
+          this.disabledTeamsSave = resp["disabledTeamsSave"] as Boolean;
           resolve()
         })
         .catch(err => {

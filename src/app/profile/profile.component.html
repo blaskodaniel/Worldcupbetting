@@ -54,9 +54,16 @@
                 <label for="fullname">Teljes nevem</label>
                 <input type="text" class="form-control input-style" [(ngModel)]="fullname" name="fullname" placeholder="Teljes név">
             </div>
-            <div class="form-group col-xs-12 col-sm-4 mb-xs mb-sm">
-                <label for="teamid">Kedvenc csapatom</label>
-                <select class="form-control input-style select-style" [(ngModel)]="teamid" name="teamid" required>
+            <div class="form-group col-xs-12 col-sm-3 mb-xs mb-sm">
+                <label for="teamid">Kedvenc csapatom ({{appsettings.favoritTeamFactor}}×)</label>
+                <select class="form-control input-style select-style" [(ngModel)]="teamid" name="teamid" [disabled]="disabledTeamsSave" required>
+                    <option *ngFor="let team of teams" [ngValue]="team._id">{{team.name}}</option>
+                </select>
+                <small id="emailHelp" class="form-text text-muted">Az VB első mérkőzésének kezdési időpontjáig módosítható.</small>
+            </div>
+            <div class="form-group col-xs-12 col-sm-3 mb-xs mb-sm">
+                <label for="teamid">VB győztes (+{{appsettings.wcwinnerplus}} pont)</label>
+                <select class="form-control input-style select-style" [(ngModel)]="winteamid" name="winteamid" [disabled]="disabledTeamsSave" required>
                     <option *ngFor="let team of teams" [ngValue]="team._id">{{team.name}}</option>
                 </select>
                 <small id="emailHelp" class="form-text text-muted">Az VB első mérkőzésének kezdési időpontjáig módosítható.</small>
@@ -65,8 +72,31 @@
                 <label for="username">Felhasználónevem</label>
                 <input type="text" class="form-control input-style" [(ngModel)]="username" name="username" placeholder="Felhasználónév">
             </div>
-            <div class="form-group col-xs-12 col-sm-2 text-center profileButton">
-                <button class="btn btn-primary" type="submit">Mentés</button>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group col-xs-12 col-sm-2 text-center profileButton">
+                    <button class="btn btn-primary" type="submit">Mentés</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<hr />
+<div class="row issueform">
+    <form #helpform="ngForm" (ngSubmit)="helpSave(helpform.value)">
+        <div class="form-row">
+            <div class="form-group col-xs-12 mb-xs mb-sm">
+                <label for="issuemsg">Észrevételeidet, kéréseidet, weboldallal kapcsolatos hibákat itt jelezheted nekem:</label>
+                <textarea class="form-control issuetextarea" [(ngModel)]="issuemsg" name="issuemsg" rows="5"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group col-xs-12 col-sm-2 text-center profileButton">
+                    <button class="btn btn-primary" type="submit">Küldés</button>
+                </div>
             </div>
         </div>
     </form>

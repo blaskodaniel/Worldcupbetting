@@ -173,6 +173,10 @@ input.max130px {
     font-size: 20px;
 }
 
+.width100 {
+    width: 100px;
+}
+
 @media only screen and (max-width: 450px) {
     .float-left {
         float: left !important;

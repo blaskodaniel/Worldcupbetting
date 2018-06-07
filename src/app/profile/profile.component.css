@@ -247,6 +247,11 @@ img.result {
     background-color: #2d2d306b;
 }
 
+.issueform {
+    padding: 10px 0px;
+    background-color: #2d2d306b;
+}
+
 .input-style {
     border: none;
     color: #f8f8f8;
@@ -265,7 +270,18 @@ img.result {
 
 .profileButton {
     height: 100%;
+    width: 100%;
     margin-top: 32px;
+}
+
+.profileButton button {
+    min-width: 120px;
+}
+
+.issuetextarea {
+    color: white;
+    border: 0;
+    background-color: #2c443e;
 }
 
 

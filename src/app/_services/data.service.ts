@@ -197,9 +197,10 @@ export class DataService {
         return this.httpclient.patch(`${this.BaseURL}/api/group/${group._id}`, group);
     }
 
-    saveProfil(userid:String,fullname:String,username:String,teamid:String){
+    saveProfil(userid:String,fullname:String,username:String,teamid:String,winteamid:String){
         // Save user's profile
-        return this.httpclient.patch(`${this.BaseURL}/api/profil/${userid}`, {name:fullname,username:username,teamid:teamid});
+        return this.httpclient.patch(`${this.BaseURL}/api/profil/${userid}`, 
+        {name:fullname,username:username,teamid:teamid,winteamid:winteamid});
     }
 
     deleteTeam(team) {
@@ -251,6 +252,10 @@ export class DataService {
         return this.httpclient.post(`${this.BaseURL}/api/attachmatch`,{externalmatch:externalmatch,match:match})
         .pipe(catchError(err => this.errorHTTPHandler(err, 10, "[attachMatchToGame] Hiba")))
         .map((x:Response)=>x);
+    }
+
+    sendissue(msg,userid){
+        return this.httpclient.post(`${this.BaseURL}/api/sendissue`,{msg:msg,userid:userid});
     }
 
     // Error handler function

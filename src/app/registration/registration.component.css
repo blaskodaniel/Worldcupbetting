@@ -58,3 +58,20 @@ select option {
     height: 66px;
     border: 1px solid black;
 }
+
+#regmodal h3 {
+    margin: 10px 0 30px 0;
+    letter-spacing: 1px;
+    font-size: 20px;
+    text-align: center;
+    color: #00ffaf;
+}
+
+#regmodal p {
+    text-align: center;
+    color: white;
+}
+
+#regmodal button.loginbtn {
+    margin-top: 20px;
+}

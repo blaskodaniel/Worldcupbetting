@@ -44,7 +44,7 @@
                         <tr *ngFor="let i = index;let item of matches | orderBy: OrderKey : OrderReverse | filter:search">
                             <td class="hidden-xs">{{i+1}}</td>
                             <td class="hidden">{{item._id}}</td>
-                            <td>
+                            <td class="width100">
                                 {{item.teamA.name}}
                                 <p class="no-margin">
                                     <small>
@@ -54,7 +54,7 @@
                                 </p>
                                 <p>externalID: {{item?.externalID}}</p>
                             </td>
-                            <td>
+                            <td class="width100">
                                 {{item.teamB.name}}
                                 <p class="no-margin">
                                     <small>
@@ -123,10 +123,14 @@
                         TYPE:
                     </p>
                     <ul>
-                        <li>0- 1.csoportkör</li>
-                        <li>1- 1.csoportkör</li>
-                        <li>2- 2.csoportkör</li>
-                        <li>1-kieséses szakasz</li>
+                        <li>0 - 1.csoportkör</li>
+                        <li>1 - 2.csoportkör</li>
+                        <li>2 - 3.csoportkör</li>
+                        <li>3 - Nyolcaddöntő</li>
+                        <li>4 - Negyeddöntő</li>
+                        <li>5 - Elődöntő</li>
+                        <li>6 - A 3. helyért</li>
+                        <li>7 - Döntő</li>
                     </ul>
                 </div>
             </div>
@@ -157,7 +161,7 @@
                     </select>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control input-style" id="date" placeholder="Dátum" formControlName="date" required>
+                        <input type="text" class="form-control input-style" id="date" placeholder="ÉÉÉÉ-HH-NN óó:pp:mm" formControlName="date" required>
                     </div>
                     <button type="submit" class="btn btn-default float-right" [disabled]="!addNewForm.valid">Létrehoz</button>
                 </form>
