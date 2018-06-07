@@ -29,6 +29,7 @@ export class MycouponsComponent implements OnInit {
   stat_winCoupon: number;
   stat_loseCoupon: number;
   teams: Team[];
+  oddsList: number[] = [];
   favoritTeamFactor = this.appService.favoritTeamFactor;
 
   constructor(private dataservice: DataService, private authservice: AuthService, private appService: AppService,
@@ -48,6 +49,11 @@ export class MycouponsComponent implements OnInit {
   }
 
   async ngOnInit() {
+    for(let i = 200; i<2001;i++){
+      if(i%100 == 0){
+        this.oddsList.push(i);
+      }
+    }
     if ($("#myNavbar").hasClass("in")) {
       $('.navbar-toggle').click();
     }

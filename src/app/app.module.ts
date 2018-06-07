@@ -48,6 +48,7 @@ import { ExternalApiComponent } from './dashboard/external-api/external-api.comp
 import { PlayedmatchesComponent } from './playedmatches/playedmatches.component';
 import { MycouponsComponent } from './mycoupons/mycoupons.component';
 import { TeamdataComponent } from './teamdata/teamdata.component';
+import { DateToTimestamp } from './_pipes/dateToTimestamp';
 
 // APP_INITIALIZER injection token
 export function init_app(service: AppService){
@@ -74,6 +75,7 @@ export function loadSetting(service: AppService){
     TeamsgroupsComponent,
     ProfileComponent,
     TimestampToDate,
+    DateToTimestamp,
     sortPlayersByNum,
     ToTeamName,
     MatchesComponent,

@@ -8,7 +8,14 @@
         </button>
     </h2>
 </div>
-
+<div class="row">
+    <div class="col-xs-6">
+        <input type="text" class="form-control input-style" placeholder="ÉÉÉÉ-HH-NN óó:pp:mm" [(ngModel)]="datetimeinput">
+    </div>
+    <div class="col-xs-6">
+        <p class="colorWhite">{{datetimeinput | dateToTimestamp}}</p>
+    </div>
+</div>
 <!-- Matches -->
 <div class="row">
     <div class="col-xs-12">

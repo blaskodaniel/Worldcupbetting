@@ -42,9 +42,9 @@ export class HomeComponent implements OnInit {
   currentTeam:String;
   currentTeamID:String;
   favoritTeamFactor = this.appService.favoritTeamFactor;
-
   error_status:boolean = false;
   error_msg:string = "";
+  oddsList: number[] = [];
 
   constructor(private dataservice:DataService,public authservice:AuthService,private appService: AppService,
     private route: Router,private activatedRoute:ActivatedRoute,
@@ -54,6 +54,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(){
+    for(let i = 200; i<2001;i++){
+      if(i%100 == 0){
+        this.oddsList.push(i);
+      }
+    }
     if($("#myNavbar").hasClass("in")){
       $('.navbar-toggle').click();
     }
@@ -85,7 +90,7 @@ export class HomeComponent implements OnInit {
             return x;
           }
         })
-        let openPart = 0;
+        let openPart = -1;
 
         let index = 0;
         this.ActiveMatchesGroupby.map(w=>{
@@ -139,7 +144,7 @@ export class HomeComponent implements OnInit {
 
   CreateCoupon(teamAid,teamBid,matchid){
     if(this.authservice.isAuthenticated()){
-      if(this.betvalue > 0){
+      if(this.betvalue > 199 && this.betvalue < 2001){
         console.log("Fogadás mentése");
         this.newCoupon = {
           bet:this.betvalue, // mennyi pontot tett fel
@@ -173,7 +178,8 @@ export class HomeComponent implements OnInit {
           }
         )
       }else{
-        this.toastr.error('Minimum 1 pontot fel kell raknod!','Hiba',{positionClass:"toast-bottom-left"});
+        console.log("egweg");
+        this.toastr.error('Minimum 200 maximum 2000 pontot tehetsz fel!','Hiba',{positionClass:"toast-bottom-left"});
       }
     }else{
       this.ModalClose();

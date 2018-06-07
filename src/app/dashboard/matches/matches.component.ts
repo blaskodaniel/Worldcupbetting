@@ -17,6 +17,7 @@ export class MatchesComponent implements OnInit {
   search:string;
   OrderKey:string = 'date';
   OrderReverse:boolean = false;
+  datetimeinput:number;
   // FromGroups:
   addNewForm:FormGroup;
 

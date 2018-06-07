@@ -74,13 +74,16 @@ export class UsersComponent implements OnInit {
   }
 
   DeleteUser(user){
-    console.log(user);
-    this.dataservice.deleteUser(user).subscribe(
-      (x)=>{
-        this.toastr.success('Sikeres Törlés!', 'Üzenet');
-        this.getusers();
-      }
-    )
+    if(window.confirm("Biztosan törlöd a felhasználót?")){
+      console.log(user);
+      this.dataservice.deleteUser(user).subscribe(
+        (x)=>{
+          this.toastr.success('Sikeres Törlés!', 'Üzenet');
+          this.getusers();
+        }
+      )
+    }
+    
   }
 
 }
