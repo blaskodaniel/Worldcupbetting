@@ -21,11 +21,14 @@ import { HomeResolver } from './_resolvers/home.resolver';
 import { PlayedmatchesComponent } from './playedmatches/playedmatches.component';
 import { MycouponsComponent } from './mycoupons/mycoupons.component';
 import { TeamdataComponent } from './teamdata/teamdata.component';
+import { RulesComponent } from './rules/rules.component';
+import { UploadexcelComponent } from './dashboard/uploadexcel/uploadexcel.component';
 
 const appRoutes:Routes = [
     {path:'', redirectTo:'/home', pathMatch:'full'},
     {path:'home', component:HomeComponent, resolve:{matches:HomeResolver}},
     {path:'playedmatch', component:PlayedmatchesComponent},
+    {path:'rules', component:RulesComponent},
     {path:'team/:id', component:TeamdataComponent},
     {path:'profile',component:ProfileComponent, canActivate:[GuardService]},
     {path:'mycoupons',component:MycouponsComponent, canActivate:[GuardService]},
@@ -33,6 +36,7 @@ const appRoutes:Routes = [
     {path:'teamsgroups', component:TeamsgroupsComponent, canActivate:[GuardService,EditorGuardService]},
     {path:'admincoupons', component:CouponsComponent, canActivate:[GuardService,EditorGuardService]},
     {path:'extarnalAPI', component:ExternalApiComponent, canActivate:[GuardService,EditorGuardService]},
+    {path:'fileupload', component:UploadexcelComponent, canActivate:[GuardService,AdminGuardService]},
     {path:'logs', component:LogsComponent, canActivate:[GuardService,AdminGuardService]},
     {path:'matches', component:MatchesComponent,canActivate:[GuardService,EditorGuardService]},
     {path:'registration', component:RegistrationComponent},

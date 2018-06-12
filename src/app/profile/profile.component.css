@@ -262,6 +262,10 @@ img.result {
     color: white;
 }
 
+.profilform {
+    padding: 20px
+}
+
 .form-group small {
     color: #d0c0c0;
     font-size: 11px;

@@ -197,10 +197,12 @@ export class DataService {
         return this.httpclient.patch(`${this.BaseURL}/api/group/${group._id}`, group);
     }
 
-    saveProfil(userid:String,fullname:String,username:String,teamid:String,winteamid:String){
+    saveProfil(userid:String,fullname:String,username:String,teamid:String,winteamid:String,
+        groupA:String, groupB:String, groupC:String, groupD:String, groupE:String, groupF:String, groupG:String, groupH:String){
         // Save user's profile
         return this.httpclient.patch(`${this.BaseURL}/api/profil/${userid}`, 
-        {name:fullname,username:username,teamid:teamid,winteamid:winteamid});
+        {name:fullname,username:username,teamid:teamid,winteamid:winteamid,
+            groupA:groupA, groupB:groupB, groupC:groupC,groupD:groupD, groupE:groupE, groupF:groupF,groupG:groupG,groupH:groupH});
     }
 
     deleteTeam(team) {
@@ -256,6 +258,10 @@ export class DataService {
 
     sendissue(msg,userid){
         return this.httpclient.post(`${this.BaseURL}/api/sendissue`,{msg:msg,userid:userid});
+    }
+
+    fileUpload(file){
+        return this.httpclient.post(`${this.BaseURL}/api/fileupload`,{file:file});
     }
 
     // Error handler function

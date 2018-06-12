@@ -29,3 +29,10 @@ a {
 .redBg {
     background-color: #902525;
 }
+
+.version {
+    position: absolute;
+    color: #a08282;
+    top: 30px;
+    left: 18px;
+}

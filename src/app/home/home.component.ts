@@ -91,7 +91,9 @@ export class HomeComponent implements OnInit {
           }
         })
         let openPart = -1;
-
+        if(this.TodayMatches.length == 0){
+          openPart = 0;
+        }
         let index = 0;
         this.ActiveMatchesGroupby.map(w=>{
           if(index === openPart){

@@ -49,6 +49,9 @@ import { PlayedmatchesComponent } from './playedmatches/playedmatches.component'
 import { MycouponsComponent } from './mycoupons/mycoupons.component';
 import { TeamdataComponent } from './teamdata/teamdata.component';
 import { DateToTimestamp } from './_pipes/dateToTimestamp';
+import { teamsByGroup } from './_pipes/teamsByGroup';
+import { RulesComponent } from './rules/rules.component';
+import { UploadexcelComponent } from './dashboard/uploadexcel/uploadexcel.component';
 
 // APP_INITIALIZER injection token
 export function init_app(service: AppService){
@@ -77,6 +80,7 @@ export function loadSetting(service: AppService){
     TimestampToDate,
     DateToTimestamp,
     sortPlayersByNum,
+    teamsByGroup,
     ToTeamName,
     MatchesComponent,
     FinishmatchComponent,
@@ -87,7 +91,9 @@ export function loadSetting(service: AppService){
     ExternalApiComponent,
     PlayedmatchesComponent,
     MycouponsComponent,
-    TeamdataComponent
+    TeamdataComponent,
+    RulesComponent,
+    UploadexcelComponent
   ],
   imports: [
     BrowserModule,

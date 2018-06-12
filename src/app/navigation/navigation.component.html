@@ -6,6 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>                        
             </button>
+            <span class="version hidden">ver. 1.1</span>
             <a class="navbar-brand" href="#">VB2018</a>
             <p *ngIf="authservice.isAuthenticated()" class="navbar-text score">{{userscore | number:'1.0-1'}} p</p>
         </div>
@@ -13,6 +14,7 @@
             <ul class="nav navbar-nav">
                 <li routerLinkActive="active"><a routerLink="/home">Mérkőzések</a></li>
                 <li routerLinkActive="active"><a routerLink="/playedmatch">Lejátszott</a></li>
+                <li routerLinkActive="active"><a routerLink="/rules">Szabályok</a></li>
                 <li routerLinkActive="active" *ngIf="authservice.isAuthenticated()"><a routerLink="/profile">Profilom</a></li>
                 <li routerLinkActive="active" *ngIf="authservice.isAuthenticated()"><a routerLink="/mycoupons">Fogadásaim</a></li>
                 <li class="dropdown redBg" *ngIf="authservice.isAdminOrEditor()">
@@ -25,6 +27,7 @@
                         <li routerLinkActive="active"><a routerLink="/extarnalAPI">ExtarnalAPI</a></li>
                         <li role="separator" class="divider"></li>
                         <li routerLinkActive="active"><a routerLink="/admincoupons">Coupons</a></li>
+                        <li routerLinkActive="active"><a routerLink="/fileupload">File upload</a></li>
                         <li role="separator" class="divider"></li>
                         <li routerLinkActive="active" *ngIf="authservice.isAdmin()"><a routerLink="/logs">Logs</a></li>
                     </ul>

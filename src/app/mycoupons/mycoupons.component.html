@@ -23,12 +23,12 @@
                     <p class="list-group-item-text">Feltett pont: {{c.bet}} pont</p>
                     <p class="list-group-item-text">Tipped: {{c.outcome}} ({{c.outcome=="1"?c.teamA:(c.outcome=="2"?c.teamB:"Döntetlen")}})</p>
                     <p class="list-group-item-text">Szorzó: {{c.odds}}</p>
-                    <p class="list-group-item-text win">Nyereményed: {{c.result | number:'1.1'}} p
+                    <p class="list-group-item-text win">Ennyit nyerhetsz: {{c.result-c.bet | number:'1.1'}} p
                         <span [ngClass]="{'hidden':!c.favoriteTeam}">× {{favoritTeamFactor}} = {{c.win | number:'1.1'}} p</span></p>
                 </div>
                 <div class="col-xs-6 buttons">
-                    <button class="btn btn-save" (click)="openModal(c)">Módosít</button>
-                    <button class="btn btn-remove" (click)="removeCoupon(c)">Töröl</button>
+                    <button class="btn btn-save" *ngIf="c.matchid.active == 0" (click)="openModal(c)">Módosít</button>
+                    <button class="btn btn-remove" *ngIf="c.matchid.active == 0" (click)="removeCoupon(c)">Töröl</button>
                 </div>
             </div>
         </a>
@@ -64,8 +64,9 @@
                     <p class="list-group-item-text">Feltett pont: {{c.bet}} pont</p>
                     <p class="list-group-item-text">Tipped: {{c.outcome}} ({{c.outcome=="1"?c.teamA:(c.outcome=="2"?c.teamB:"Döntetlen")}})</p>
                     <p class="list-group-item-text">Szorzó: {{c.odds}}</p>
-                    <p class="list-group-item-text win">Nyereményed: {{c.result | number:'1.0-1'}} p
+                    <p class="list-group-item-text win" *ngIf="c.success">Nyereményed: {{c.result | number:'1.0-1'}} p
                         <span [ngClass]="{'hidden':!c.favoriteTeam}">× {{favoritTeamFactor}} = {{c.win | number:'1.0-1'}} p</span></p>
+                    <p class="list-group-item-text win" *ngIf="!c.success">Veszteség: -{{c.bet | number:'1.0-1'}} p</p>
                 </div>
             </div>
         </a>

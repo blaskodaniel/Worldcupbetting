@@ -141,6 +141,7 @@ table>thead {
 
 .btn-remove {
     background-color: #d21b1b;
+    margin-top: 15px;
 }
 
 .btn-remove:hover {
@@ -186,7 +187,7 @@ span.status {
     position: relative;
     float: right;
     top: -11px;
-    left: 17px;
+    left: 15px;
     padding-left: 10px;
     background-color: #27191980;
 }

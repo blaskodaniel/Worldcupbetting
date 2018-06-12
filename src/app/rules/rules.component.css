@@ -1,0 +1,15 @@
+h3,
+h2,
+p,
+li {
+    color: white
+}
+
+h3 {
+    letter-spacing: 4px;
+}
+
+.italic {
+    font-style: italic;
+    font-size: 11px;
+}

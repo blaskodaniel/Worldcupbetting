@@ -1,0 +1,9 @@
+<p class="colorwhite">Még nem működik, de rajta vagyok</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="excelfile">Excel fájl feltöltése</label>
+        <input type="file" id="excelfile" (change)="onFileChange($event)" #fileInput>
+        <button type="button" class="btn btn-xs btn-default clearbtn" (click)="clearFile()">Fájl törlése</button>
+    </div>
+    <button type="submit" [disabled]="form.invalid || loading" class="btn btn-success uploadbtn">Feltöltés <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
+</form>

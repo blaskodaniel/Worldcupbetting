@@ -39,7 +39,7 @@
 
 .news-list .news-item-info,
 .users-list .news-item-info {
-    margin-left: 62px;
+    margin-left: 54px;
     color: black;
 }
 
@@ -90,12 +90,15 @@ a {
 
 .name {
     font-size: 17px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .positionNumber {
     font-size: 16px;
     color: white;
-    padding: 0px 22px;
+    padding: 0px 10px;
     background: #213c51;
     margin-left: -25px;
     margin-right: -12px;

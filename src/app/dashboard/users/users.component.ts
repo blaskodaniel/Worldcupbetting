@@ -3,6 +3,7 @@ import { contenteditableDirective } from '../../_directives/contenteditable.dire
 import { DataService } from '../../_services/data.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Coupon } from '../../_interfaces/coupon';
 
 @Component({
   selector: 'app-users',
