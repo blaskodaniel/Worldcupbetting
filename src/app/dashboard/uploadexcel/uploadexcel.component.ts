@@ -1,7 +1,9 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from '../../_services/data.service';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { AuthService } from '../../_services/auth.service';
+import { RequestOptions } from '@angular/http';
 
 @Component({
   selector: 'app-uploadexcel',
@@ -14,7 +16,8 @@ export class UploadexcelComponent implements OnInit {
 
   @ViewChild('fileInput') fileInput: ElementRef;
 
-  constructor(private fb: FormBuilder, private dataservice:DataService) { 
+  constructor(private fb: FormBuilder, private dataservice:DataService, public toastr: ToastsManager, vcr: ViewContainerRef) { 
+    this.toastr.setRootViewContainerRef(vcr); 
     this.createForm();
   }
 
@@ -45,19 +48,39 @@ export class UploadexcelComponent implements OnInit {
   onSubmit() {
     const formModel = this.form.value;
     this.loading = true;
-    // In a real-world app you'd have a http request / service call here like
-    // this.http.post('apiUrl', formModel)
     this.dataservice.fileUpload(formModel).subscribe(
       x=>{
-        console.log(x);
+        console.log(x["_body"]);
+        let msg = JSON.parse(x["_body"]);
+        this.toastr.success(msg.msg);
         this.loading = false;
       },
       err=>{
         console.log(err);
+        this.toastr.error("Sikertelen fájlfeltöltés!");
         this.loading = false;
       }
     )
   }
+
+  fileChange2(event) {
+    let fileList: FileList = event.target.files;
+    if(fileList.length > 0) {
+        let file: File = fileList[0];        
+        let formData:FormData = new FormData();
+        formData.append('uploadFile', file, file.name);
+        this.dataservice.fileUpload(formData).subscribe(
+          x=>{
+            console.log(x);
+            //this.loading = false;
+          },
+          err=>{
+            console.log(err);
+            //this.loading = false;
+          }
+        )
+    }
+}
 
   clearFile() {
     this.form.get('excelfile').setValue(null);

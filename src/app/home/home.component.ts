@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   ActiveMatchesGroupby = [];
   ResolverMatch:Match[] = [];
   UsersCoupons:Coupon[] = [];
+  excelimage ="./assets/icons/excel.png";
   favoritepath = "./assets/icons/favorite.png";
   arrow_up = "./assets/icons/arrow_up.png";
   arrow_down = "./assets/icons/arrow_down.png";
@@ -45,9 +46,10 @@ export class HomeComponent implements OnInit {
   error_status:boolean = false;
   error_msg:string = "";
   oddsList: number[] = [];
+  update:String;;
 
   constructor(private dataservice:DataService,public authservice:AuthService,private appService: AppService,
-    private route: Router,private activatedRoute:ActivatedRoute,
+    private route: Router,private activatedRoute:ActivatedRoute, private appsettings: AppService,
     public toastr: ToastsManager, vcr: ViewContainerRef) { 
     this.toastr.setRootViewContainerRef(vcr);
     moment.locale("hu");
@@ -65,6 +67,18 @@ export class HomeComponent implements OnInit {
     this.ResolverMatch = this.activatedRoute.snapshot.data['matches'];
     this.loadMatchList();
     this.getUser();
+    this.getExcelDate();
+  }
+
+  getExcelDate(){
+    this.dataservice.getExcelDate().subscribe(
+      x=>{
+        var result = JSON.parse(x["_body"]);
+        if(result.msg != "no"){
+          this.update = moment(result.msg).fromNow();
+        }
+      }
+    )
   }
 
   openstage(){
@@ -79,14 +93,14 @@ export class HomeComponent implements OnInit {
   };
 
   loadMatchList(){
-    this.dataservice.getMatches("?active=0&active=1").subscribe(
+    this.dataservice.getMatches("?active=0&active=1&active=2").subscribe(
       (response:Match[])=>{
         this.ActiveMatches = response;
         this.sortBy();
         this.ActiveMatchesGroupby = this.groupby(this.ActiveMatches, 'type');
         
         this.TodayMatches = this.ActiveMatches.filter(x=>{
-          if(moment(parseInt(x.date)).format("YYYYMMDD") == this.today_moment){
+          if(moment(parseInt(x.date)).format("YYYYMMDD") == this.today_moment || x.active == 1){
             return x;
           }
         })
@@ -204,7 +218,7 @@ export class HomeComponent implements OnInit {
   }
 
   openModal(betinfo:Betinfo,match){
-    if(!match.blocked){
+    if(!match.blocked && this.authservice.isAuthenticated()){
       this.currentMatch = match;
       this.currentTeam = betinfo.selectedTeam;
       this.currentTeamID = betinfo.selectedTeamID;
@@ -213,6 +227,10 @@ export class HomeComponent implements OnInit {
       this.betvalue = null;
       console.log(betinfo.selectedTeam);
       $("#betModal").modal();
+    }else{
+      if(!this.authservice.isAuthenticated()){
+        this.route.navigate(['/login']);
+      }
     }
     
   }

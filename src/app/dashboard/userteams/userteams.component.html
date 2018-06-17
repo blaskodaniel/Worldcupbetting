@@ -1,0 +1,51 @@
+<h2>Felhasznló információk</h2>
+<p>Itt láthatóak a felhasználók által választott csapatok meg minden infó {{teszt?.name}}</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Felhasználónév</th>
+            <th>Email</th>
+            <th>Szelvények száma</th>
+            <th>Kedvenc csapat</th>
+            <th>Világbajnok</th>
+            <th>Csoportgyőztesek</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let i = index;let user of users">
+            <td>{{(i+1)}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user?.couponlength}}</td>
+            <td>{{user.teamid?.name}}</td>
+            <td>{{user.winteamid?.name}}</td>
+            <td>
+                <p>A:
+                    <span *ngFor="let k of user.groupAteam">{{k?.name}}</span>
+                </p>
+                <p>B:
+                    <span *ngFor="let k of user.groupBteam">{{k?.name}}</span>
+                </p>
+                <p>C:
+                    <span *ngFor="let k of user.groupCteam">{{k?.name}}</span>
+                </p>
+                <p>D:
+                    <span *ngFor="let k of user.groupDteam">{{k?.name}}</span>
+                </p>
+                <p>E:
+                    <span *ngFor="let k of user.groupEteam">{{k?.name}}</span>
+                </p>
+                <p>F:
+                    <span *ngFor="let k of user.groupFteam">{{k?.name}}</span>
+                </p>
+                <p>G:
+                    <span *ngFor="let k of user.groupGteam">{{k?.name}}</span>
+                </p>
+                <p>H:
+                    <span *ngFor="let k of user.groupHteam">{{k?.name}}</span>
+                </p>
+            </td>
+        </tr>
+    </tbody>
+</table>

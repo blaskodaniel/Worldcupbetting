@@ -99,4 +99,12 @@ export class MatchesComponent implements OnInit {
     }
   }
 
+  usercalculate(){
+    this.dataservice.scoreCalculate().subscribe(
+      x=>{
+        this.toastr.success("Felhasználók pontjai frissítve");
+      }
+    )
+  }
+
 }

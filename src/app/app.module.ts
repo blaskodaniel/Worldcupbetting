@@ -52,6 +52,10 @@ import { DateToTimestamp } from './_pipes/dateToTimestamp';
 import { teamsByGroup } from './_pipes/teamsByGroup';
 import { RulesComponent } from './rules/rules.component';
 import { UploadexcelComponent } from './dashboard/uploadexcel/uploadexcel.component';
+import { DownloadpageComponent } from './downloadpage/downloadpage.component';
+import { UserteamsComponent } from './dashboard/userteams/userteams.component';
+import { MaintoplistComponent } from './maintoplist/maintoplist.component';
+import { UserbetsComponent } from './userbets/userbets.component';
 
 // APP_INITIALIZER injection token
 export function init_app(service: AppService){
@@ -93,7 +97,11 @@ export function loadSetting(service: AppService){
     MycouponsComponent,
     TeamdataComponent,
     RulesComponent,
-    UploadexcelComponent
+    UploadexcelComponent,
+    DownloadpageComponent,
+    UserteamsComponent,
+    MaintoplistComponent,
+    UserbetsComponent
   ],
   imports: [
     BrowserModule,

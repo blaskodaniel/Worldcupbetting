@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Http, Headers, Response, RequestOptionsArgs, RequestOptions } from '@angular/http';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
@@ -15,6 +15,7 @@ import { ErrorHTTP } from '../_models/errorhttp.model';
 import { Coupon } from '../_interfaces/coupon';
 import { ServerResponse } from '../_interfaces/serverResponse';
 import { ExtAPIMatch } from '../_models/extapimatch';
+import { Team } from '../_models/team.model';
 
 @Injectable()
 export class DataService {
@@ -22,15 +23,23 @@ export class DataService {
     private headers: Headers;
     private noautheaders: Headers;
     private noauthoptions: RequestOptions;
+    private fileuploadheader: Headers;
     private Loged: boolean = false;
     private secretToken: string;
     private BaseURL: string = "http://beerlak.com";
+
+    private httpOptionsforupload = {
+        headers: new HttpHeaders({
+          'enctype':  'multipart/form-data'
+        })
+      };
 
     scoreSubject = new Subject<Number>();
 
     constructor(private http: Http, private httpclient: HttpClient) {
         this.noautheaders = new Headers({ 'Content-Type': 'application/json' });
         this.noauthoptions = new RequestOptions({ headers: this.noautheaders });
+        this.fileuploadheader = new Headers({ 'enctype':'multipart/form-data' });
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/json');
         this.headers.append('x-access-token', localStorage.getItem('token'));
@@ -111,6 +120,13 @@ export class DataService {
         return this.http.get(`${this.BaseURL}/getteams`, this.noauthoptions);
     }
 
+    getTeamsTypeWithAuth(): Observable<Team[] | ErrorHTTP> {
+        // Get Teams
+        return this.httpclient.get<Team[]>(`${this.BaseURL}/api/getteams`).pipe(
+            catchError(err=>this.errorHTTPHandler(err,25,"Hiba a teamek letöltése közben"))
+        );;
+    }
+
     getTeamById(teamid) {
         // Get Team
         let obj = {};
@@ -153,6 +169,10 @@ export class DataService {
         );
     }
 
+    getAllUsersWithIds(){
+        return this.httpclient.get(`${this.BaseURL}/api/getuserteams?role=user`);
+    }
+
     updateCoupon(coupon:Coupon):Observable<ServerResponse | ErrorHTTP>{
         return this.httpclient.patch(`${this.BaseURL}/api/coupon/${coupon._id}`, coupon)
         .pipe(
@@ -161,6 +181,15 @@ export class DataService {
             (x: ServerResponse) => x
         );
     }
+
+    getUserBetsByMatchId(matchid:String): Observable<Coupon[] | ErrorHTTP>{
+        return this.httpclient.get(`${this.BaseURL}/api/userbets/${matchid}`)
+        .pipe(
+            catchError(err=>this.errorHTTPHandler(err,84,"Hiba a getUserBetsByMatchId közben"))
+        ).map(
+            (x:Coupon[]) => x
+        )
+    };
 
     getCouponsByUserIs(userid) {
         // Get coupons by user id (http://beerlak.com/api/coupons/all/:id)
@@ -230,6 +259,16 @@ export class DataService {
             );
     }
 
+    scoreCalculate(): Observable<any | ErrorHTTP> {
+        // Get All match
+        return this.httpclient.get(`${this.BaseURL}/api/scorecalculate`)
+            .pipe(
+                catchError(err => this.errorHTTPHandler(err, 89, "Hiba a scorecalculate közben")))
+            .map(
+                (x: Response) => x.json()
+            );
+    }
+
     getExtAPIMatches(query): Observable<ExtAPIMatch[] | ErrorHTTP> {
         // Import matches and odds from external API (https://api.the-odds-api.com)
         return this.httpclient.get(`${this.BaseURL}/api/getextAPImatches${query}`)
@@ -261,9 +300,19 @@ export class DataService {
     }
 
     fileUpload(file){
-        return this.httpclient.post(`${this.BaseURL}/api/fileupload`,{file:file});
+        const requestOptions = {
+            params: new HttpParams()
+          };
+          
+          requestOptions.params.set('enctype','multipart/form-data');
+          requestOptions.params.set('Accept', 'application/json');
+        // return this.httpclient.post(`${this.BaseURL}/api/fileupload`,file,this.httpOptionsforupload);
+        return this.http.post(`${this.BaseURL}/fileupload`,file,requestOptions);
     }
 
+    getExcelDate(){
+        return this.http.get(`${this.BaseURL}/excelfiledate`);
+    }
     // Error handler function
     private errorHTTPHandler(error: HttpErrorResponse, errornumber: number, msg: string): Observable<ErrorHTTP> {
         let httperror = new ErrorHTTP();

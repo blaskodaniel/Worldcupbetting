@@ -15,6 +15,8 @@
                 <li routerLinkActive="active"><a routerLink="/home">Mérkőzések</a></li>
                 <li routerLinkActive="active"><a routerLink="/playedmatch">Lejátszott</a></li>
                 <li routerLinkActive="active"><a routerLink="/rules">Szabályok</a></li>
+                <li routerLinkActive="active" *ngIf="downloadmenu && authservice.isAuthenticated()"><a routerLink="/download">Táblázat</a></li>
+                <!-- <li routerLinkActive="active" *ngIf="authservice.isAuthenticated()"><a routerLink="/toplist">Toplista</a></li> -->
                 <li routerLinkActive="active" *ngIf="authservice.isAuthenticated()"><a routerLink="/profile">Profilom</a></li>
                 <li routerLinkActive="active" *ngIf="authservice.isAuthenticated()"><a routerLink="/mycoupons">Fogadásaim</a></li>
                 <li class="dropdown redBg" *ngIf="authservice.isAdminOrEditor()">
@@ -27,6 +29,7 @@
                         <li routerLinkActive="active"><a routerLink="/extarnalAPI">ExtarnalAPI</a></li>
                         <li role="separator" class="divider"></li>
                         <li routerLinkActive="active"><a routerLink="/admincoupons">Coupons</a></li>
+                        <li routerLinkActive="active" *ngIf="authservice.isAdmin()"><a routerLink="/userteams">User infos</a></li>
                         <li routerLinkActive="active"><a routerLink="/fileupload">File upload</a></li>
                         <li role="separator" class="divider"></li>
                         <li routerLinkActive="active" *ngIf="authservice.isAdmin()"><a routerLink="/logs">Logs</a></li>
@@ -34,7 +37,7 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li *ngIf="!authservice.isAuthenticated()"><a routerLink="/registration"><span class="glyphicon glyphicon-user"></span> Regisztráció</a></li>
+                <li *ngIf="!authservice.isAuthenticated() && registrationmenu"><a routerLink="/registration"><span class="glyphicon glyphicon-user"></span>Regisztráció</a></li>
                 <li *ngIf="!authservice.isAuthenticated()"><a routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> Bejelentkezés</a></li>
                 <li *ngIf="authservice.isAuthenticated()" (click)="logout()"><a><span class="glyphicon glyphicon-log-out"></span> Kijelentkezés</a></li>
             </ul>

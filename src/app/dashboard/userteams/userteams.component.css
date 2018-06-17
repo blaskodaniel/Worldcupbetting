@@ -1,0 +1,20 @@
+h1,
+h2,
+h3,
+p,
+span {
+    color: white;
+}
+
+table tbody tr td {
+    color: black;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #2c9c72;
+}
+
+table thead tr {
+    background-color: aliceblue;
+    border-bottom: 3px solid #964e4e;
+}

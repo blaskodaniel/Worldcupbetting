@@ -3,6 +3,25 @@
     margin-top: 0;
     padding: 12px 17px;
     border-radius: 0 0 3px 3px;
+    max-height: 647px;
+    overflow-y: auto;
+    scroll-behavior: auto;
+}
+
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+::-webkit-scrollbar-button {
+    background: #2c6952;
+}
+
+::-webkit-scrollbar-track-piece {
+    background: #888
+}
+
+::-webkit-scrollbar-thumb {
+    background: #213c51;
 }
 
 .tab-header {
@@ -22,7 +41,7 @@
     padding: 12px;
     margin: 0 -17px;
     cursor: pointer;
-    height: 50px;
+    height: 35px;
     -webkit-transition: background-color 0.2s ease-out;
     -o-transition: background-color 0.2s ease-out;
     transition: background-color 0.2s ease-out;
@@ -33,8 +52,8 @@
 .users-list img,
 .users-list .icon {
     float: left;
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
 }
 
 .news-list .news-item-info,
@@ -85,7 +104,7 @@ a {
 .position {
     color: #feaf14;
     padding: 10px 0;
-    font-size: 15px;
+    font-size: 13px;
 }
 
 .name {
@@ -96,7 +115,7 @@ a {
 }
 
 .positionNumber {
-    font-size: 16px;
+    font-size: 13px;
     color: white;
     padding: 0px 10px;
     background: #213c51;

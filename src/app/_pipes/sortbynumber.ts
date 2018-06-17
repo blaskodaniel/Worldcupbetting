@@ -7,9 +7,9 @@ export class sortPlayersByNum implements PipeTransform {
     transform(array:Array<User>, args:String):Array<User> {
         if(array != undefined){
             array.sort((a:User, b:User)=>{
-                if(a.score > b.score){
+                if(a.nettoscore > b.nettoscore){
                     return -1;
-                }else if(a.score < b.score){
+                }else if(a.nettoscore < b.nettoscore){
                     return 1;
                 }else{
                     return 0;

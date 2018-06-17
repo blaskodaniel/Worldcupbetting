@@ -268,9 +268,30 @@ a:hover {
     background-color: #40556f75;
 }
 
+.userinfo {
+    color: white;
+    padding: 6px 12px;
+    background-color: brown;
+    font-size: 11px;
+}
+
+.userinfo:hover {
+    cursor: pointer;
+}
+
 .runmatch {
     color: white;
     background-color: red;
+}
+
+.toplist {
+    background: rgba(51, 51, 51, 0.425);
+    margin-top: 0;
+    padding: 12px 17px;
+    border-radius: 0 0 3px 3px;
+    max-height: 647px;
+    overflow-y: auto;
+    scroll-behavior: auto;
 }
 
 @media only screen and (max-width: 1200px) {

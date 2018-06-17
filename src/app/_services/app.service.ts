@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { Team } from '../_models/team.model';
+import { DataService } from './data.service';
 
 @Injectable()
 export class AppService {
@@ -8,9 +10,10 @@ export class AppService {
   favoritTeamFactor: number;
   wcwinnerplus: number;
   disabledTeamsSave: Boolean;
+  showDownloadPage: Boolean;
+  enableRegistration: Boolean;
 
-  constructor(private http: Http) { }
-
+  constructor(private http: Http) {}
 
   testDB(): Promise<any> {
     console.log("Database test...");
@@ -48,6 +51,8 @@ export class AppService {
           this.favoritTeamFactor = resp["favoritTeamFactor"] as number;
           this.wcwinnerplus = resp["wcwinnerplus"] as number;
           this.disabledTeamsSave = resp["disabledTeamsSave"] as Boolean;
+          this.showDownloadPage = resp["showDownloadPage"] as Boolean;
+          this.enableRegistration = resp["enableRegistration"] as Boolean;
           resolve()
         })
         .catch(err => {

@@ -19,6 +19,7 @@ export interface User {
     email?: String,
     password?: String,
     score: Number,
+    nettoscore?: Number,
     avatar: String,
     aktiv?: Number,
     role?: String
