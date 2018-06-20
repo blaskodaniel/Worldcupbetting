@@ -1,7 +1,7 @@
 .toplist {
     background: rgba(51, 51, 51, 0.425);
     margin-top: 0;
-    padding: 12px 17px;
+    padding: 9px 2px;
     border-radius: 0 0 3px 3px;
     max-height: 647px;
     overflow-y: auto;
@@ -26,10 +26,12 @@
 
 .tab-header {
     color: white;
+    padding-left: 10px;
+    font-size: 17px;
 }
 
 .news-list {
-    padding-left: 13px;
+    padding-left: 0;
 }
 
 .news-list li,
@@ -39,7 +41,7 @@
     box-sizing: content-box;
     border-top: 1px solid rgba(51, 51, 51, 0.3);
     padding: 12px;
-    margin: 0 -17px;
+    margin: 0 0px;
     cursor: pointer;
     height: 35px;
     -webkit-transition: background-color 0.2s ease-out;
@@ -120,6 +122,23 @@ a {
     padding: 0px 10px;
     background: #213c51;
     margin-left: -25px;
-    margin-right: -12px;
+    margin-right: -14px;
     margin-top: -13px;
+}
+
+.first {
+    background: #65502196;
+}
+
+.second {
+    background: #4e5a35a6;
+}
+
+.third {
+    background: #4e5a354f;
+}
+
+.medal {
+    width: 15px !important;
+    height: 15px !important;
 }

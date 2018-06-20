@@ -9,6 +9,9 @@ import { DataService } from '../_services/data.service';
 })
 export class ToplistComponent implements OnInit {
   players:User[];
+  gold_medal = "./assets/icons/gold-medal.png";
+  silver_medal = "./assets/icons/silver-medal.png";
+  bronz_medal = "./assets/icons/bronze-medal.png";
 
   constructor(private dataservice:DataService) { }
 

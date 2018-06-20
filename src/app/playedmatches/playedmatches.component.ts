@@ -15,6 +15,7 @@ declare var $: any;
 export class PlayedmatchesComponent implements OnInit {
   PlayedMatches:Match[] = [];
   UsersCoupons:Coupon[] = [];
+  ActiveMatchesGroupby = [];
   arrow_up = "./assets/icons/arrow_up.png";
   arrow_down = "./assets/icons/arrow_down.png";
   accordion1 = false;
@@ -39,6 +40,17 @@ export class PlayedmatchesComponent implements OnInit {
     this.dataservice.getMatches("?active=2").subscribe(
       (response:Match[])=>{
         this.PlayedMatches = response;
+        this.ActiveMatchesGroupby = this.groupby(this.PlayedMatches, 'type');
+        let index = 0;
+        let openPart = 1;
+        this.ActiveMatchesGroupby.map(w=>{
+          if(index === openPart){
+            w.type = false;
+          }else{
+            w.type = true;
+          }
+          index++;
+        });
         if(this.authservice.isAuthenticated()){
           // If the user is log in then load the user's coupons
           this.dataservice.getCouponsByUserIs(this.authservice.getUserId()).subscribe(
@@ -67,5 +79,12 @@ export class PlayedmatchesComponent implements OnInit {
       }
     });
   }
+
+  groupby(xs, key) {
+    return xs.reduce(function(rv, x) {
+      (rv[x[key]] = rv[x[key]] || []).push(x);
+      return rv;
+    }, []);
+  };
 
 }

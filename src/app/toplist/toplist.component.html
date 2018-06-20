@@ -2,9 +2,10 @@
     <div id="stats" class="tab-pane clearfix">
         <h5 class="tab-header"> Toplista</h5>
         <ul class="news-list">
-            <li *ngFor="let akt of players | sortPlayersByNum:'nettoscore'; let i = index">
+            <li *ngFor="let akt of players | sortPlayersByNum:'nettoscore'; let i = index" [ngClass]="{'first':i==0, 'second':i==1, 'third':i==2}">
                 <span class="pull-right positionNumber">{{i+1}}</span>
                 <img src='./assets/img/{{akt.avatar}}' alt="" class="pull-left img-circle">
+                <img *ngIf="i<3" [src]="i==0?gold_medal:(i==1?silver_medal:bronz_medal)" class="medal">
                 <div class="news-item-info">
                     <div class="name"><a>{{akt.username}}</a></div>
                     <div class="position">{{akt.nettoscore | number:'1.0-1'}} pont</div>

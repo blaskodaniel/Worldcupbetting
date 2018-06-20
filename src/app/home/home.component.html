@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="col-xs-12 colorwhite">
                                     <div class="row">
-                                        <app-match [match]="item" (resultClick)="openModal($event,item)"></app-match>
+                                        <app-match [match]="item" (resultClick)="openModal(true,$event,item)"></app-match>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 margin-top10 colorwhite"><span class="location">{{item.location}}</span></div>
@@ -116,7 +116,7 @@
                                     <div class="col-xs-12 margin-bottom10 colorwhite"><span class="datetime">{{item.date | timestampToDate:'MMMM Do dddd, HH:mm'}}</span></div>
                                     <div class="col-xs-12 colorwhite">
                                         <div class="row">
-                                            <app-match [match]="item" (resultClick)="openModal($event,item)"></app-match>
+                                            <app-match [match]="item" (resultClick)="openModal(false,$event,item)"></app-match>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 margin-top10 colorwhite"><span class="location">{{item.location}}</span></div>

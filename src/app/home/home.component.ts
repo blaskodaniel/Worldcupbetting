@@ -46,7 +46,8 @@ export class HomeComponent implements OnInit {
   error_status:boolean = false;
   error_msg:string = "";
   oddsList: number[] = [];
-  update:String;;
+  update:String;
+  isTodayMatchPart: Boolean;
 
   constructor(private dataservice:DataService,public authservice:AuthService,private appService: AppService,
     private route: Router,private activatedRoute:ActivatedRoute, private appsettings: AppService,
@@ -65,7 +66,7 @@ export class HomeComponent implements OnInit {
       $('.navbar-toggle').click();
     }
     this.ResolverMatch = this.activatedRoute.snapshot.data['matches'];
-    this.loadMatchList();
+    this.loadMatchList(-1);
     this.getUser();
     this.getExcelDate();
   }
@@ -92,7 +93,7 @@ export class HomeComponent implements OnInit {
     }, []);
   };
 
-  loadMatchList(){
+  loadMatchList(openGroup: number){
     this.dataservice.getMatches("?active=0&active=1&active=2").subscribe(
       (response:Match[])=>{
         this.ActiveMatches = response;
@@ -104,7 +105,7 @@ export class HomeComponent implements OnInit {
             return x;
           }
         })
-        let openPart = -1;
+        let openPart = openGroup;
         if(this.TodayMatches.length == 0){
           openPart = 0;
         }
@@ -177,8 +178,25 @@ export class HomeComponent implements OnInit {
         this.dataservice.addCoupon(this.newCoupon).subscribe(
           result => {
             console.log("Mentett fogadás: "+JSON.stringify(result));
+            let aktmatch = this.ActiveMatches.filter(x=>{
+              if(x._id.toString() == result["matchid"]){
+                return x;
+              }
+            });
+            this.ActiveMatchesGroupby.map(w=>{
+              if(aktmatch[0]["type"] === w[0]["type"]){
+                w.type = true;
+              }else{
+                w.type = false;
+              }
+            });
             this.getUser();
-            this.loadMatchList();
+            if(this.isTodayMatchPart){
+              this.loadMatchList(-1);
+            }else{
+              this.loadMatchList(+aktmatch[0]["type"]);
+            }
+            
             this.ModalClose();
             this.toastr.success('Sikeres fogadás', 'Üzenet',{positionClass:"toast-bottom-left"});
           },
@@ -217,8 +235,9 @@ export class HomeComponent implements OnInit {
     )
   }
 
-  openModal(betinfo:Betinfo,match){
+  openModal(isTodayPart:Boolean,betinfo:Betinfo,match){
     if(!match.blocked && this.authservice.isAuthenticated()){
+      this.isTodayMatchPart = isTodayPart;
       this.currentMatch = match;
       this.currentTeam = betinfo.selectedTeam;
       this.currentTeamID = betinfo.selectedTeamID;

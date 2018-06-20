@@ -56,6 +56,7 @@ import { DownloadpageComponent } from './downloadpage/downloadpage.component';
 import { UserteamsComponent } from './dashboard/userteams/userteams.component';
 import { MaintoplistComponent } from './maintoplist/maintoplist.component';
 import { UserbetsComponent } from './userbets/userbets.component';
+import { UserinfoComponent } from './userinfo/userinfo.component';
 
 // APP_INITIALIZER injection token
 export function init_app(service: AppService){
@@ -101,7 +102,8 @@ export function loadSetting(service: AppService){
     DownloadpageComponent,
     UserteamsComponent,
     MaintoplistComponent,
-    UserbetsComponent
+    UserbetsComponent,
+    UserinfoComponent
   ],
   imports: [
     BrowserModule,
