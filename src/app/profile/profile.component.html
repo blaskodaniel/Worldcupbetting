@@ -10,7 +10,7 @@
             <img class="img-circle" src="./assets/img/{{user?.avatar}}" alt="User Avatar">
         </div>
         <div class="box-footer">
-            <div class="row">
+            <div class="row firstrow">
                 <div class="col-sm-3 border-right">
                     <div class="description-block">
                         <h5 class="description-header">{{coupon?.length}}</h5>
@@ -28,7 +28,7 @@
                 <!-- /.col -->
                 <div class="col-sm-3 border-right">
                     <div class="description-block">
-                        <h5 class="description-header">{{stat_winCoupon}}</h5>
+                        <h5 class="description-header">{{stat_winCoupon | number}}</h5>
                         <span class="description-text">fogadást nyertem</span>
                     </div>
                     <!-- /.description-block -->
@@ -42,6 +42,36 @@
                     <!-- /.description-block -->
                 </div>
                 <!-- /.col -->
+            </div>
+            <div class="row">
+                <div class="col-sm-3 border-right">
+                    <div class="description-block">
+                        <h5 class="description-header">{{allWin}}</h5>
+                        <span class="description-text">nettó össznyeremény</span>
+                    </div>
+                    <!-- /.description-block -->
+                </div>
+                <div class="col-sm-3 border-right">
+                    <div class="description-block">
+                        <h5 class="description-header">{{allLoss}}</h5>
+                        <span class="description-text">összes veszteség</span>
+                    </div>
+                    <!-- /.description-block -->
+                </div>
+                <div class="col-sm-3 border-right">
+                    <div class="description-block">
+                        <h5 class="description-header">{{maxWin}}</h5>
+                        <span class="description-text">legnagyobb nyeremény</span>
+                    </div>
+                    <!-- /.description-block -->
+                </div>
+                <div class="col-sm-3 border-right">
+                    <div class="description-block">
+                        <h5 class="description-header">{{winteamcount}}</h5>
+                        <span class="description-text">Eltalált csoportgyőztesek</span>
+                    </div>
+                    <!-- /.description-block -->
+                </div>
             </div>
             <!-- /.row -->
         </div>
@@ -85,28 +115,28 @@
         <div class="row">
             <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 mb-xs mb-sm">
                 <label for="teamid">A csoport győztes</label>
-                <select class="form-control input-style select-style" [(ngModel)]="groupA" name="groupA" [disabled]="disabledTeamsSave" required>
+                <select class="form-control input-style select-style" [ngClass]="{'wingroupstyle':groupAwin}" [(ngModel)]="groupA" name="groupA" [disabled]="disabledTeamsSave" required>
                     <option *ngFor="let team of teams | teamsByGroup:'5a21ce32236a8706e70ba0ec'" [ngValue]="team._id">{{team.name}}</option>
                 </select>
                 <small id="emailHelp" class="form-text text-muted">Az VB első mérkőzésének kezdési időpontjáig módosítható.</small>
             </div>
             <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 mb-xs mb-sm">
                 <label for="teamid">B csoport győztes</label>
-                <select class="form-control input-style select-style" [(ngModel)]="groupB" name="groupB" [disabled]="disabledTeamsSave" required>
+                <select class="form-control input-style select-style" [ngClass]="{'wingroupstyle':groupBwin}" [(ngModel)]="groupB" name="groupB" [disabled]="disabledTeamsSave" required>
                         <option *ngFor="let team of teams | teamsByGroup:'5a21ce5b236a8706e70ba0ed'" [ngValue]="team._id">{{team.name}}</option>
                     </select>
                 <small id="emailHelp" class="form-text text-muted">Az VB első mérkőzésének kezdési időpontjáig módosítható.</small>
             </div>
             <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 mb-xs mb-sm">
                 <label for="teamid">C csoport győztes</label>
-                <select class="form-control input-style select-style" [(ngModel)]="groupC" name="groupC" [disabled]="disabledTeamsSave" required>
+                <select class="form-control input-style select-style" [ngClass]="{'wingroupstyle':groupCwin}" [(ngModel)]="groupC" name="groupC" [disabled]="disabledTeamsSave" required>
                             <option *ngFor="let team of teams | teamsByGroup:'5a21ce60236a8706e70ba0ee'" [ngValue]="team._id">{{team.name}}</option>
                         </select>
                 <small id="emailHelp" class="form-text text-muted">Az VB első mérkőzésének kezdési időpontjáig módosítható.</small>
             </div>
             <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 mb-xs mb-sm">
                 <label for="teamid">D csoport győztes</label>
-                <select class="form-control input-style select-style" [(ngModel)]="groupD" name="groupD" [disabled]="disabledTeamsSave" required>
+                <select class="form-control input-style select-style" [ngClass]="{'wingroupstyle':groupDwin}" [(ngModel)]="groupD" name="groupD" [disabled]="disabledTeamsSave" required>
                         <option *ngFor="let team of teams | teamsByGroup:'5a304698310de7057917b683'" [ngValue]="team._id">{{team.name}}</option>
                     </select>
                 <small id="emailHelp" class="form-text text-muted">Az VB első mérkőzésének kezdési időpontjáig módosítható.</small>
@@ -115,28 +145,28 @@
         <div class="row">
             <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 mb-xs mb-sm">
                 <label for="teamid">E csoport győztes</label>
-                <select class="form-control input-style select-style" [(ngModel)]="groupE" name="groupE" [disabled]="disabledTeamsSave" required>
+                <select class="form-control input-style select-style" [ngClass]="{'wingroupstyle':groupEwin}" [(ngModel)]="groupE" name="groupE" [disabled]="disabledTeamsSave" required>
                    <option *ngFor="let team of teams | teamsByGroup:'5afb39b68af39d454aee5611'" [ngValue]="team._id">{{team.name}}</option>
                 </select>
                 <small id="emailHelp" class="form-text text-muted">Az VB első mérkőzésének kezdési időpontjáig módosítható.</small>
             </div>
             <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 mb-xs mb-sm">
                 <label for="teamid">F csoport győztes</label>
-                <select class="form-control input-style select-style" [(ngModel)]="groupF" name="groupF" [disabled]="disabledTeamsSave" required>
+                <select class="form-control input-style select-style" [ngClass]="{'wingroupstyle':groupFwin}" [(ngModel)]="groupF" name="groupF" [disabled]="disabledTeamsSave" required>
                                 <option *ngFor="let team of teams | teamsByGroup:'5afb39c08af39d454aee5612'" [ngValue]="team._id">{{team.name}}</option>
                 </select>
                 <small id="emailHelp" class="form-text text-muted">Az VB első mérkőzésének kezdési időpontjáig módosítható.</small>
             </div>
             <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 mb-xs mb-sm">
                 <label for="teamid">G csoport győztes</label>
-                <select class="form-control input-style select-style" [(ngModel)]="groupG" name="groupG" [disabled]="disabledTeamsSave" required>
+                <select class="form-control input-style select-style" [ngClass]="{'wingroupstyle':groupGwin}" [(ngModel)]="groupG" name="groupG" [disabled]="disabledTeamsSave" required>
                          <option *ngFor="let team of teams | teamsByGroup:'5afb39d08af39d454aee5613'" [ngValue]="team._id">{{team.name}}</option>
                 </select>
                 <small id="emailHelp" class="form-text text-muted">Az VB első mérkőzésének kezdési időpontjáig módosítható.</small>
             </div>
             <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 mb-xs mb-sm">
                 <label for="teamid">H csoport győztes</label>
-                <select class="form-control input-style select-style" [(ngModel)]="groupH" name="groupH" [disabled]="disabledTeamsSave" required>
+                <select class="form-control input-style select-style" [ngClass]="{'wingroupstyle':groupHwin}" [(ngModel)]="groupH" name="groupH" [disabled]="disabledTeamsSave" required>
                      <option *ngFor="let team of teams | teamsByGroup:'5afb39d48af39d454aee5614'" [ngValue]="team._id">{{team.name}}</option>
                 </select>
                 <small id="emailHelp" class="form-text text-muted">Az VB első mérkőzésének kezdési időpontjáig módosítható.</small>

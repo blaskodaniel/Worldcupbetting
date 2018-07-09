@@ -33,6 +33,7 @@ export class TeamsgroupsComponent implements OnInit {
     this.addNewTeamForm = new FormGroup({
       'groupid': new FormControl(null,Validators.required),
       'name': new FormControl(null, Validators.required),
+      'winteamid': new FormControl(null),
       'flag':new FormControl(null,Validators.required)
     });
     

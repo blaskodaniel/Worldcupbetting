@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   public password:string = "";
   loginForm: FormGroup;
   token:string;
+  isLogin: false;
 
   constructor(private serverService:DataService,
     private authservice: AuthService,

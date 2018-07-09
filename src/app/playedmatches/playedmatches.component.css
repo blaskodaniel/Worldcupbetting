@@ -101,6 +101,11 @@ li.match {
 
 /*MATCH*/
 
+.description {
+    color: #74f913;
+    margin-bottom: 3px;
+}
+
 div.colorwhite {
     color: white;
 }

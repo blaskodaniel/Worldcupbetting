@@ -80,6 +80,10 @@ h6,
     padding-top: 30px;
 }
 
+.firstrow {
+    margin-top: 15px;
+}
+
 .box-footer {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
@@ -95,6 +99,8 @@ h6,
     display: block;
     margin: 10px 0;
     text-align: center;
+    background: #2c443e;
+    padding: 14px;
 }
 
 .description-block>.description-header {
@@ -106,6 +112,7 @@ h6,
 
 .description-block>.description-text {
     text-transform: uppercase;
+    font-size: 12px;
 }
 
 .table {
@@ -286,6 +293,10 @@ img.result {
     color: white;
     border: 0;
     background-color: #2c443e;
+}
+
+.wingroupstyle {
+    background-color: #29ca5994;
 }
 
 

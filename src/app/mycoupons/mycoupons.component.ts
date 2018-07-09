@@ -70,8 +70,18 @@ export class MycouponsComponent implements OnInit {
           this.stat_winCoupon = this.coupon.filter(x => x.success === true).length;
           this.stat_loseCoupon = this.coupon.filter(x => x.success === false).length;
           this.actcoupons = this.coupon.filter(x => x.matchid["active"] === 0 || x.matchid["active"] === 1);
+          this.coupon.map(x => x.accordion = true);
           this.sortBy();
           this.finishcoupons = this.coupon.filter(x => x.matchid["active"] === 2);
+          this.finishcoupons.sort((x,y) => {
+            if(x.date > y.date){
+              return -1
+            }else if(x.date < y.date){
+              return 1
+            }else{
+              return 0;
+            }
+          });
           this.GetTeams();
         }
       }

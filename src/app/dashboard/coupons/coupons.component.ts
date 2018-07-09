@@ -34,7 +34,7 @@ export class CouponsComponent implements OnInit {
 
   EditCoupon(coupon){
     console.log(coupon);
-    this.dataservice.updateCoupon(coupon).subscribe(
+    this.dataservice.updateCouponAdmin(coupon).subscribe(
       (x)=>{
         this.toastr.success('Sikeres mentés!', 'Üzenet',{positionClass:"toast-bottom-left"});
       }

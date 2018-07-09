@@ -47,7 +47,7 @@ const appRoutes:Routes = [
     {path:'fileupload', component:UploadexcelComponent, canActivate:[GuardService,AdminGuardService]},
     {path:'logs', component:LogsComponent, canActivate:[GuardService,AdminGuardService]},
     {path:'matches', component:MatchesComponent,canActivate:[GuardService,EditorGuardService]},
-    {path:'registration', component:RegistrationComponent},
+    // {path:'registration', component:RegistrationComponent},
     {path:'login', component:LoginComponent},
     {path:"**",component:HomeComponent}
 ]

@@ -182,6 +182,16 @@ export class DataService {
         );
     }
 
+    // Admin
+    updateCouponAdmin(coupon:Coupon):Observable<ServerResponse | ErrorHTTP>{
+        return this.httpclient.patch(`${this.BaseURL}/api/modifycoupon/${coupon._id}`, coupon)
+        .pipe(
+            catchError(err=>this.errorHTTPHandler(err,14,"Hiba a szelvény módosítása közben"))
+        ).map(
+            (x: ServerResponse) => x
+        );
+    }
+
     getUserBetsByMatchId(matchid:String): Observable<Coupon[] | ErrorHTTP>{
         return this.httpclient.get(`${this.BaseURL}/api/userbets/${matchid}`)
         .pipe(
@@ -265,7 +275,7 @@ export class DataService {
             .pipe(
                 catchError(err => this.errorHTTPHandler(err, 89, "Hiba a scorecalculate közben")))
             .map(
-                (x: Response) => x.json()
+                (x: Response) => x
             );
     }
 

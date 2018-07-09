@@ -20,6 +20,7 @@ export interface User {
     password?: String,
     score: Number,
     nettoscore?: Number,
+    winteamcount?: Number,
     avatar: String,
     aktiv?: Number,
     role?: String

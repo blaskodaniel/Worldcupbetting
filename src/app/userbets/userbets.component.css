@@ -10,6 +10,30 @@ table tbody tr td {
     color: white;
 }
 
+.favorithelp {
+    font-style: italic;
+    font-size: 12px;
+}
+
+.helpbox {
+    padding: 2px 7px;
+    border: 1px solid aliceblue;
+    width: 145px;
+}
+
+.mycoupon {
+    background: #295652 !important;
+}
+
+i.fa {
+    margin-left: 5px;
+    font-size: 11px;
+}
+
+i.fa-star {
+    color: #c31313;
+}
+
 .table-striped>tbody>tr:nth-of-type(odd) {
     background-color: #2c9c72;
 }
@@ -21,15 +45,14 @@ table thead tr {
 
 .odds {
     font-size: 20px;
-    background: red;
+    background: #295652;
     padding: 7px 11px;
-    border-radius: 100px;
     margin-right: 10px;
 }
 
 .favoriteTeam {
     font-size: 10px;
-    color: #a91717;
+    color: #8e0909;
     margin-left: 4px;
     font-style: italic;
 }

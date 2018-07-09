@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
+@font-face {
+    font-family: 'MavenPro';
+    src: url('../../assets/fonts/MavenPro-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
+}
+
 body {
     background-color: #288e68;
     /* background-image: radial-gradient(farthest-side ellipse at 10% 0, #154265 20%, #7392c2);
@@ -12,6 +17,7 @@ body {
     background-size: cover;
     height: 100%;
     background-repeat: no-repeat;
+    font-family: 'MavenPro', sans-serif;
 }
 
 .italic {

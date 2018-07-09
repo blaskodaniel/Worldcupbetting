@@ -1,4 +1,7 @@
+import { Team } from "./team.model";
+
 export interface Group{
     _id?: String,
-    name:String
+    name:String,
+    winteamid?: Team
 }

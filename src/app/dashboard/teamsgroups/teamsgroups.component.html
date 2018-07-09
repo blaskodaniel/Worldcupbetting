@@ -124,6 +124,7 @@
                             <th>#</th>
                             <th>ID</th>
                             <th>Groups name</th>
+                            <th>Winner teamID</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -135,10 +136,13 @@
                                 <input class="transparentinput" style="width:60px;" type="text" [(ngModel)]="item.name" name="groupid">
                             </td>
                             <td>
+                                <input class="transparentinput" style="width: 125px;border: 1px solid #0000002e;" type="text" [(ngModel)]="item.winteamid" name="winteamid">
+                            </td>
+                            <td>
                                 <i class="fa fa-floppy-o hidden-lg hidden-sm hidden-md" aria-hidden="true" (click)="EditGroup(item)"></i>&nbsp;&nbsp;
                                 <i class="fa fa-trash hidden-lg hidden-sm hidden-md" aria-hidden="true" (click)="DeleteGroup(item)"></i>
                                 <button class="btn btn-save hidden-xs" (click)="EditGroup(item)">Save</button>
-                                <button class="btn btn-remove hidden-xs" (click)="DeleteGroup(item)">Remove</button>
+                                <button class="btn btn-remove hidden-xs hidden" (click)="DeleteGroup(item)">Remove</button>
                             </td>
                         </tr>
                     </tbody>

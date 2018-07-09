@@ -62,6 +62,10 @@ img {
     font-size: 30px;
 }
 
+.location {
+    font-size: 11px;
+}
+
 .location-marker {
     font-size: 12px;
 }
@@ -100,6 +104,11 @@ li.match {
 
 
 /*MATCH*/
+
+.description {
+    color: #74f913;
+    margin-bottom: 3px;
+}
 
 div.colorwhite {
     color: white;
@@ -188,7 +197,7 @@ span.oddspos {
 }
 
 .modal-header {
-    padding: 10px 35px;
+    padding: 10px 20px;
 }
 
 .modal-header,
@@ -228,11 +237,31 @@ h4,
     font-size: 20px;
 }
 
+.teamAgoal_mobile {
+    position: absolute;
+    right: -10px;
+    color: white;
+    top: 50px;
+    font-size: 20px;
+    text-align: center;
+    width: 117%;
+}
+
 .teamBgoal {
     position: absolute;
     top: 76px;
     right: 65px;
     font-size: 20px;
+}
+
+.teamBgoal_mobile {
+    position: absolute;
+    right: -10px;
+    color: white;
+    top: 50px;
+    font-size: 20px;
+    text-align: center;
+    width: 117%;
 }
 
 .matchTopTitle div.result-top-bar {
@@ -307,5 +336,11 @@ a:hover {
     li.match {
         padding-left: 10px;
         padding-right: 10px;
+    }
+    .teamAgoal_mobile {
+        font-size: 15px;
+    }
+    .teamBgoal_mobile {
+        font-size: 15px;
     }
 }

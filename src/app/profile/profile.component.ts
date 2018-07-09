@@ -3,6 +3,7 @@ import { DataService } from '../_services/data.service';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Coupon } from '../_interfaces/coupon';
+import { Usergroupinfo } from '../_interfaces/usergroupinfo';
 import { ErrorHTTP } from '../_models/errorhttp.model';
 import { Match } from '../_interfaces/match';
 import { User } from '../_models/user.models';
@@ -11,6 +12,7 @@ import { Team } from '../_models/team.model';
 import { AppService } from '../_services/app.service';
 import { Group } from '../_models/group.models';
 import { Groupwins } from '../_models/groupwins.model';
+import { filter } from 'rxjs/operators';
 declare var $: any;
 
 @Component({
@@ -38,6 +40,12 @@ export class ProfileComponent implements OnInit {
   teams: Team[];
   groups: Group[];
   valami:any;
+  allLoss = 0;
+  allWin = 0;
+  maxWin = 0;
+  winteamcount = 0;
+  group: Usergroupinfo;
+  goupinformation: Usergroupinfo[];
 
   groupA:String;
   groupB:String;
@@ -47,6 +55,14 @@ export class ProfileComponent implements OnInit {
   groupF:String;
   groupG:String;
   groupH:String;
+  groupAwin:Boolean;
+  groupBwin:Boolean;
+  groupCwin:Boolean;
+  groupDwin:Boolean;
+  groupEwin:Boolean;
+  groupFwin:Boolean;
+  groupGwin:Boolean;
+  groupHwin:Boolean;
 
   constructor(private dataservice: DataService, private authservice: AuthService, private appsettings: AppService,
     public toastr: ToastsManager, vcr: ViewContainerRef) {
@@ -72,6 +88,23 @@ export class ProfileComponent implements OnInit {
         this.stat_loseCoupon = this.coupon.filter(x => x.success === false).length;
         this.actcoupons = this.coupon.filter(x => x.matchid["active"] === 0 || x.matchid["active"] === 1);
         this.finishcoupons = this.coupon.filter(x => x.matchid["active"] === 2);
+        this.coupon.map(x => {
+          if(x.success === true){
+            let sum = (x.odds*x.bet)-x.bet;
+            if((x.userid.teamid == x.matchid.teamA) || (x.userid.teamid == x.matchid.teamB)){
+              sum = sum*2;
+            }
+            if(sum > this.maxWin){
+              this.maxWin = sum;
+            }
+            
+            this.allWin+=sum;
+          }
+          if(x.success === false){
+            let sum = x.bet;
+            this.allLoss+=sum;
+          }
+        });
       }
     )
   }
@@ -83,6 +116,7 @@ export class ProfileComponent implements OnInit {
         this.user = user;
         this.teamid = this.user.teamid as string;
         this.winteamid = this.user.winteamid as string;
+        this.winteamcount = this.user.winteamcount as number;
         this.groupA = this.user.groupA as string;
         this.groupB = this.user.groupB as string;
         this.groupC = this.user.groupC as string;
@@ -97,6 +131,34 @@ export class ProfileComponent implements OnInit {
         if (this.user.name) {
           this.fullname = this.user.name;
         }
+        this.groups.map(x => {
+          if(x.winteamid){
+            if(x.winteamid === this.groupA){
+              this.groupAwin = true;
+            }
+            if(x.winteamid === this.groupB){
+              this.groupBwin = true;
+            }
+            if(x.winteamid === this.groupC){
+              this.groupCwin = true;
+            }
+            if(x.winteamid === this.groupD){
+              this.groupDwin = true;
+            }
+            if(x.winteamid === this.groupE){
+              this.groupEwin = true;
+            }
+            if(x.winteamid === this.groupF){
+              this.groupFwin = true;
+            }
+            if(x.winteamid === this.groupG){
+              this.groupGwin = true;
+            }
+            if(x.winteamid === this.groupH){
+              this.groupHwin = true;
+            }
+          }
+        });
       },
       (error) => {
         console.log("Error");

@@ -15,22 +15,29 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th (click)="sortByName()">Név</th>
-                    <th (click)="sortOutcome()">Kimenetel</th>
-                    <th (click)="sortByBet()">Feltett tét</th>
-                    <th (click)="sortByResult()">Nyereménye (nettó)</th>
+                    <th (click)="sortByName()">Név<i class="fa fa-arrows-v" aria-hidden="true"></i></th>
+                    <th (click)="sortOutcome()">Kimenetel<i class="fa fa-arrows-v" aria-hidden="true"></i></th>
+                    <th (click)="sortByBet()">Feltett tét<i class="fa fa-arrows-v" aria-hidden="true"></i></th>
+                    <th (click)="sortByResult()">Nyereménye (nettó)<i class="fa fa-arrows-v" aria-hidden="true"></i></th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let coupon of userscoupons">
-                    <td>{{coupon.username}}<br /><span class="favoriteTeam" *ngIf="coupon.favoriteTeam">(Kedvenc csapat)</span></td>
+                <tr *ngFor="let coupon of userscoupons;let y = index" [ngClass]="{'mycoupon':coupon.userid.username == aktuser}">
+                    <td><strong>{{coupon.username}}</strong><i *ngIf="coupon.favoriteTeam" class="fa fa-star" aria-hidden="true"></i></td>
                     <td>{{coupon.outcome}}</td>
                     <td>{{coupon.bet}}</td>
-                    <td>{{coupon.favoriteTeam?(((coupon.bet * coupon.odds)-coupon.bet)*2 | number:'1.0-1'):((coupon.bet * coupon.odds)-coupon.bet | number:'1.0-1')}}
+                    <td><strong>{{coupon.favoriteTeam?(((coupon.bet * coupon.odds)-coupon.bet)*2 | number:'1.0-1'):((coupon.bet * coupon.odds)-coupon.bet | number:'1.0-1')}}</strong>
 
                     </td>
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div class="col-xs-12">
+        <div class="helpbox">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <span class="favorithelp"> - Kedvenc csapat</span>
+        </div>
+
     </div>
 </div>

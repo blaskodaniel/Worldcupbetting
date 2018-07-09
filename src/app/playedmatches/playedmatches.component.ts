@@ -42,7 +42,7 @@ export class PlayedmatchesComponent implements OnInit {
         this.PlayedMatches = response;
         this.ActiveMatchesGroupby = this.groupby(this.PlayedMatches, 'type');
         let index = 0;
-        let openPart = 1;
+        let openPart = -1;
         this.ActiveMatchesGroupby.map(w=>{
           if(index === openPart){
             w.type = false;

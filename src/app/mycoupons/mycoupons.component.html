@@ -16,7 +16,7 @@
                 {{c.teamA}} <span class="finish" *ngIf="c.matchid.active == 2">{{c.matchid.goalA}}</span> -
                 <span class="finish" *ngIf="c.matchid.active == 2">{{c.matchid.goalB}}</span> {{c.teamB}}
             </h4>
-            <div class="row couponbody">
+            <div class="row couponbody nomarginRight nomarginLeft flexcontainer">
                 <div class="col-xs-6 coupon_info">
                     <p class="date" *ngIf="c.matchid.active == 0">Mérkőzés kezdése: {{c.matchid.date | timestampToDate}}</p>
                     <p class="run" *ngIf="c.matchid.active == 1">Jelenleg tart a mérkőzés</p>
@@ -36,7 +36,7 @@
 </div>
 <div class="row">
     <div class="col-xs-12 colorwhite">
-        <p class="title">Lezárt fogadásaim</p>
+        <p class="title">Lezárt fogadásaim ({{finishcoupons?.length}})</p>
     </div>
 </div>
 <hr />
@@ -48,16 +48,18 @@
 <div class="row nomarginLeft nomarginRight flexcontainer" *ngIf="finishcoupons?.length > 0">
     <div class="list-group flexitem" *ngFor="let i = index;let c of finishcoupons">
         <a class="list-group-item active" [ngClass]="{'winCoupon':c.success, 'loseCoupon':!c.success}">
-            <span class="status">
-                    <span class="score">{{c.success?(c.result | number:'1.0-1'):"Nem nyert"}}</span>
-            <img *ngIf="c.success" class="result" [src]="img_success" />
-            <img *ngIf="!c.success" class="result" [src]="img_lose" />
-            </span>
-            <h4 class="list-group-item-heading teams">
-                {{c.teamA}} <span class="finish" *ngIf="c.matchid.active == 2">{{c.matchid.goalA}}</span> -
-                <span class="finish" *ngIf="c.matchid.active == 2">{{c.matchid.goalB}}</span> {{c.teamB}}
-            </h4>
-            <div class="row couponbody">
+            <div class="couponheader" (click)="c.accordion = !c.accordion">
+                <span class="status">
+                            <span class="score">{{c.success?(c.result | number:'1.0-1'):"Nem nyert"}}</span>
+                <img *ngIf="c.success" class="result" [src]="img_success" />
+                <img *ngIf="!c.success" class="result" [src]="img_lose" />
+                </span>
+                <h4 class="list-group-item-heading teams">
+                    {{c.teamA}} <span class="finish" *ngIf="c.matchid.active == 2">{{c.matchid.goalA}}</span> -
+                    <span class="finish" *ngIf="c.matchid.active == 2">{{c.matchid.goalB}}</span> {{c.teamB}}
+                </h4>
+            </div>
+            <div class="row couponbody nomarginLeft nomarginRight" [ngClass]="{'collapse on' : c.accordion}">
                 <div class="col-xs-6 coupon_info">
                     <p class="date" *ngIf="c.matchid.active == 0">Mérkőzés kezdése: {{c.date | timestampToDate}}</p>
                     <p class="run" *ngIf="c.matchid.active == 1">Jelenleg tart a mérkőzés</p>

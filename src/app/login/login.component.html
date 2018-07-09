@@ -15,8 +15,8 @@
                     <button type="submit" class="btn btn-success">Bejelentkezek</button>
                 </div>
             </div>
-            <hr />
-            <div class="row">
+            <hr *ngIf="isLogin" />
+            <div class="row" *ngIf="isLogin">
                 <div class="col-xs-12">
                     <p class="text-center" routerLink="/registration">Regisztrálok a játékba</p>
                 </div>
