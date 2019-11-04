@@ -26,7 +26,7 @@ export class DataService {
     private fileuploadheader: Headers;
     private Loged: boolean = false;
     private secretToken: string;
-    private BaseURL: string = "http://beerlak.com";
+    private BaseURL: string = "https://mokasfoci.hu";
 
     private httpOptionsforupload = {
         headers: new HttpHeaders({
@@ -112,17 +112,17 @@ export class DataService {
 
     getGroups() {
         // Get All groups
-        return this.http.get(`${this.BaseURL}/getgroups`);
+        return this.http.get(`${this.BaseURL}/getgroup`);
     }
 
     getTeams() {
         // Get Teams
-        return this.http.get(`${this.BaseURL}/getteams`, this.noauthoptions);
+        return this.http.get(`${this.BaseURL}/getteam`, this.noauthoptions);
     }
 
     getTeamsTypeWithAuth(): Observable<Team[] | ErrorHTTP> {
         // Get Teams
-        return this.httpclient.get<Team[]>(`${this.BaseURL}/api/getteams`).pipe(
+        return this.httpclient.get<Team[]>(`${this.BaseURL}/api/getteam`).pipe(
             catchError(err=>this.errorHTTPHandler(err,25,"Hiba a teamek letöltése közben"))
         );;
     }

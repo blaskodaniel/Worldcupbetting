@@ -5,7 +5,7 @@ import { DataService } from './data.service';
 
 @Injectable()
 export class AppService {
-  BaseURL: string = "http://beerlak.com";
+  BaseURL: string = "https://mokasfoci.hu";
   clientSetting: any;
   favoritTeamFactor: number;
   wcwinnerplus: number;
@@ -19,7 +19,7 @@ export class AppService {
     console.log("Database test...");
 
     let promise = new Promise((resolve, reject) => {
-      let Request = this.http.get(`${this.BaseURL}/testdb`)
+      this.http.get(`${this.BaseURL}/testdb`)
         .toPromise()
         .then(x => {
           let resp = x.json();

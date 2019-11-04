@@ -25,7 +25,8 @@ export class AuthService {
       return false;
     }else{
       let payload = this.JwtHelper.decodeToken(token);
-      if(payload.role === "admin" || payload.role === "editor"){
+      let isAdminArray = payload.role.filter(x=>x === "admin" || x === "editor");
+      if(isAdminArray.length > 0){
         return true;
       }
     }
@@ -37,7 +38,8 @@ export class AuthService {
       return false;
     }else{
       let payload = this.JwtHelper.decodeToken(token);
-      if(payload.role === "admin"){
+      let isAdminArray = payload.role.filter(x=>x === "admin");
+      if(isAdminArray.length > 0){
         return true;
       }
     }
@@ -47,7 +49,7 @@ export class AuthService {
     var token = this.getToken();
     if(token != null){
       let payload = this.JwtHelper.decodeToken(token);
-          return payload.username
+          return payload.email
     }
   }
 

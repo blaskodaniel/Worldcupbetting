@@ -15,7 +15,8 @@ export class AdminGuardService implements CanActivate {
           return false;
         }else{
           let payload = this.JwtHelper.decodeToken(token);
-          if(payload.role === "admin"){
+          let isAdminArray = payload.role.filter(x=>x === "admin");
+          if(isAdminArray.length > 0){
             return true;
           }
         }

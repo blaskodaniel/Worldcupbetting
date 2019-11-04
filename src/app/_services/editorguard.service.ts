@@ -15,7 +15,8 @@ export class EditorGuardService implements CanActivate {
           return false;
         }else{
           let payload = this.JwtHelper.decodeToken(token);
-          if(payload.role === "admin" || payload.role === "editor"){
+          let isAdminArray = payload.role.filter(x=>x === "admin" || x === "editor");
+          if(isAdminArray.length > 0){
             return true;
           }
         }
